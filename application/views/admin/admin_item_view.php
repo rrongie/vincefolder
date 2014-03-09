@@ -21,12 +21,14 @@
                <table id="accounts-view" class="table">
             <thead>
                 <tr>
-                      <th>Id</th>
-                    <th>Quantity</th>
-                    <th>Item Name</th>
-                    <th>Amount</th>
-                    <th>Serial</th>
-                     <th>Action</th>
+                      <th>Supplier Name</th>
+                      <th>Department Name</th>
+                      <th>Item Name</th>
+                      <th>Item Qty</th>
+                      <th>Item Unit</th>
+                      <th>Item Brand</th>
+                      <th>Item Price</th>
+                      <th>Date Add</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,15 +56,15 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 3, "asc" ]],
+        "aaSorting": [[ 7, "asc" ]],
         "bProcessing": true,
-        "sAjaxSource": "<?php echo site_url('admin/datatables_fixed_items'); ?>",
+        "sAjaxSource": "<?php echo site_url('admin/datatables_items'); ?>",
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
                     return '<a href="account/'+oObj.aData[0]+'"><img src="<?php echo base_url() . 'assets/img/edit.png' ?>"></a>';
                 },
-                "aTargets": [ 5 ],
+                "aTargets": [ 7 ],
                 "sDefaultContent": ""
             }
         ]

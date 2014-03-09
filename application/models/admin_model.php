@@ -2,6 +2,10 @@
 
 class Admin_model extends CI_Model {
 
+public function save_item($formdata){
+	$this->db->insert('items',$formdata);	
+}
+
 public function customer_info($user_id){
 
 	$this->db->select('*');

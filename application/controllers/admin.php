@@ -214,43 +214,46 @@ class Admin extends CI_Controller {
 
 		}
 
-	public function datatables_fixed_items(){
+	public function datatables_items(){
 		$this
-			->datatables->select('id, item_qty, item_name, amount, serial')
-			->from('fixed_items');
+			->datatables->select('supplier_fname,department.name,item_name, item_qty,item_unit,item_brand,item_price,date_add,')
+			->from('items')
+			->join('supplier', 'supplier_id = supplier.id','left')
+			->join('department', 'department_id = department.id', 'left');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
 	}
 
-	public function add_fixed_item(){
+	public function add_item(){
+
 		
-		$fix_item = array('item_band' => $this->input->post('fname'),
-						  'item_name' => $this->input->post('lname'),
-						  'qty' => $this->input->post('username'),
-						  'price' => $this->input->post('type'),
-						  );
-		$supplier = array('supplier_name' => $this->input->post('fname'),
+		$form_data = array('supplier_id' => $this->input->post('supplier_id'),
+						  'department_id' => $this->input->post('department_id'),
+						  'item_price' => $this->input->post('item_price'),
+						  'item_brand' => $this->input->post('item_brand'),
+						  'item_name' => $this->input->post('item_name'),
+						  'item_unit' => $this->input->post('item_unit'),
+						  'item_qty' => $this->input->post('item_quantity')
 						  );
 
 	
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		$this->form_validation->set_rules('supplier_id','Supplier Id','required');
+		$this->form_validation->set_rules('departmentid','Deparment Id','required');
+		$this->form_validation->set_rules('item_price','Item Price','required');
+		$this->form_validation->set_rules('item_brand','item Type','required');
 		$this->form_validation->set_rules('item_name','Item Name','required');
-		$this->form_validation->set_rules('item_number','item Number','required');
-		$this->form_validation->set_rules('item_type','item type','required');
-		$this->form_validation->set_rules('status','status','required');
-		$this->form_validation->set_rules('item_type','item type','required');
-		$this->form_validation->set_rules('item_price','item price','required');
-		$this->form_validation->set_rules('quantity','item price','required');
-		//$this->form_validation->set_message('is_unique',"Username already exist");
-		$this->form_validation->set_rules('type','type','required');
+		$this->form_validation->set_rules('item_unit','Item Unit','required');
+		$this->form_validation->set_rules('item_quantity','Item Quantity','required');
 
 		if ($this->form_validation->run() == FALSE){
 			echo validation_errors();
 		}
 		else{
 
-			echo"save to database";
+			$this->admin_model->save_item($form_data);
+			echo 'save flash here';
 			
 		}
 	}
