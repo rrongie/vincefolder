@@ -1,0 +1,17 @@
+[18-Feb-2014 23:41:02 Asia/Manila] PHP Parse error:  syntax error, unexpected '$message' (T_VARIABLE) in /home/asakapab0i/public_html/application/controllers/checkout.php on line 299
+[18-Feb-2014 23:42:28 Asia/Manila] PHP Fatal error:  Function name must be a string in /home/asakapab0i/public_html/application/controllers/checkout.php on line 298
+[18-Feb-2014 23:42:39 Asia/Manila] PHP Parse error:  syntax error, unexpected '$order_id' (T_VARIABLE) in /home/asakapab0i/public_html/application/controllers/checkout.php on line 298
+[18-Feb-2014 23:42:50 Asia/Manila] PHP Parse error:  syntax error, unexpected '$order_id' (T_VARIABLE) in /home/asakapab0i/public_html/application/controllers/checkout.php on line 298
+[18-Feb-2014 23:46:16 Asia/Manila] PHP Fatal error:  Function name must be a string in /home/asakapab0i/public_html/application/controllers/checkout.php on line 298
+[19-Feb-2014 00:00:00 Asia/Manila] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/asakapab0i/public_html/application/controllers/checkout.php on line 297
+[19-Feb-2014 00:02:01 Asia/Manila] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/asakapab0i/public_html/application/controllers/checkout.php on line 297
+[19-Feb-2014 00:02:26 Asia/Manila] PHP Parse error:  syntax error, unexpected '' (T_ENCAPSED_AND_WHITESPACE), expecting identifier (T_STRING) or variable (T_VARIABLE) or number (T_NUM_STRING) in /home/asakapab0i/public_html/application/controllers/checkout.php on line 297
+[19-Feb-2014 00:15:36 Asia/Manila] PHP Fatal error:  Call to undefined method Datatables::order_by() in /home/asakapab0i/public_html/application/controllers/administrator.php on line 447
+[19-Feb-2014 06:28:33 Asia/Manila] PHP Fatal error:  Class 'Administrator' not found in /home/asakapab0i/public_html/application/controllers/staff.php on line 4
+[23-Feb-2014 07:58:56 Asia/Manila] PHP Parse error:  syntax error, unexpected ')' in /home/asakapab0i/public_html/application/views/administrator/administrator_settings_view.php on line 33
+[23-Feb-2014 08:15:16 Asia/Manila] PHP Parse error:  syntax error, unexpected 'private' (T_PRIVATE) in /home/asakapab0i/public_html/application/controllers/administrator.php on line 485
+[23-Feb-2014 08:15:54 Asia/Manila] PHP Parse error:  syntax error, unexpected 'public' (T_PUBLIC) in /home/asakapab0i/public_html/application/controllers/administrator.php on line 485
+[23-Feb-2014 08:43:05 Asia/Manila] PHP Fatal error:  Can't use method return value in write context in /home/asakapab0i/public_html/application/controllers/administrator.php on line 481
+[23-Feb-2014 08:57:38 Asia/Manila] PHP Parse error:  syntax error, unexpected '+', expecting ')' in /home/asakapab0i/public_html/application/controllers/administrator.php on line 495
+[23-Feb-2014 10:09:57 Asia/Manila] PHP Parse error:  syntax error, unexpected '$config' (T_VARIABLE) in /home/asakapab0i/public_html/application/controllers/administrator.php on line 230
+[23-Feb-2014 10:18:30 Asia/Manila] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/asakapab0i/public_html/application/controllers/administrator.php on line 318

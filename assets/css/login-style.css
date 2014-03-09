@@ -1,0 +1,134 @@
+
+img {
+  display: block;
+  height: 150px;
+  width: 300px;
+  margin: 30px auto 0;
+  }
+
+
+
+* { box-sizing: border-box; padding:0; margin: 0; }
+
+body {
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  color:#E6E6FA;
+  font-size:12.5px;
+  background:#fff url(/images/classy_fabric.png);
+}
+
+#cont {
+  background:#0e4599; 
+  width:290px;
+  margin:30px auto;
+  
+  
+  
+  height: 250px;
+  border-radius:0.4em;
+  border:1px solid #191919;
+  overflow:hidden;
+  position:relative;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+
+.inset {
+ 	padding:10px; 
+  border-top:1px solid #0e4599;
+}
+
+#cont h1 {
+  font-size:25px;
+  text-shadow:0 1px 0 black;
+  text-align:center;
+  margin: 13px;
+  padding:2px 0;
+  font-family:"Times New Roman", Times, serif;
+  border-bottom:1px solid rgba(0,0,0,1);
+  position:relative;
+}
+
+
+
+label {
+ 	font-family:italic;
+  
+  color:#fff;
+  display:block;
+  padding-bottom:0px;
+}
+
+input[type=text],
+input[type=password] {
+ 	width:100%;
+  padding:6px 5px;
+  background:linear-gradient(#fff, #ffff);
+  border:1px solid #222;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.1);
+ 
+  border-radius:0.3em;
+  margin-bottom:10px;
+}
+
+label[for=remember]{
+ 	color:white;
+  display:inline-block;
+  padding-bottom:0;
+  padding-top:3px;
+}
+
+input[type=checkbox] {
+ 	display:inline-block;
+  vertical-align:top;
+}
+
+.p-container {
+ 	padding:0px 20px 0px 0px; 
+}
+
+.p-container:after {
+ 	
+  clear:both;
+  display:table;
+  content:"";
+}
+
+.p-container span {
+  display:block;
+  float:left;
+  color:#0d93ff;
+ 
+}
+
+input[type=submit] {
+ 	padding:5px 15px;
+  border:1px solid rgba(0,0,0,0.4);
+  text-shadow:0 -1px 0 rgba(0,0,0,0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 10px 10px rgba(255,255,255,0.1);
+  border-radius:0.3em;
+  background:#0184ff;
+  color:white;
+  float:right;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:13px;
+}
+
+input[type=submit]:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -10px 10px rgba(255,255,255,0.1);
+}
+
+input[type=text]:hover,
+input[type=password]:hover,
+label:hover ~ input[type=text],
+label:hover ~ input[type=password] {
+ 	background:#0d93ff;
+}
+
+	
