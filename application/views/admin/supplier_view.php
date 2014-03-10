@@ -26,8 +26,8 @@
 				                <tr>
 				                      <th>Id</th>
 				                   
-				                    <th>First Name</th>
-				                    <th>Last Name</th>
+				                    <th>Name</th>
+				                    
 				                    <th>Address</th>
 				                    <th>Mobile</th>
 				                    <th>View</th>
@@ -55,7 +55,7 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 3, "asc" ]],
+        "aaSorting": [[ 4, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_supplier'); ?>",
         "aoColumnDefs": [
@@ -63,7 +63,7 @@
                 "fnRender": function ( oObj ) {
                     return '<a href="supplier_details/'+oObj.aData[0]+'"><img src="<?php echo base_url() . 'assets/img/edit.png' ?>"></a>';
                 },
-                "aTargets": [ 5 ],
+                "aTargets": [ 4 ],
                 "sDefaultContent": ""
             }
         ]

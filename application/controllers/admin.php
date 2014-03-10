@@ -13,7 +13,7 @@ class Admin extends CI_Controller {
 		//Everytime this class is called it automatically checks the the function is_logged_in
 		//If not then redirect to homepage
 		if (!$this->is_logged_in()) {
-			redirect("account");
+			redirect("account/login");
 		}
 
 	}
@@ -156,16 +156,6 @@ class Admin extends CI_Controller {
 		
 	}
 	
-	public function datatables_accounts(){
-		$this
-			->datatables->select('id, username, fname, lname, type')
-			->from('personnel');
-
-		$datatables = $this->datatables->generate('JSON');
-		echo $datatables;
-
-	}
-
 	public function add_department(){
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
@@ -178,12 +168,10 @@ class Admin extends CI_Controller {
 		$form_data = array('name' => $this->input->post('adddepartment'));
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->session->set_flashdata('department_error',validation_errors());
-			redirect('admin/add_department');
+			echo validation_errors();
 		}else{
-			$this->session->set_flashdata('dept_success', 'Deparment Successfully Added!');
 			$this->admin_model->insert_add_department($form_data);
-			redirect('admin/add_department');
+			echo"Department Successfully Added!";
 		}
 	}
 
@@ -214,9 +202,11 @@ class Admin extends CI_Controller {
 
 		}
 
+	
+		//CONCAT(fname," ",lname) AS lname', FALSE)
 	public function datatables_items(){
 		$this
-			->datatables->select('supplier_fname,department.name,item_name, item_qty,item_unit,item_brand,item_price,date_add,')
+			->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
 			->from('items')
 			->join('supplier', 'supplier_id = supplier.id','left')
 			->join('department', 'department_id = department.id', 'left');
@@ -225,35 +215,61 @@ class Admin extends CI_Controller {
 		echo $datatables;
 	}
 
-	public function add_item(){
+		public function datatables_supplier(){
+		$this
+			//->datatables->select('id,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, supplier_lname, address, mobile',FALSE)
+			->datatables->select('id, ,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, address, mobile',FALSE)
+			->from('supplier');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+
+		public function datatables_accounts(){
+		$this
+			->datatables->select('id, username, fname, lname, type')
+			->from('personnel');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+
+	}
+	
+	public function add_item_Validate(){
 
 		
 		$form_data = array('supplier_id' => $this->input->post('supplier_id'),
 						  'department_id' => $this->input->post('department_id'),
-						  'item_price' => $this->input->post('item_price'),
 						  'item_brand' => $this->input->post('item_brand'),
 						  'item_name' => $this->input->post('item_name'),
+						  'item_type' => $this->input->post('item_type'),
 						  'item_unit' => $this->input->post('item_unit'),
-						  'item_qty' => $this->input->post('item_quantity')
+						  'item_qty' => $this->input->post('item_qty'),
+						  'item_price' => $this->input->post('item_price'),
+						  'item_serial' => $this->input->post('item_serial'),
 						  );
 
 	
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		$this->form_validation->set_rules('supplier_id','Supplier Id','required');
-		$this->form_validation->set_rules('departmentid','Deparment Id','required');
-		$this->form_validation->set_rules('item_price','Item Price','required');
-		$this->form_validation->set_rules('item_brand','item Type','required');
+		$this->form_validation->set_rules('department_id','Deparment Id','required');
+		$this->form_validation->set_rules('item_brand','Item Brand','required');
 		$this->form_validation->set_rules('item_name','Item Name','required');
+		$this->form_validation->set_rules('item_type','Item Type','required');
 		$this->form_validation->set_rules('item_unit','Item Unit','required');
-		$this->form_validation->set_rules('item_quantity','Item Quantity','required');
+		$this->form_validation->set_rules('item_qty','Item Quantity','required');
+		$this->form_validation->set_rules('item_price','Item price','required');
+		$this->form_validation->set_rules('item_serial','Item serial','required');
 
 		if ($this->form_validation->run() == FALSE){
+			
 			echo validation_errors();
+			
 		}
 		else{
-
+			$this->session->set_flashdata('add_item_success', 'Item Successfully Added!');
 			$this->admin_model->save_item($form_data);
-			echo 'save flash here';
+			redirect('admin/add_items');
 			
 		}
 	}
@@ -263,14 +279,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/supplier_view');
 
 	}
-	public function datatables_supplier(){
-		$this
-			->datatables->select('id, supplier_fname, supplier_lname, address, mobile')
-			->from('supplier');
 
-		$datatables = $this->datatables->generate('JSON');
-		echo $datatables;
-	}
 
 	public function add_supplier(){
 		$this->load->view('template/header');
@@ -291,27 +300,29 @@ class Admin extends CI_Controller {
 	public function add_supplier_validate(){
 
 		$personal = array('supplier_fname' => $this->input->post('fname'),
-						 'supplier_lname' => $this->input->post('lname'),
+						  'supplier_lname' => $this->input->post('lname'),
 						  'address' => $this->input->post('address'),
 						  'mobile' => $this->input->post('mobile'),
 						  
 						  );
 	
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
-		$this->form_validation->set_rules('fname','Item Name','required');
-		$this->form_validation->set_rules('lname','item Number','required');
-		$this->form_validation->set_rules('address','item type','required');
-		$this->form_validation->set_rules('mobile','status','required');
+		$this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
+		$this->form_validation->set_message('is_unique',"First Name already exist");
+		
+		$this->form_validation->set_rules('lname','Last name','required');
+		$this->form_validation->set_rules('address','Address','required');
+		$this->form_validation->set_rules('mobile','mobile','required');
 		
 
 		if ($this->form_validation->run() == FALSE){
-			echo "feel free to change this";
+			echo validation_errors();
 		}
 		else{
 
-			$this->session->set_flashdata('add_success', 'Supplier Successfully Added!');
+			
 			$this->admin_model->insert_supplier_record($personal);
-			redirect('admin/add_supplier');	
+			echo"Supplier Successfully Added!";
 
 		}
 

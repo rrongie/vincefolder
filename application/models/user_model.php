@@ -6,16 +6,20 @@ class User_model extends CI_Model {
 
 	$this->db->select('*');
 	$this->db->from('personnel');
-	//$this->db->join('users', 'address.user_id = users.id');
-	//$this->db->where('type', 'primary');
-	//$this->db->where('user_id', $user_id);
+	$this->db->where('id', $user_id);
 	$query = $this->db->get();
 
 	return $query->result_array();
 
 	}
 
-	
+	public function insert_personal_record($personal, $user_id){
 
-	
+	$this->db->where('id', $user_id);
+	$this->db->update('personnel', $personal); 
+
+	return TRUE;
+		
+	}
+
 }

@@ -18,7 +18,7 @@
     <div class="panel panel-primary" id="panels">
 
          <div class="panel-heading">Add Suplier</div>
-          <div class="panel-body">
+         <div class="panel-body">
              
              	       <?php
 			
@@ -66,24 +66,7 @@
 					</div>
                         
 
-
-
-
-                         <!-- Text input-->
-                                 <!-- <div class="control-group">
-                                    <label class="control-label" for="title">Department Name:</label>
-                                    <div class="controls">
-                                       <select required id="category" name="category">
-                                        <option  value=""></option>
-                                          {department}
-                                          <option value="">{name}</option>
-                                          {/department}
-                                      </select>
-                                    </div>
-                                  </div> -->
-              
-
-                  </div>
+                 </div>
 
                   <div class="col-md-9">
                
@@ -97,20 +80,6 @@
                     </div>
 
 
-
-
-                <!-- Text input-->
-                                 <!-- <div class="control-group">
-                                    <label class="control-label" for="title">Department Name:</label>
-                                    <div class="controls">
-                                       <select required id="category" name="category">
-                                        <option  value=""></option>
-                                          {department}
-                                          <option value="">{name}</option>
-                                          {/department}
-                                      </select>
-                                    </div>
-                                  </div> -->
                  
                   </div>
 
