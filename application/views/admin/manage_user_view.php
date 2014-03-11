@@ -49,7 +49,7 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 3, "asc" ]],
+        "aaSorting": [[ 5, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_accounts'); ?>",
         "aoColumnDefs": [

@@ -58,4 +58,63 @@ class User extends CI_Controller {
 			redirect('user/user_account');
 		}
 	}
+	public function user_item(){
+		$this->load->view('template/header');
+		$this->load->view('user/user_nav');
+
+		$this->load->view('user/user_item_view');
+	}
+
+
+	public function datatables_items(){
+		$this
+			->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+			->from('items')
+			->join('supplier', 'supplier_id = supplier.id','left')
+			->join('department', 'department_id = department.id', 'left');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}	
+	public function change_password(){
+		$session = $this->session->userdata('login');
+		$userid = $session['id'];
+		
+
+		
+			
+			$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+			$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|xss_clean|callback_check_oldpw');
+			$this->form_validation->set_rules('password', 'New Password', 'trim|required|xss_clean');
+			$this->form_validation->set_rules('conf_password', 'Confirm Password', 'trim|required|xss_clean|matches[password]');
+
+			if ($this->form_validation->run() == false) {
+
+				echo validation_errors();
+			}else{
+				
+				
+					$new_password = $this->input->post('password');
+					$this->user_model->change_password($userid, $new_password);
+					echo"successfully Change!";
+				
+			}
+			
+	}
+
+
+	public function check_oldpw($oldpw){
+
+
+		$this->db->select('*')->from('personnel')->where('password', md5($oldpw));
+		$sql = $this->db->get();
+
+		if ($sql->num_rows() > 0) {
+			return TRUE;
+		}else{
+			$this->form_validation->set_message('check_oldpw', 'Old Password does not match with your current password');
+			return FALSE;
+		}
+	}
+
 }

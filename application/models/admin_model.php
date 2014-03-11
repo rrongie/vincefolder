@@ -31,7 +31,16 @@ public function customer_info($user_id){
 	$this->db->insert('supplier', $personal);
 	}
 	
+	public function get_item($id){
+	
+	$this->db->select('*')->from('items')->join('supplier', 'supplier.id = supplier_id')->where('item_id', $id)->join('department', 'department.id = department_id');
+		$sql = $this->db->get();
 
+		return $sql->result_array();
+
+
+
+	}
 
 	public function get_department(){
 	$sql = $this->db->get('department');

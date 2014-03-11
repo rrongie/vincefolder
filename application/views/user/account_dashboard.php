@@ -123,7 +123,7 @@
       <div class="modal-body">
           <!-- boody here -->                      
 
-              <form id="form1">
+        <form id="form1">
                   
 
 <?php 
@@ -138,6 +138,7 @@ if ($this->session->flashdata('success_change_pw')) {
             echo '</div>';
           }  
 ?>
+  <div id="error_message" style="color:red"></div>
 <div class="row">
    <div class="col-md-5">
     <!-- Text input-->
@@ -147,6 +148,15 @@ if ($this->session->flashdata('success_change_pw')) {
         <input size="30" id="old_password" name="old_password" type="password" placeholder="" class="input-xlarge" required>
       </div>
     </div>
+     <!-- Text input-->
+    <div class="control-group">
+      <label class="control-label" for="conf_password">Confirm Password</label>
+      <div class="controls">
+        <input size="30" id="conf_password" name="conf_password" type="password" placeholder="" class="input-xlarge" required>
+      </div>
+    </div>
+
+
 </div>
 <div class="row">
     <div class="col-md-5">
@@ -160,34 +170,37 @@ if ($this->session->flashdata('success_change_pw')) {
 
 
     </div>
-    <div class="col-md-5">
-    <!-- Text input-->
-    <div class="control-group">
-      <label class="control-label" for="conf_password">Confirm Password</label>
-      <div class="controls">
-        <input size="30" id="conf_password" name="conf_password" type="password" placeholder="" class="input-xlarge" required>
-      </div>
-    </div>
-
-
-    </div>
-  
-</div>
+   
+  </div>
               </div>
               <div class="control-group">
                 <label class="control-label"></label>
                 <div class="controls">
-                   <input type="button" id="cp" data-id="{id}" class="btn btn-info" value="Submit" />
-                    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+                   <input type="button" id="cp" class="btn btn-info" value="Submit" />
+                   <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
               </div>
-            </form>   
-             
-
-
-          <!-- end of body -->
+    </form>   
+       <!-- end of body -->
       </div>
    
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+   $(document).ready(function(){
+  $('#cp').click(function(){
+      //alert('hello');
+      
+   $.post("<?= base_url() . 'user/change_password/'?>",
+    $("#form1").serialize(),
+    function(result) {
+     $("#error_message").html(result);
+   },"html");
+  });    
+        });
+
+
+</script>

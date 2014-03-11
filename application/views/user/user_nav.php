@@ -27,11 +27,8 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li style="font-size:15px; margin-top:5px;"><a href="<?php echo base_url('admin/item'); ?>">ITEMS</a></li>
-           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/forms_reports'); ?>">FORMS/REPORTS</a></li>
-           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/suppliers'); ?>">SUPPLIER</a></li>
-          
-           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/log_history'); ?>">LOG HISTORY</a></li>
+          <li style="font-size:15px; margin-top:5px;"><a href="<?php echo base_url('user/user_item'); ?>">ITEMS</a></li>
+           
         </ul>
      
         <ul class="nav navbar-nav navbar-right">

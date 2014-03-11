@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2014 at 01:48 PM
+-- Generation Time: Mar 11, 2014 at 01:51 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -53,7 +53,7 @@ INSERT INTO `department` (`id`, `name`, `last_update`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
   `supplier_id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
   `item_brand` varchar(255) NOT NULL,
@@ -64,20 +64,20 @@ CREATE TABLE IF NOT EXISTS `items` (
   `item_price` float(10,2) NOT NULL,
   `item_serial` varchar(255) NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`item_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `items`
 --
 
-INSERT INTO `items` (`id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `date_add`) VALUES
-(1, 2, 3, 'eqweqweqw', 'eqeqeqqew', '', '', 23, 3.00, '', '2014-03-09 13:53:15'),
-(2, 2, 3, 'asdada', 'dadada', '', '', 3, 3.00, '', '2014-03-09 13:53:25'),
-(3, 2, 3, 'asdasa', 'asdad', '', '', 2323, 3.00, '', '2014-03-09 07:03:29'),
-(4, 0, 0, 'brand', 'mineral water', '', 'container', 5, 200.00, '2345', '2014-03-10 02:42:33'),
-(5, 1, 0, 'brand', 'mineral water', '', 'container', 4, 23.00, '9999', '2014-03-10 02:46:56'),
-(6, 9, 4, 'brand', 'mineral water', '', 'container', 4, 43.00, '345', '2014-03-10 02:57:27'),
+INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `date_add`) VALUES
+(1, 2, 3, 'eqweqweqw', 'eqeqeqqew', 'Consumable', '', 23, 3.00, '', '2014-03-11 07:00:39'),
+(2, 2, 3, 'asdada', 'dadada', 'Fixed', '', 3, 3.00, '', '2014-03-11 07:00:32'),
+(3, 2, 3, 'asdasa', 'asdad', 'Consumable', '', 2323, 3.00, '', '2014-03-11 07:00:23'),
+(4, 0, 0, 'brand', 'mineral water', 'Fixed', 'container', 5, 200.00, '2345', '2014-03-11 07:00:14'),
+(5, 1, 0, 'brand', 'mineral water', 'Consumable', 'container', 4, 23.00, '9999', '2014-03-11 07:00:07'),
+(6, 9, 4, 'brand', 'mineral water', 'Fixed', 'container', 4, 43.00, '345', '2014-03-11 06:59:58'),
 (7, 1, 1, 'test', 'chair', 'Fixed', 'chair', 7, 6.00, '879978', '2014-03-10 03:02:29'),
 (8, 9, 4, 'brand', 'epson ink cartridge 141 black', 'Consumable', 'pcs', 7, 6.00, '343242', '2014-03-10 03:04:27'),
 (9, 9, 1, 'last', 'last', 'Consumable', 'last', 3, 23.00, '654', '2014-03-10 03:05:27');
@@ -103,10 +103,10 @@ CREATE TABLE IF NOT EXISTS `personnel` (
 --
 
 INSERT INTO `personnel` (`id`, `username`, `password`, `fname`, `lname`, `type`) VALUES
-(1, 'rrongie', '5f4dcc3b5aa765d61d8327deb882cf99', 'wrong', 'G', 'admin'),
+(1, 'rrongie', '5f4dcc3b5aa765d61d8327deb882cf99', 'wrong', 'G', 'user'),
 (2, 'staff', '5f4dcc3b5aa765d61d8327deb882cf99', 'katz', 'poy', 'staff'),
 (8, 'katz123', '5f4dcc3b5aa765d61d8327deb882cf99', 'katz', 'katz', 'staff'),
-(9, 'test123', '5f4dcc3b5aa765d61d8327deb882cf99', 'test', 'test', 'staff');
+(9, 'test123', '5f4dcc3b5aa765d61d8327deb882cf99', 'test', 'test', 'user');
 
 -- --------------------------------------------------------
 

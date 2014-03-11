@@ -59,6 +59,59 @@ class Admin extends CI_Controller {
 		//$this->load->view('admin/admin_add_item_view',$items_info);
 	}
 
+	public function view_item($id){
+		
+		$items_info['items'] = $this->admin_model->get_item($id);
+		$items_info['department'] = $this->admin_model->get_department();
+		$items_info['supplier'] = $this->admin_model->get_supplier();
+		//var_dump($items_info);
+		$this->load->view('template/header');
+		$this->load->view('admin/admin_nav');
+		$this->parser->parse('admin/admin_view_item',$items_info);
+
+
+	}
+
+	public function add_item_Validate(){
+
+		
+		$form_data = array('supplier_id' => $this->input->post('supplier_id'),
+						  'department_id' => $this->input->post('department_id'),
+						  'item_brand' => $this->input->post('item_brand'),
+						  'item_name' => $this->input->post('item_name'),
+						  'item_type' => $this->input->post('item_type'),
+						  'item_unit' => $this->input->post('item_unit'),
+						  'item_qty' => $this->input->post('item_qty'),
+						  'item_price' => $this->input->post('item_price'),
+						  'item_serial' => $this->input->post('item_serial'),
+						  );
+
+	
+		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		$this->form_validation->set_rules('supplier_id','Supplier Id','required');
+		$this->form_validation->set_rules('department_id','Deparment Id','required');
+		$this->form_validation->set_rules('item_brand','Item Brand','required');
+		$this->form_validation->set_rules('item_name','Item Name','required');
+		$this->form_validation->set_rules('item_type','Item Type','required');
+		$this->form_validation->set_rules('item_unit','Item Unit','required');
+		$this->form_validation->set_rules('item_qty','Item Quantity','required');
+		$this->form_validation->set_rules('item_price','Item price','required');
+		$this->form_validation->set_rules('item_serial','Item serial','required');
+
+		if ($this->form_validation->run() == FALSE){
+			
+			echo validation_errors();
+			
+		}
+		else{
+			$this->session->set_flashdata('add_item_success', 'Item Successfully Added!');
+			$this->admin_model->save_item($form_data);
+			redirect('admin/add_items');
+			
+		}
+	}
+
+
 	public function adduser(){
 		
 		$items_info['department'] = $this->admin_model->get_department();
@@ -206,10 +259,11 @@ class Admin extends CI_Controller {
 		//CONCAT(fname," ",lname) AS lname', FALSE)
 	public function datatables_items(){
 		$this
-			->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+			->datatables->select('item_id,CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+			//->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
 			->from('items')
 			->join('supplier', 'supplier_id = supplier.id','left')
-			->join('department', 'department_id = department.id', 'left');
+			->join('department', 'department_id = department.id');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
@@ -235,44 +289,7 @@ class Admin extends CI_Controller {
 
 	}
 	
-	public function add_item_Validate(){
 
-		
-		$form_data = array('supplier_id' => $this->input->post('supplier_id'),
-						  'department_id' => $this->input->post('department_id'),
-						  'item_brand' => $this->input->post('item_brand'),
-						  'item_name' => $this->input->post('item_name'),
-						  'item_type' => $this->input->post('item_type'),
-						  'item_unit' => $this->input->post('item_unit'),
-						  'item_qty' => $this->input->post('item_qty'),
-						  'item_price' => $this->input->post('item_price'),
-						  'item_serial' => $this->input->post('item_serial'),
-						  );
-
-	
-		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
-		$this->form_validation->set_rules('supplier_id','Supplier Id','required');
-		$this->form_validation->set_rules('department_id','Deparment Id','required');
-		$this->form_validation->set_rules('item_brand','Item Brand','required');
-		$this->form_validation->set_rules('item_name','Item Name','required');
-		$this->form_validation->set_rules('item_type','Item Type','required');
-		$this->form_validation->set_rules('item_unit','Item Unit','required');
-		$this->form_validation->set_rules('item_qty','Item Quantity','required');
-		$this->form_validation->set_rules('item_price','Item price','required');
-		$this->form_validation->set_rules('item_serial','Item serial','required');
-
-		if ($this->form_validation->run() == FALSE){
-			
-			echo validation_errors();
-			
-		}
-		else{
-			$this->session->set_flashdata('add_item_success', 'Item Successfully Added!');
-			$this->admin_model->save_item($form_data);
-			redirect('admin/add_items');
-			
-		}
-	}
 	public function suppliers(){
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');

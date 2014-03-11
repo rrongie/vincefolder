@@ -21,5 +21,11 @@ class User_model extends CI_Model {
 	return TRUE;
 		
 	}
+	public function change_password($userid, $new_password){
 
+		$data = array('password' => md5($new_password));
+
+		$this->db->where('id', $userid);
+		$this->db->update('personnel', $data);
+	}
 }

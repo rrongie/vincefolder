@@ -5,7 +5,7 @@
   
     <div class="list-group">
             <a href="<?php echo site_url('customer/dashboard'); ?>" class="list-group-item active">Fixed & Consumable Items</a>
-               <a href="<?php echo site_url('admin/add_items'); ?>" class="list-group-item">Add Item</a>
+            
            
           </div>
   </div>
@@ -20,8 +20,7 @@
                <table id="accounts-view" class="table">
             <thead>
                 <tr>
-                      <th>ID</th>
-                      <th>Supplier name</th>
+                      <th>Supplier Name</th>
                       <th>Department Name</th>
                       <th>Item Brand</th>
                       <th>Item Name</th>
@@ -30,7 +29,7 @@
                       <th>Item Quantity</th>
                       <th>Item Price</th>
                       <th>Date Add</th>
-                      <th>View</th>
+                     
                 </tr>
             </thead>
             <tbody>
@@ -58,15 +57,13 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 10, "asc" ]],
+        "aaSorting": [[ 8, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_items'); ?>",
         "aoColumnDefs": [
             {
-                "fnRender": function ( oObj ) {
-                    return '<a href="view_item/'+oObj.aData[0]+'"><img src="<?php echo base_url() . 'assets/img/edit.png' ?>"></a>';
-                },
-                "aTargets": [ 10 ],
+                
+                "aTargets": [ 8 ],
                 "sDefaultContent": ""
             }
         ]
