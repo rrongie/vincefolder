@@ -77,5 +77,10 @@ public function customer_info($user_id){
 	return $query->result();
 	}
 
+	public function get_item_type($item){
+		
 
+
+
+	}
 }

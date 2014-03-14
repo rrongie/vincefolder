@@ -80,7 +80,7 @@
                       <div class="control-group">
                       <label class="control-label" for="mobile">Username:</label>
                       <div class="controls">
-                        <input size="30" id="mobile" value="{username}"name="username" type="text" placeholder="" class="input-xlarge" required>
+                        <input size="30" id="mobile" value="{username}"name="username" type="text" placeholder="" class="input-xlarge" disabled>
                         
                       </div>
                     </div>

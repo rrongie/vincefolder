@@ -236,7 +236,7 @@ class Admin extends CI_Controller {
 						  //'type' => $this->input->post('type'),
 						 
 						  );
-
+	$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
  	$this->form_validation->set_rules('password','Password','trim|required|min_length[6]|max_length[16]');
 	$this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]');
    if ($this->form_validation->run() == FALSE) {
@@ -297,7 +297,38 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function supplier_edit_contact_validate($id){
+			$personal = array('supplier_fname' => $this->input->post('fname'),
+						 	 'supplier_lname' => $this->input->post('lname'),
+							  'address' => $this->input->post('address'),
+						 	 'mobile' => $this->input->post('mobile'),
+						  );
+	
+		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		//$this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
+		$this->form_validation->set_message('is_unique',"First Name already exist");
+		
+		$this->form_validation->set_rules('lname','Last name','required');
+		$this->form_validation->set_rules('address','Address','required');
+		$this->form_validation->set_rules('mobile','mobile','required');
+		
 
+		if ($this->form_validation->run() == FALSE){
+			echo validation_errors();
+		}
+		else{
+
+			
+			$this->db->where('id',$id);
+			$this->db->update('supplier',$personal);
+			echo"Supplier Successfully Change!";
+
+		}
+
+	}
+	
+
+	
 	public function add_supplier(){
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
@@ -344,6 +375,17 @@ class Admin extends CI_Controller {
 		}
 
 	}
+	public function log_history($item = 'all'){
 
+		$result['item_type'] = $this->admin_model->get_item_type($item);
+		
+		var_dump($result);
+		$this->load->view('template/header');
+		$this->load->view('admin/admin_nav');	
+		$this->parser->parse('admin/admin_log_history',$result);
+	}
+
+
+	
 
 }

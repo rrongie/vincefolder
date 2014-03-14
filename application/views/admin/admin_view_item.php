@@ -24,12 +24,12 @@
                                     <label class="control-label" for="title">Supplier Name:</label>
                                     <div class="controls">
                                        <select / id="category" name="supplier_id" required>
-                                       
+                                          
                                           <option value="{id}">{supplier_fname} {supplier_lname}</option>
+                                          
+                                          
                                          
-                                          {supplier}
-                                          <option value="{id}">{supplier_fname} {supplier_lname}</option>
-                                          {/supplier}
+                                         
                                       </select>
                                     </div>
                                   </div>

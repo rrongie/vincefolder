@@ -20,7 +20,8 @@
                <table id="accounts-view" class="table">
             <thead>
                 <tr>
-                      <th>Supplier Name</th>
+                      <th>ID</th>
+                      <th>Supplier name</th>
                       <th>Department Name</th>
                       <th>Item Brand</th>
                       <th>Item Name</th>
@@ -29,6 +30,7 @@
                       <th>Item Quantity</th>
                       <th>Item Price</th>
                       <th>Date Add</th>
+                    
                      
                 </tr>
             </thead>
@@ -57,13 +59,13 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 8, "asc" ]],
+        "aaSorting": [[ 9, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_items'); ?>",
         "aoColumnDefs": [
             {
                 
-                "aTargets": [ 8 ],
+                "aTargets": [ 9 ],
                 "sDefaultContent": ""
             }
         ]

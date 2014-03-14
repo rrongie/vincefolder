@@ -68,10 +68,11 @@ class User extends CI_Controller {
 
 	public function datatables_items(){
 		$this
-			->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+			->datatables->select('item_id,CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+			//->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
 			->from('items')
 			->join('supplier', 'supplier_id = supplier.id','left')
-			->join('department', 'department_id = department.id', 'left');
+			->join('department', 'department_id = department.id');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
