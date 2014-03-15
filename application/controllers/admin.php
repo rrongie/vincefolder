@@ -373,7 +373,6 @@ class Admin extends CI_Controller {
 			echo"Supplier Successfully Added!";
 
 		}
-
 	}
 	public function log_history($item = 'all'){
 
@@ -385,7 +384,24 @@ class Admin extends CI_Controller {
 		$this->parser->parse('admin/admin_log_history',$result);
 	}
 
+	public function accountability(){
 
+	$data['product'] = $product =$this->admin_model->retrieve_item();
 	
+	//$data['content'] = 'addmin/accountability_item';
+	
+	
+			foreach ($product as $key => $value) {
+				
+				foreach ($value as $key2 => $value2) {
+					$data['product'][$key]['item_name'] = character_limiter($product[$key]['item_name'], 9);
+				}
+
+		}
+
+	$this->load->view('template/header');
+	$this->load->view('admin/admin_nav');	
+	$this->parser->parse('admin/admin_accountablity_view',$data);
+	}
 
 }

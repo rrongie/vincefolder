@@ -77,9 +77,10 @@ public function customer_info($user_id){
 	return $query->result();
 	}
 
-	public function get_item_type($item){
+	public function retrieve_item(){
 		
-
+	$sql = $this->db->get('items');
+	return $sql->result_array();
 
 
 	}
