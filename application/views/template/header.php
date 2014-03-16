@@ -14,8 +14,7 @@
         <meta name="viewport" content="width=device-width">
 	<meta charset="utf-8">
         <title>J CENTRE</title>
-         <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/katz.css'?>">
-        <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/bootstrap2.css'?>">
+        <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/bootstrap.css'?>">
         <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/font-awesome.min.css'?>">
         <!-- DataTables CSS -->
         <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/jquery.dataTables.css'?>">

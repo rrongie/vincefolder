@@ -77,11 +77,9 @@ public function customer_info($user_id){
 	return $query->result();
 	}
 
-	public function retrieve_item(){
-		
-	$sql = $this->db->get('items');
-	return $sql->result_array();
-
-
+	public function retrieve_item_consumables(){
+	$this->db->select('*')->from('items')->join('supplier', 'supplier.id = supplier_id')->join('department', 'department.id = department_id')->where('items.item_type', 'Fixed');
+		$sql = $this->db->get();
+		return $sql->result_array();
 	}
 }

@@ -5,11 +5,12 @@ class Admin extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-		
+		define('FPDF_FONTPATH',APPPATH .'plugins/font/');
+		$this->load->library('fpdf');
+		$this->load->library('bryan');
 		$this->load->model('admin_model');
 		$this->load->library('datatables');
-
-		
+		$this->load->library('cart');
 		//Everytime this class is called it automatically checks the the function is_logged_in
 		//If not then redirect to homepage
 		if (!$this->is_logged_in()) {
@@ -21,7 +22,6 @@ class Admin extends CI_Controller {
 	
 	public function is_logged_in(){
 		$login_session = $this->session->userdata('login');
-
 		return $login_session["logged_in"];
 
 	}
@@ -31,9 +31,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function admin_dashboard(){
-		
 		$this->load->view('template/header');
-		
 		$this->load->view('admin/admin_nav');
 	}
 
@@ -44,9 +42,6 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_item_view');
 	}
 	public function add_items(){
-		
-	
-		
 		$items_info['department'] = $this->admin_model->get_department();
 		$items_info['supplier'] = $this->admin_model->get_supplier();
 		
@@ -62,9 +57,6 @@ class Admin extends CI_Controller {
 	public function view_item($id){
 		
 		$items_info['items'] = $this->admin_model->get_item($id);
-		$items_info['department'] = $this->admin_model->get_department();
-		$items_info['supplier'] = $this->admin_model->get_supplier();
-		//var_dump($items_info);
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
 		$this->parser->parse('admin/admin_view_item',$items_info);
@@ -72,21 +64,42 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function add_item($id, $qty = 1){
+		$this->check_cart($id);
+
+		$item_content = $this->admin_model->get_item($id);
+		$item_array = array(
+			'id' => $item_content[0]['item_id'],
+			'qty' => $qty,
+			'price' => $item_content[0]['item_price'],
+			'name' => $item_content[0]['item_name']
+			);
+
+		$this->cart->insert($item_array);
+
+		$this->session->set_flashdata('item_add', 'Item has been added to the form.');
+		redirect('admin/accountability');
+	}
+
+	public function clear_cart(){
+		$this->cart->destroy();
+	}
+
 	public function add_item_Validate(){
 
 		
 		$form_data = array('supplier_id' => $this->input->post('supplier_id'),
-						  'department_id' => $this->input->post('department_id'),
-						  'item_brand' => $this->input->post('item_brand'),
-						  'item_name' => $this->input->post('item_name'),
-						  'item_type' => $this->input->post('item_type'),
-						  'item_unit' => $this->input->post('item_unit'),
-						  'item_qty' => $this->input->post('item_qty'),
-						  'item_price' => $this->input->post('item_price'),
-						  'item_serial' => $this->input->post('item_serial'),
-						  );
+			'department_id' => $this->input->post('department_id'),
+			'item_brand' => $this->input->post('item_brand'),
+			'item_name' => $this->input->post('item_name'),
+			'item_type' => $this->input->post('item_type'),
+			'item_unit' => $this->input->post('item_unit'),
+			'item_qty' => $this->input->post('item_qty'),
+			'item_price' => $this->input->post('item_price'),
+			'item_serial' => $this->input->post('item_serial'),
+			);
 
-	
+
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		$this->form_validation->set_rules('supplier_id','Supplier Id','required');
 		$this->form_validation->set_rules('department_id','Deparment Id','required');
@@ -122,15 +135,15 @@ class Admin extends CI_Controller {
 		$this->parser->parse('admin/admin_add_user',$items_info);
 		//$this->load->view('admin/admin_add_user');
 
-		}
+	}
 	public function add_user_validate(){
 		$personal = array('fname' => $this->input->post('fname'),
-						  'lname' => $this->input->post('lname'),
-						  'username' => $this->input->post('username'),
-						  'type' => $this->input->post('type'),
-						  'password' => md5($this->input->post('password'))
-						  );
-	
+			'lname' => $this->input->post('lname'),
+			'username' => $this->input->post('username'),
+			'type' => $this->input->post('type'),
+			'password' => md5($this->input->post('password'))
+			);
+
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		$this->form_validation->set_rules('fname','First Name','required');
 		$this->form_validation->set_rules('lname','Last Name','required');
@@ -145,7 +158,7 @@ class Admin extends CI_Controller {
 		}
 		else{
 
-				if ($this->admin_model->insert_user_record($personal)) {
+			if ($this->admin_model->insert_user_record($personal)) {
 				$this->session->set_flashdata('add_user_success', 'User Successfully Created!');
 				redirect('admin/adduser');
 			}
@@ -168,12 +181,12 @@ class Admin extends CI_Controller {
 
 	public function user_account_validate($id){
 		$personal = array('fname' => $this->input->post('fname'),
-						 'lname' => $this->input->post('lname'),
+			'lname' => $this->input->post('lname'),
 						  //'username' => $this->input->post('username'),
-						  'type' => $this->input->post('type'),
-						  
-						  );
-	
+			'type' => $this->input->post('type'),
+
+			);
+
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		//$this->form_validation->set_rules('fname','First Name','required');
 		//$this->form_validation->set_rules('lname','Last Name','required');
@@ -191,7 +204,7 @@ class Admin extends CI_Controller {
 			$this->db->where('id',$id);
 			$this->db->update('personnel',$personal);
 			redirect('admin/account/'.$this->uri->segment(3));
-				
+
 
 			
 		}
@@ -203,7 +216,7 @@ class Admin extends CI_Controller {
 
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
-	
+
 		//main content
 		$this->load->view('admin/manage_user_view');
 		
@@ -214,7 +227,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_nav');
 		//main content
 		$this->load->view('admin/admin_add_department');	
-		}
+	}
 	public function add_department_validate(){
 		$this->form_validation->set_rules('adddepartment', 'Deparment Name', 'trim|required|is_unique[department.name]');
 		$this->form_validation->set_message('is_unique',"The Department Name already exist");
@@ -229,60 +242,60 @@ class Admin extends CI_Controller {
 	}
 
 	public function user_changepassword($id){
-	
+
 		$personal = array('password' => md5($this->input->post('password')),
 						 //'lname' => $this->input->post('lname'),
 						  //'username' => $this->input->post('username'),
 						  //'type' => $this->input->post('type'),
-						 
-						  );
-	$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
- 	$this->form_validation->set_rules('password','Password','trim|required|min_length[6]|max_length[16]');
-	$this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]');
-   if ($this->form_validation->run() == FALSE) {
-    
-    echo validation_errors();
-  
 
-   } else {
-  	
-   	$this->db->where('id',$id);
-	$this->db->update('personnel',$personal);
-	echo"Successfully Changed!";
+			);
+		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		$this->form_validation->set_rules('password','Password','trim|required|min_length[6]|max_length[16]');
+		$this->form_validation->set_rules('cpassword','Confirm Password','trim|required|matches[password]');
+		if ($this->form_validation->run() == FALSE) {
 
-	}
+			echo validation_errors();
 
+
+		} else {
+
+			$this->db->where('id',$id);
+			$this->db->update('personnel',$personal);
+			echo"Successfully Changed!";
 
 		}
+
+
+	}
 
 	
 		//CONCAT(fname," ",lname) AS lname', FALSE)
 	public function datatables_items(){
 		$this
-			->datatables->select('item_id,CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
-			//->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
-			->from('items')
-			->join('supplier', 'supplier_id = supplier.id','left')
-			->join('department', 'department_id = department.id');
+		->datatables->select('item_id,CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('item_type', 'Fixed');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
 	}
 
-		public function datatables_supplier(){
+	public function datatables_supplier(){
 		$this
 			//->datatables->select('id,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, supplier_lname, address, mobile',FALSE)
-			->datatables->select('id, ,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, address, mobile',FALSE)
-			->from('supplier');
+		->datatables->select('id, ,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, address, mobile',FALSE)
+		->from('supplier');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
 	}
 
-		public function datatables_accounts(){
+	public function datatables_accounts(){
 		$this
-			->datatables->select('id, username, fname, lname, type')
-			->from('personnel');
+		->datatables->select('id, username, fname, lname, type')
+		->from('personnel');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
@@ -298,12 +311,12 @@ class Admin extends CI_Controller {
 	}
 
 	public function supplier_edit_contact_validate($id){
-			$personal = array('supplier_fname' => $this->input->post('fname'),
-						 	 'supplier_lname' => $this->input->post('lname'),
-							  'address' => $this->input->post('address'),
-						 	 'mobile' => $this->input->post('mobile'),
-						  );
-	
+		$personal = array('supplier_fname' => $this->input->post('fname'),
+			'supplier_lname' => $this->input->post('lname'),
+			'address' => $this->input->post('address'),
+			'mobile' => $this->input->post('mobile'),
+			);
+
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		//$this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
 		$this->form_validation->set_message('is_unique',"First Name already exist");
@@ -327,8 +340,6 @@ class Admin extends CI_Controller {
 
 	}
 	
-
-	
 	public function add_supplier(){
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
@@ -342,18 +353,18 @@ class Admin extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
 		$this->parser->parse('admin/supplier_details_view',$supplier_info);
-	
+
 	}
 	
 	public function add_supplier_validate(){
 
 		$personal = array('supplier_fname' => $this->input->post('fname'),
-						  'supplier_lname' => $this->input->post('lname'),
-						  'address' => $this->input->post('address'),
-						  'mobile' => $this->input->post('mobile'),
-						  
-						  );
-	
+			'supplier_lname' => $this->input->post('lname'),
+			'address' => $this->input->post('address'),
+			'mobile' => $this->input->post('mobile'),
+
+			);
+
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		$this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
 		$this->form_validation->set_message('is_unique',"First Name already exist");
@@ -386,22 +397,140 @@ class Admin extends CI_Controller {
 
 	public function accountability(){
 
-	$data['product'] = $product =$this->admin_model->retrieve_item();
-	
-	//$data['content'] = 'addmin/accountability_item';
-	
-	
-			foreach ($product as $key => $value) {
-				
-				foreach ($value as $key2 => $value2) {
-					$data['product'][$key]['item_name'] = character_limiter($product[$key]['item_name'], 9);
-				}
+		$data['product'] = $product =$this->admin_model->retrieve_item_consumables();
 
+		$this->load->view('template/header');
+		$this->load->view('admin/admin_nav');	
+		$this->parser->parse('admin/admin_accountablity_view',$data);
+	}
+
+	public function view_form_content(){
+		$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
+		$header = array('Asset Code', 'Item Id', 'Quantity', 'Price', 'Name');
+		$cart = $this->cart->contents();
+
+
+		foreach ($cart as $key => $value) {
+				unset($value['subtotal']);
+				$value['rowid'] = substr($value['rowid'], 0, 8);
+				$data[] = $value;
+		}	
+
+		$this->bryan->FPDF('P', 'mm', 'legal');
+		$this->bryan->AddPage();
+
+		foreach($header as $col)
+			$this->bryan->Cell(40,7,$col,0);
+		$this->bryan->Ln();
+
+
+foreach ($data as $key => $value) {
+	
+		foreach ($value as $key2 => $value2) {
+				$this->bryan->Cell(40,6,$value2,0);
+		}
+		$this->bryan->Ln();
+}
+
+
+			/*foreach($data as $col)
+				$this->bryan->Cell(40,6,$col,0);
+			$this->bryan->Ln();
+*/
+		$this->bryan->Ln(20);
+		$this->bryan->Output('your_file_pdf.pdf','I');     
+	}
+
+	
+
+
+	private function check_cart($id, $qty = 1){
+		$data = array();
+		foreach ($this->cart->contents() as $key => $inner) {
+			foreach ($inner as $key => $value) {
+				if ($inner[$key] == $id) {
+					$data[] = array('rowid' => $inner['rowid'],
+						'qty' => $inner['qty'] + $qty);
+				}
+			}
 		}
 
-	$this->load->view('template/header');
-	$this->load->view('admin/admin_nav');	
-	$this->parser->parse('admin/admin_accountablity_view',$data);
+		if (count($data) > 0) {
+
+			if ($this->cart->update($data)) {
+				$this->session->set_flashdata('item_add', 'Item has been added to the form.');
+				redirect('admin/accountability');
+			}else{
+				echo 'Error';
+			}
+		}else{
+			return FALSE;
+		}
 	}
+
+
+	function remove_item($id, $qty = 1){
+
+		$data = array();
+		foreach ($this->cart->contents() as $key => $inner) {
+			foreach ($inner as $key => $value) {
+				if ($inner[$key] == $id) {
+					$data[] = array('rowid' => $inner['rowid'],
+						'qty' => $inner['qty'] - $qty);
+				}
+			}
+		}
+
+		if (count($data) > 0) {
+
+			if ($this->cart->update($data)) {
+				$this->session->set_flashdata('item_add', 'Item has been removed to the form.');
+				redirect('admin/accountability');
+			}else{
+				echo 'Error';
+			}
+		}else{
+			redirect('admin/accountability');
+		}
+	}
+
+
+	function create_pdf(){
+		$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
+		$header = array('Asset Code', 'Item Id', 'Quantity', 'Price', 'Name');
+		$cart = $this->cart->contents();
+
+
+		foreach ($cart as $key => $value) {
+				unset($value['subtotal']);
+				$value['rowid'] = substr($value['rowid'], 0, 8);
+				$data[] = $value;
+		}	
+
+		$this->bryan->FPDF('P', 'mm', 'legal');
+		$this->bryan->AddPage();
+
+		foreach($header as $col)
+			$this->bryan->Cell(40,7,$col,0);
+		$this->bryan->Ln();
+
+
+foreach ($data as $key => $value) {
+	
+		foreach ($value as $key2 => $value2) {
+				$this->bryan->Cell(40,6,$value2,0);
+		}
+		$this->bryan->Ln();
+}
+
+
+			/*foreach($data as $col)
+				$this->bryan->Cell(40,6,$col,0);
+			$this->bryan->Ln();
+*/
+		$this->bryan->Ln(20);
+		$this->bryan->Output('your_file_pdf.pdf','I');     
+	}
+
 
 }

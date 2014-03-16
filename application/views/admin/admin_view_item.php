@@ -2,15 +2,7 @@
 <div class="container">
 
 <div class="row">
-  <div class="col-md-3">
-  
-    <div class="list-group">
-            <a href="<?php echo site_url('customer/dashboard'); ?>" class="list-group-item active">Item Details</a>
-          
-           
-  </div>
-  </div>
-               <div class="col-md-9">
+               <div class="col-md-12">
                   <div class="panel panel-primary" id="panels">
                       <div class="panel-heading">Item Details </div>
                       <div class="panel-body">
