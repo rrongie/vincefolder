@@ -15,7 +15,7 @@
 	<div class="col-md-9">
 		<div class="panel panel-primary" id="panels">
             <div class="panel-heading">
-         List of suppliers
+         List Of Suppliers
             </div>
             <div class="panel-body">
 
@@ -61,7 +61,7 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    return '<a href="supplier_details/'+oObj.aData[0]+'"><img src="<?php echo base_url() . 'assets/img/edit.png' ?>"></a>';
+                    return '<a class="label label-info" href="supplier_details/'+oObj.aData[0]+'">View</a>';
                 },
                 "aTargets": [ 4 ],
                 "sDefaultContent": ""

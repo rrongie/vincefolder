@@ -272,7 +272,18 @@ class Admin extends CI_Controller {
 		//CONCAT(fname," ",lname) AS lname', FALSE)
 	public function datatables_items(){
 		$this
-		->datatables->select('item_id,CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+		->datatables->select('item_id,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+
+	public function datatables_accountability(){
+		$this
+		->datatables->select('item_id,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
@@ -405,6 +416,11 @@ class Admin extends CI_Controller {
 	}
 
 	public function view_form_content(){
+		$name = $this->input->post('name');
+		$dept = $this->input->post('dept');
+		$id = $this->input->post('id');
+		$date = date('F, d, y');
+
 		$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
 		$header = array('Asset Code', 'Item Id', 'Quantity', 'Price', 'Name');
 		$cart = $this->cart->contents();
@@ -416,8 +432,32 @@ class Admin extends CI_Controller {
 				$data[] = $value;
 		}	
 
-		$this->bryan->FPDF('P', 'mm', 'legal');
+		$this->bryan->FPDF('P', 'mm', 'a4');
 		$this->bryan->AddPage();
+
+    $this->bryan->Image($logo,10,6,50);
+     $this->bryan->SetFont('Arial','',15);
+      $this->bryan->Cell(190,10,$dept,'',0,'R');
+      $this->bryan->Ln(7);
+      $this->bryan->SetFont('Arial','',12);
+      $this->bryan->Cell(190,10,$name,'',0,'R');
+      $this->bryan->Ln(5);
+      $this->bryan->SetFont('Arial','B',15);
+      $this->bryan->Cell(124,10,'Accountability Form','',0,'R');
+      $this->bryan->SetFont('Arial','',12);
+      $this->bryan->Cell(66,10,$id,'',0,'R');
+      $this->bryan->Ln(5);
+      $this->bryan->Cell(190,10,$date,'',0,'R');
+      $this->bryan->Ln(5);
+      $this->bryan->SetFont('Arial','',10);
+      $this->bryan->Cell(190,10,'Signature','',0,'R');
+      $this->bryan->Line(170, 45, 200, 45);
+      $this->bryan->Ln(5);
+      $this->bryan->Ln(9);
+
+
+
+           $this->bryan->Ln(15);
 
 		foreach($header as $col)
 			$this->bryan->Cell(40,7,$col,0);
@@ -492,6 +532,13 @@ foreach ($data as $key => $value) {
 		}else{
 			redirect('admin/accountability');
 		}
+	}
+
+
+	function finalize_form(){
+		$this->load->view('template/header');
+		$this->load->view('admin/admin_nav');	
+		$this->load->view('admin/admin_finalize_accountablity_view');
 	}
 
 

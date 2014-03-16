@@ -9,51 +9,31 @@
 
 
          <div class="panel-heading">Accountability Form</div>
-          <div class="panel-body">
-             
-<?php 
+          <div class="panel-body text-center">
+          <form action="<?php echo site_url('admin/view_form_content'); ?>" method="POST" accept-charset="utf-8">
 
-if ($this->session->flashdata('item_add')){ ?>
+            Name: <input required type="text" name="name">
+            ID Number: <input required type="text" name="id">
+          <select required name="dept">
+            <option value="">...</option>
+            <option value="IT Department">IT Department</option>
+            <option value="Leasing Department">Leasing Department</option>
+            <option value="Accounting Department">Accounting Department</option>
+          </select>
 
-<div class="alert alert-info text-center">
-<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> 
-  <?php echo $this->session->flashdata('item_add')?>
-</div>
 
-<?php
-}
-
-?>
-               <table id="accounts-view" class="table">
-            <thead>
-                <tr>
-                      <th>ID</th>
-                      <th>Item Brand</th>
-                      <th>Item Name</th>
-                      <th>Item type</th>
-                      <th>Item Unit</th>
-                      <th>Item Quantity</th>
-                      <th>Item Price</th>
-                      <th>Date Add</th>
-                      <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-            <tfoot>
-            </tfoot>
-            </table>
-            <br/>
+          
+          
 <hr/>
 <div class="text-center col-md-12" >
- <a href="<?php echo site_url('admin/finalize_form'); ?>" class="btn btn-lg btn-info">Finalize Form</a> 
+ <input class="btn btn-info" type="submit" value="Create Accountability Form"> 
 </div>
           </div>
    </div>
 
   </div>
 
-
+</form> 
 
 
 

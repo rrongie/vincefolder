@@ -10,9 +10,7 @@
                <table id="accounts-view" class="table">
             <thead>
                 <tr>
-                      <th>ID</th>
-                      <th>Supplier name</th>
-                      <th>Department Name</th>
+                      <th>Id</th>
                       <th>Item Brand</th>
                       <th>Item Name</th>
                       <th>Item type</th>
@@ -54,9 +52,12 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    return '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a>';
+                    z ='<a class="label label-danger" href="out_item/'+oObj.aData[0]+'">-</a>';
+                    a = ' <a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
+                    b = '<a class="label label-primary" href="in_item/'+oObj.aData[0]+'">+</a>';
+                    return z + a + b;
                 },
-                "aTargets": [ 10 ],
+                "aTargets": [ 8 ],
                 "sDefaultContent": ""
             }
         ]

@@ -13,7 +13,7 @@
    <div class="col-md-9">
     <div class="panel panel-primary" id="panels">
 
-         <div class="panel-heading">  List of accounts</div>
+         <div class="panel-heading">  List Of Accounts</div>
           <div class="panel-body">
              
                <table id="accounts-view" class="table">
@@ -55,7 +55,7 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    return '<a href="account/'+oObj.aData[0]+'"><img src="<?php echo base_url() . 'assets/img/edit.png' ?>"></a>';
+                    return '<a class="label label-info" href="account/'+oObj.aData[0]+'">View</a>';
                 },
                 "aTargets": [ 5 ],
                 "sDefaultContent": ""
