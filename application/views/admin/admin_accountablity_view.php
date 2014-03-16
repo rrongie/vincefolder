@@ -60,8 +60,123 @@ if ($this->session->flashdata('item_add')){ ?>
 </div><!-- end of row -->
 </div><!-- end of container -->
 
+<!--modal for + -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">+ modal</h4>
+      </div>
+      <div class="modal-body">
+          <!-- boody here -->                      
+
+           <div class="row">
+                  <div class="col-md-5">
+                  <!-- Text input-->
+                  <div class="control-group">
+                    <label class="control-label" for="password">Asset Code</label>
+                    <div class="controls">
+                      <input size="30" id="password" name="asset" type="text" placeholder="" class="input-xlarge" required>
+                    </div>
+                  </div>
 
 
+                  </div>
+                  <div class="col-md-5">
+                  <!-- Text input-->
+                  <div class="control-group">
+                    <label class="control-label" for="cpassword">Quantiy</label>
+                    <div class="controls">
+                      <input size="30" id="cpassword" name="cpassword" type="text" placeholder="" class="input-xlarge" required>
+                    </div>
+                  </div>
+
+
+                  </div>
+                
+              </div>
+              <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                   <input type="button" id="cp" data-id="{id}" class="btn btn-info" value="Submit" />
+                    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+              </div>
+            </form>   
+             
+
+
+          <!-- end of body -->
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+<!-- end of modal + -->
+
+
+<!--modal for - -->
+
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">- modal</h4>
+      </div>
+      <div class="modal-body">
+          <!-- boody here -->                      
+
+           <div class="row">
+                  <div class="col-md-5">
+                  <!-- Text input-->
+                  <div class="control-group">
+                    <label class="control-label" for="password">Quantity</label>
+                    <div class="controls">
+                      <input size="30" id="password" name="asset" type="text" placeholder="" class="input-xlarge" required>
+                    </div>
+                  </div>
+
+
+
+                   <!-- Text input-->
+                  <!-- 
+                  </div>
+                  <div class="col-md-5">
+                
+                  <div class="control-group">
+                    <label class="control-label" for="cpassword">Asset Code</label>
+                    <div class="controls">
+                      <input size="30" id="cpassword" name="cpassword" type="number" placeholder="" class="input-xlarge" required>
+                    </div>
+                  </div> -->
+
+
+                  </div>
+                
+              </div>
+              <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                   <input type="button" id="cp" data-id="{id}" class="btn btn-info" value="Submit" />
+                    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+              </div>
+            </form>   
+             
+
+
+          <!-- end of body -->
+      </div>
+   
+    </div>
+  </div>
+</div>
+
+<!-- end of modal + -->
 
 <script type="text/javascript">
     
@@ -75,9 +190,9 @@ if ($this->session->flashdata('item_add')){ ?>
                 "fnRender": function ( oObj ) {
                     var a;
                     var b;
-                    z ='<a class="label label-danger" href="remove_item/'+oObj.aData[0]+'">-</a>';
+                    z ='<a class="label label-danger" data-toggle="modal" data-target="#myModal2" href="#/'+oObj.aData[0]+'">-</a>';
                     a = ' <a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
-                    b = '<a class="label label-primary" href="add_item/'+oObj.aData[0]+'">+</a>';
+                    b = '<a class="label label-primary" data-toggle="modal" data-target="#myModal" href="#'+oObj.aData[0]+'">+</a>';
                     return z + a + b;
                 },
                 "aTargets": [ 8 ],
@@ -89,3 +204,8 @@ if ($this->session->flashdata('item_add')){ ?>
 
 </script>
 
+<!-- <script type="text/javascript">
+$('#myModal').modal('show')
+
+
+</script> -->
