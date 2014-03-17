@@ -1,13 +1,18 @@
+
 <div class="container">
 
 <div class="row">
                   <div class="col-md-12">
     <div class="panel panel-primary" id="panels">
 
-         <div class="panel-heading">Fixed & Comsumable List Items</div>
+         <div class="panel-heading">Fixed & Comsumable List Items 
+              <a href="<?php echo site_url('admin/add_items'); ?>"><button class="btn btn-default pull-right">Add item</button></a>
+         </div>
+          
           <div class="panel-body">
-             
+                
                <table id="accounts-view" class="table">
+                
             <thead>
                 <tr>
                       <th>Id</th>

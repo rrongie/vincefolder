@@ -193,9 +193,15 @@ if ($this->session->flashdata('item_add')){ ?>
                 "fnRender": function ( oObj ) {
                     var a;
                     var b;
+<<<<<<< Updated upstream
                     z ='<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
                     a = ' <a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
                     b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
+=======
+                   z ='<a class="label label-danger" href="out_item/'+oObj.aData[0]+'">-</a>';
+                   a = ' <a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
+                   b = '<a class="label label-primary" href="in_item/'+oObj.aData[0]+'">+</a>';
+>>>>>>> Stashed changes
                     return z + a + b;
                 },
                 "aTargets": [ 8 ],
