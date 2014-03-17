@@ -67,18 +67,21 @@ if ($this->session->flashdata('item_add')){ ?>
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">+ modal</h4>
+        <h4 class="modal-title" id="myModalLabel">+ Form Item</h4>
       </div>
       <div class="modal-body">
           <!-- boody here -->                      
 
            <div class="row">
+           <form action="<?php echo site_url('admin/add_item')?>" method="POST" accept-charset="utf-8">
+             
                   <div class="col-md-5">
                   <!-- Text input-->
                   <div class="control-group">
                     <label class="control-label" for="password">Asset Code</label>
                     <div class="controls">
-                      <input size="30" id="password" name="asset" type="text" placeholder="" class="input-xlarge" required>
+                      <input type="hidden" class="item_id" name="item_id" value="">
+                      <input size="30" id="asset_code" name="asset_code" type="text" placeholder="" class="input-xlarge" required>
                     </div>
                   </div>
 
@@ -89,18 +92,18 @@ if ($this->session->flashdata('item_add')){ ?>
                   <div class="control-group">
                     <label class="control-label" for="cpassword">Quantiy</label>
                     <div class="controls">
-                      <input size="30" id="cpassword" name="cpassword" type="text" placeholder="" class="input-xlarge" required>
+                      <input size="30" id="quantity" name="quantity" type="text" placeholder="" class="input-xlarge" required>
                     </div>
                   </div>
 
 
                   </div>
-                
+              
               </div>
               <div class="control-group">
                 <label class="control-label"></label>
                 <div class="controls">
-                   <input type="button" id="cp" data-id="{id}" class="btn btn-info" value="Submit" />
+                   <input type="submit" id="cp" class="btn btn-info" value="Submit" />
                     <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
               </div>
@@ -125,7 +128,7 @@ if ($this->session->flashdata('item_add')){ ?>
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">- modal</h4>
+        <h4 class="modal-title" id="myModalLabel">- Form Item</h4>
       </div>
       <div class="modal-body">
           <!-- boody here -->                      
@@ -190,9 +193,9 @@ if ($this->session->flashdata('item_add')){ ?>
                 "fnRender": function ( oObj ) {
                     var a;
                     var b;
-                    z ='<a class="label label-danger" data-toggle="modal" data-target="#myModal2" href="#/'+oObj.aData[0]+'">-</a>';
+                    z ='<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
                     a = ' <a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
-                    b = '<a class="label label-primary" data-toggle="modal" data-target="#myModal" href="#'+oObj.aData[0]+'">+</a>';
+                    b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
                     return z + a + b;
                 },
                 "aTargets": [ 8 ],
@@ -204,8 +207,24 @@ if ($this->session->flashdata('item_add')){ ?>
 
 </script>
 
-<!-- <script type="text/javascript">
-$('#myModal').modal('show')
+ <script type="text/javascript">
+
+$(document).on('click', '#modal', function(event) {
+  event.preventDefault();
+  /* Act on the event */
+
+  var id = $(this).data('id');
+  
+  $('.item_id').val(id);
+
+  if ($(this).data('method') == 'plus') {
+  $('#myModal').modal('show');
+  }else{
+  $('#myModal2').modal('show');
+  }
 
 
-</script> -->
+});
+
+
+</script>

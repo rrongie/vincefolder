@@ -406,263 +406,270 @@ class Admin extends CI_Controller {
 		$date = date('F, d, y');
 
 		$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
-		$header = array('Asset Code', 'Item Id', 'Quantity', 'Price', 'Name');
+		$header = array('Asset Code', 'Name','Item Id', 'Quantity', 'Price');
 		$cart = $this->cart->contents();
 
 
 		foreach ($cart as $key => $value) {
-				unset($value['subtotal']);
-				$value['rowid'] = substr($value['rowid'], 0, 8);
-				$data[] = $value;
+			unset($value['subtotal']);
+			unset($value['rowid']);
+			$data[] = $value;
 		}	
 
 		$this->bryan->FPDF('P', 'mm', 'a4');
 		$this->bryan->AddPage();
 
-    $this->bryan->Image($logo,10,6,50);
-     $this->bryan->SetFont('Arial','',15);
-      $this->bryan->Cell(190,10,$dept,'',0,'R');
-      $this->bryan->Ln(7);
-      $this->bryan->SetFont('Arial','',12);
-      $this->bryan->Cell(190,10,$name,'',0,'R');
-      $this->bryan->Ln(5);
-      $this->bryan->SetFont('Arial','B',15);
-      $this->bryan->Cell(124,10,'Accountability Form','',0,'R');
-      $this->bryan->SetFont('Arial','',12);
-      $this->bryan->Cell(66,10,$id,'',0,'R');
-      $this->bryan->Ln(5);
-      $this->bryan->Cell(190,10,$date,'',0,'R');
-      $this->bryan->Ln(5);
-      $this->bryan->SetFont('Arial','',10);
-      $this->bryan->Cell(190,10,'Signature','',0,'R');
-      $this->bryan->Line(170, 45, 200, 45);
-      $this->bryan->Ln(5);
-      $this->bryan->Ln(9);
+		$this->bryan->Image($logo,10,6,50);
+		$this->bryan->SetFont('Arial','',15);
+		$this->bryan->Cell(190,10,$dept,'',0,'R');
+		$this->bryan->Ln(7);
+		$this->bryan->SetFont('Arial','',12);
+		$this->bryan->Cell(190,10,$name,'',0,'R');
+		$this->bryan->Ln(5);
+		$this->bryan->SetFont('Arial','B',15);
+		$this->bryan->Cell(124,10,'Accountability Form','',0,'R');
+		$this->bryan->SetFont('Arial','',12);
+		$this->bryan->Cell(66,10,$id,'',0,'R');
+		$this->bryan->Ln(5);
+		$this->bryan->Cell(190,10,$date,'',0,'R');
+		$this->bryan->Ln(5);
+		$this->bryan->SetFont('Arial','',10);
+		$this->bryan->Cell(190,10,'Signature','',0,'R');
+		$this->bryan->Line(170, 45, 200, 45);
+		$this->bryan->Ln(5);
+		$this->bryan->Ln(9);
 
 
 
-           $this->bryan->Ln(15);
+		$this->bryan->Ln(15);
 
 		foreach($header as $col)
 			$this->bryan->Cell(40,7,$col,0);
 		$this->bryan->Ln();
 
 
-foreach ($data as $key => $value) {
-	
-		foreach ($value as $key2 => $value2) {
+		foreach ($data as $key => $value) {
+
+			foreach ($value as $key2 => $value2) {
 				$this->bryan->Cell(40,6,$value2,0);
+			}
+			$this->bryan->Ln();
 		}
-		$this->bryan->Ln();
-}
 
 
 			/*foreach($data as $col)
 				$this->bryan->Cell(40,6,$col,0);
 			$this->bryan->Ln();
 */
-		$this->bryan->Ln(20);
-		$this->bryan->Output('your_file_pdf.pdf','I');     
-	}
-
-	
+			$this->bryan->Ln(20);
+			$this->bryan->Output('your_file_pdf.pdf','I');     
+		}
 
 
-	private function check_cart($id, $qty = 1){
-		$data = array();
-		foreach ($this->cart->contents() as $key => $inner) {
-			foreach ($inner as $key => $value) {
-				if ($inner[$key] == $id) {
-					$data[] = array('rowid' => $inner['rowid'],
-						'qty' => $inner['qty'] + $qty);
+
+
+		private function check_cart($id, $qty = 1){
+			$data = array();
+			foreach ($this->cart->contents() as $key => $inner) {
+				foreach ($inner as $key => $value) {
+					if ($inner[$key] == $id) {
+						$data[] = array('rowid' => $inner['rowid'],
+							'qty' => (int)$inner['qty'] + $qty);
+					}
 				}
 			}
-		}
 
-		if (count($data) > 0) {
+			if (count($data) > 0) {
 
-			if ($this->cart->update($data)) {
-				$this->session->set_flashdata('item_add', 'Item has been added to the form.');
-				redirect('admin/accountability');
+				if ($this->cart->update($data)) {
+					$this->session->set_flashdata('item_add', 'Item has been added to the form.');
+					redirect('admin/accountability');
+				}else{
+					echo 'Error';
+				}
 			}else{
-				echo 'Error';
+				return FALSE;
 			}
-		}else{
-			return FALSE;
 		}
-	}
 
 
 
-	private function po_check_cart($id, $qty = 1){
-		$data = array();
-		foreach ($this->cart->contents() as $key => $inner) {
-			foreach ($inner as $key => $value) {
-				if ($inner[$key] == $id) {
-					$data[] = array('rowid' => $inner['rowid'],
-						'qty' => $inner['qty'] + $qty);
+		private function po_check_cart($id, $qty = 1){
+			$data = array();
+			foreach ($this->cart->contents() as $key => $inner) {
+				foreach ($inner as $key => $value) {
+					if ($inner[$key] == $id) {
+						$data[] = array('rowid' => $inner['rowid'],
+							'qty' => $inner['qty'] + $qty);
+					}
 				}
 			}
-		}
 
-		if (count($data) > 0) {
+			if (count($data) > 0) {
 
-			if ($this->cart->update($data)) {
-				$this->session->set_flashdata('item_add', 'Item has been added to the form.');
-				redirect('admin/purchase');
-			}else{
-				echo 'Error';
-			}
-		}else{
-			return FALSE;
-		}
-	}
-
-	public function add_item($id, $qty = 1){
-		$this->check_cart($id);
-
-		$item_content = $this->admin_model->get_item($id);
-		$item_array = array(
-			'id' => $item_content[0]['item_id'],
-			'qty' => $qty,
-			'price' => $item_content[0]['item_price'],
-			'name' => $item_content[0]['item_name']
-			);
-
-		$this->cart->insert($item_array);
-
-		$this->session->set_flashdata('item_add', 'Item has been added to the form.');
-		redirect('admin/accountability');
-	}
-
-	function remove_item($id, $qty = 1){
-
-		$data = array();
-		foreach ($this->cart->contents() as $key => $inner) {
-			foreach ($inner as $key => $value) {
-				if ($inner[$key] == $id) {
-					$data[] = array('rowid' => $inner['rowid'],
-						'qty' => $inner['qty'] - $qty);
+				if ($this->cart->update($data)) {
+					$this->session->set_flashdata('item_add', 'Item has been added to the form.');
+					redirect('admin/purchase');
+				}else{
+					echo 'Error';
 				}
+			}else{
+				return FALSE;
 			}
 		}
 
-		if (count($data) > 0) {
+		public function add_item(){
+			$id = $this->input->post('item_id');
+			$asset = $this->input->post('asset_code');
+			$qty = $this->input->post('quantity');
 
-			if ($this->cart->update($data)) {
-				$this->session->set_flashdata('item_add', 'Item has been removed to the form.');
-				redirect('admin/accountability');
-			}else{
-				echo 'Error';
-			}
-		}else{
+			$this->check_cart($id, $qty);
+
+			$item_content = $this->admin_model->get_item($id);
+			$item_array = array(
+
+				'asset' => $asset,
+				'name' => $item_content[0]['item_name'],
+				'id' => $item_content[0]['item_id'],
+				'qty' => $qty,
+				'price' => $item_content[0]['item_price'],
+				
+				);
+
+			$this->cart->insert($item_array);
+
+			$this->session->set_flashdata('item_add', 'Item has been added to the form.');
 			redirect('admin/accountability');
 		}
-	}
 
+		function remove_item($id, $qty = 1){
 
-
-	public function po_add_item($id, $qty = 1){
-		$this->po_check_cart($id);
-
-		$item_content = $this->admin_model->get_item($id);
-		$item_array = array(
-			'id' => $item_content[0]['item_id'],
-			'qty' => $qty,
-			'price' => $item_content[0]['item_price'],
-			'name' => $item_content[0]['item_name']
-			);
-
-		$this->cart->insert($item_array);
-
-		$this->session->set_flashdata('item_add', 'Item has been added to the form.');
-		redirect('admin/purchase');
-	}
-
-	function po_remove_item($id, $qty = 1){
-
-		$data = array();
-		foreach ($this->cart->contents() as $key => $inner) {
-			foreach ($inner as $key => $value) {
-				if ($inner[$key] == $id) {
-					$data[] = array('rowid' => $inner['rowid'],
-						'qty' => $inner['qty'] - $qty);
+			$data = array();
+			foreach ($this->cart->contents() as $key => $inner) {
+				foreach ($inner as $key => $value) {
+					if ($inner[$key] == $id) {
+						$data[] = array('rowid' => $inner['rowid'],
+							'qty' => $inner['qty'] - $qty);
+					}
 				}
 			}
+
+			if (count($data) > 0) {
+
+				if ($this->cart->update($data)) {
+					$this->session->set_flashdata('item_add', 'Item has been removed to the form.');
+					redirect('admin/accountability');
+				}else{
+					echo 'Error';
+				}
+			}else{
+				redirect('admin/accountability');
+			}
 		}
 
-		if (count($data) > 0) {
 
-			if ($this->cart->update($data)) {
-				$this->session->set_flashdata('item_add', 'Item has been removed to the form.');
-				redirect('admin/purchase');
-			}else{
-				echo 'Error';
-			}
-		}else{
+
+		public function po_add_item($id, $qty = 1){
+			$this->po_check_cart($id);
+
+			$item_content = $this->admin_model->get_item($id);
+			$item_array = array(
+				'id' => $item_content[0]['item_id'],
+				'qty' => $qty,
+				'price' => $item_content[0]['item_price'],
+				'name' => $item_content[0]['item_name']
+				);
+
+			$this->cart->insert($item_array);
+
+			$this->session->set_flashdata('item_add', 'Item has been added to the form.');
 			redirect('admin/purchase');
 		}
-	}
+
+		function po_remove_item($id, $qty = 1){
+
+			$data = array();
+			foreach ($this->cart->contents() as $key => $inner) {
+				foreach ($inner as $key => $value) {
+					if ($inner[$key] == $id) {
+						$data[] = array('rowid' => $inner['rowid'],
+							'qty' => $inner['qty'] - $qty);
+					}
+				}
+			}
+
+			if (count($data) > 0) {
+
+				if ($this->cart->update($data)) {
+					$this->session->set_flashdata('item_add', 'Item has been removed to the form.');
+					redirect('admin/purchase');
+				}else{
+					echo 'Error';
+				}
+			}else{
+				redirect('admin/purchase');
+			}
+		}
 
 
 
 
-	function finalize_form(){
-		$this->load->view('template/header');
-		$this->load->view('admin/admin_nav');	
-		$this->load->view('admin/admin_finalize_accountablity_view');
-	}
+		function finalize_form(){
+			$this->load->view('template/header');
+			$this->load->view('admin/admin_nav');	
+			$this->load->view('admin/admin_finalize_accountablity_view');
+		}
 
 
-	function create_pdf(){
-		$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
-		$header = array('Asset Code', 'Item Id', 'Quantity', 'Price', 'Name');
-		$cart = $this->cart->contents();
+		function create_pdf(){
+			$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
+			$header = array('Asset Code', 'Item Id', 'Quantity', 'Price', 'Name');
+			$cart = $this->cart->contents();
 
 
-		foreach ($cart as $key => $value) {
+			foreach ($cart as $key => $value) {
 				unset($value['subtotal']);
 				$value['rowid'] = substr($value['rowid'], 0, 8);
 				$data[] = $value;
-		}	
+			}	
 
-		$this->bryan->FPDF('P', 'mm', 'legal');
-		$this->bryan->AddPage();
+			$this->bryan->FPDF('P', 'mm', 'legal');
+			$this->bryan->AddPage();
 
-		foreach($header as $col)
-			$this->bryan->Cell(40,7,$col,0);
-		$this->bryan->Ln();
+			foreach($header as $col)
+				$this->bryan->Cell(40,7,$col,0);
+			$this->bryan->Ln();
 
 
-foreach ($data as $key => $value) {
-	
-		foreach ($value as $key2 => $value2) {
-				$this->bryan->Cell(40,6,$value2,0);
-		}
-		$this->bryan->Ln();
-}
+			foreach ($data as $key => $value) {
+
+				foreach ($value as $key2 => $value2) {
+					$this->bryan->Cell(40,6,$value2,0);
+				}
+				$this->bryan->Ln();
+			}
 
 
 			/*foreach($data as $col)
 				$this->bryan->Cell(40,6,$col,0);
 			$this->bryan->Ln();
 */
-		$this->bryan->Ln(20);
-		$this->bryan->Output('your_file_pdf.pdf','I');     
+			$this->bryan->Ln(20);
+			$this->bryan->Output('your_file_pdf.pdf','I');     
+		}
+
+		public function purchase(){
+			$this->load->view('template/header');
+			$this->load->view('admin/admin_nav');	
+			$this->load->view('admin/admin_purchase_view.php');
+		}
+
+		public function finalized_form_po(){
+			$this->load->view('template/header');
+			$this->load->view('admin/admin_nav');	
+			$this->load->view('admin/admin_purchase_view_finalized.php');
+
+		}
+
+
 	}
-
-	public function purchase(){
-		$this->load->view('template/header');
-		$this->load->view('admin/admin_nav');	
-		$this->load->view('admin/admin_purchase_view.php');
-	}
-
-	public function finalized_form_po(){
-		$this->load->view('template/header');
-		$this->load->view('admin/admin_nav');	
-		$this->load->view('admin/admin_purchase_view_finalized.php');
-
-	}
-
-
-}
