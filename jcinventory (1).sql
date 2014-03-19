@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2014 at 01:51 PM
+-- Generation Time: Mar 19, 2014 at 06:41 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -21,6 +21,35 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `jcinventory` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `jcinventory`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `consumable_items`
+--
+
+CREATE TABLE IF NOT EXISTS `consumable_items` (
+  `consumable_id` int(11) NOT NULL AUTO_INCREMENT,
+  `department_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `supplier` varchar(255) NOT NULL,
+  `item_name` varchar(255) NOT NULL,
+  `item_qty` int(11) NOT NULL,
+  `item_unit` varchar(255) NOT NULL,
+  `item_amount` float(10,2) NOT NULL,
+  `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`consumable_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `consumable_items`
+--
+
+INSERT INTO `consumable_items` (`consumable_id`, `department_id`, `supplier_id`, `supplier`, `item_name`, `item_qty`, `item_unit`, `item_amount`, `date_add`) VALUES
+(1, 1, 2, 'desire	', 'mineral water	', 10, 'container', 25.00, '2014-03-19 17:27:38'),
+(2, 2, 2, 'thinking tools	', 'epson ink cartridge 141 black', 2, 'pcs', 123.00, '2014-03-19 17:28:09'),
+(3, 1, 1, 'copylanda', 'paper assembly fussing 230v', 16, 'pcs', 199.00, '2014-03-19 17:28:54'),
+(4, 1, 2, 'visayan Educational Supply', 'white envelope(trojan)	', 15, '1', 3200.00, '2014-03-19 17:34:31');
 
 -- --------------------------------------------------------
 
@@ -49,6 +78,35 @@ INSERT INTO `department` (`id`, `name`, `last_update`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fixed_items`
+--
+
+CREATE TABLE IF NOT EXISTS `fixed_items` (
+  `fixed_id` int(11) NOT NULL AUTO_INCREMENT,
+  `department_id` int(11) NOT NULL,
+  `supplier` varchar(255) NOT NULL,
+  `item_name` varchar(255) NOT NULL,
+  `item_qty` int(11) NOT NULL,
+  `item_amount` float(10,2) NOT NULL,
+  `item_serial` varchar(255) NOT NULL,
+  `dateadd` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `supplier_id` int(11) NOT NULL,
+  PRIMARY KEY (`fixed_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `fixed_items`
+--
+
+INSERT INTO `fixed_items` (`fixed_id`, `department_id`, `supplier`, `item_name`, `item_qty`, `item_amount`, `item_serial`, `dateadd`, `supplier_id`) VALUES
+(1, 2, 'desire	', 'low back office chair	', 16, 2599.00, 'low back office chair	', '2014-03-19 17:40:12', 9),
+(2, 1, 'thinking tools', 'visitor chair', 10, 1500.00, 'YC128', '2014-03-19 17:39:31', 2),
+(3, 2, 'copyland', 'writing table', 16, 17900.00, 'sdlkas23', '2014-03-19 17:39:35', 1),
+(4, 1, 'desire	', 'wenge office desk', 23, 2700.00, 'ykxd2', '2014-03-19 17:39:39', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `items`
 --
 
@@ -72,9 +130,9 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `date_add`) VALUES
-(1, 2, 3, 'eqweqweqw', 'eqeqeqqew', 'Consumable', '', 23, 3.00, '', '2014-03-11 07:00:39'),
-(2, 2, 3, 'asdada', 'dadada', 'Fixed', '', 3, 3.00, '', '2014-03-11 07:00:32'),
-(3, 2, 3, 'asdasa', 'asdad', 'Consumable', '', 2323, 3.00, '', '2014-03-11 07:00:23'),
+(1, 1, 1, 'eqweqweqw', 'eqeqeqqew', 'Fixed', '12', 23, 3.00, '12', '2014-03-19 15:27:30'),
+(2, 1, 1, 'asdada', 'dadada', 'Fixed', '134', 3, 3.00, '13', '2014-03-19 15:29:56'),
+(3, 1, 1, 'asdasa', 'asdad', 'Consumable', '32', 2323, 3.00, '23', '2014-03-19 15:31:32'),
 (4, 0, 0, 'brand', 'mineral water', 'Fixed', 'container', 5, 200.00, '2345', '2014-03-11 07:00:14'),
 (5, 1, 0, 'brand', 'mineral water', 'Consumable', 'container', 4, 23.00, '9999', '2014-03-11 07:00:07'),
 (6, 9, 4, 'brand', 'mineral water', 'Fixed', 'container', 4, 43.00, '345', '2014-03-11 06:59:58'),
