@@ -57,11 +57,54 @@ class Admin extends CI_Controller {
 	public function view_item($id){
 		
 		$items_info['items'] = $this->admin_model->get_item($id);
+		$items_info['department'] = $this->admin_model->get_department();
+		$items_info['supplier'] = $this->admin_model->get_supplier();
+
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
 		$this->parser->parse('admin/admin_view_item',$items_info);
+	}
 
 
+	public function view_item_validate($id){
+			$form_data = array('supplier_id' => $this->input->post('supplier_id'),
+			'department_id' => $this->input->post('department_id'),
+			'item_brand' => $this->input->post('item_brand'),
+			'item_name' => $this->input->post('item_name'),
+			//'item_type' => $this->input->post('item_type'),
+			'item_unit' => $this->input->post('item_unit'),
+			'item_qty' => $this->input->post('item_qty'),
+			'item_price' => $this->input->post('item_price'),
+			'item_serial' => $this->input->post('item_serial'),
+			);
+
+
+		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		$this->form_validation->set_rules('supplier_id','Supplier Id','required');
+		$this->form_validation->set_rules('department_id','Deparment Id','required');
+		$this->form_validation->set_rules('item_brand','Item Brand','required');
+		$this->form_validation->set_rules('item_name','Item Name','required');
+		$this->form_validation->set_rules('item_type','Item Type','required');
+		$this->form_validation->set_rules('item_unit','Item Unit','required');
+		$this->form_validation->set_rules('item_qty','Item Quantity','required');
+		$this->form_validation->set_rules('item_price','Item price','required');
+		$this->form_validation->set_rules('item_serial','Item serial','required');
+
+		if ($this->form_validation->run() == FALSE){
+			
+			$this->session->set_flashdata('edit_item_failed', validation_errors());
+			redirect('admin/view_item/'.$this->uri->segment(3));
+			
+		}
+		else{
+			//echo"<pre>";
+			//var_dump($_REQUEST);
+			//echo"</pre>";
+			$this->session->set_flashdata('edit_item_success', 'Item Successfully Changed!');
+			$this->db->where('item_id',$id);
+			$this->db->update('items',$form_data);
+			redirect('admin/view_item/'.$this->uri->segment(3));
+		}
 	}
 
 
