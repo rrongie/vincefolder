@@ -25,7 +25,7 @@
 				            <thead>
 				                <tr>
 				                      <th>Id</th>
-				                   
+				                     <th>Company</th>
 				                    <th>Name</th>
 				                    
 				                    <th>Address</th>
@@ -63,7 +63,7 @@
                 "fnRender": function ( oObj ) {
                     return '<a class="label label-info" href="supplier_details/'+oObj.aData[0]+'">View</a>';
                 },
-                "aTargets": [ 4 ],
+                "aTargets": [ 5 ],
                 "sDefaultContent": ""
             }
         ]

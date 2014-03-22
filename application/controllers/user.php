@@ -58,25 +58,39 @@ class User extends CI_Controller {
 			redirect('user/user_account');
 		}
 	}
-	public function user_item(){
+	public function user_fixed_item(){
 		$this->load->view('template/header');
 		$this->load->view('user/user_nav');
 
 		$this->load->view('user/user_item_view');
 	}
 
-
-	public function datatables_items(){
+	public function datatables_consumable(){
 		$this
-			->datatables->select('item_id,CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
-			//->datatables->select('CONCAT(supplier_fname," ",supplier_lname) AS lname,department.name,item_brand,item_name, item_type,item_unit,item_qty,item_price,date_add',FALSE)
-			->from('items')
-			->join('supplier', 'supplier_id = supplier.id','left')
-			->join('department', 'department_id = department.id');
+		->datatables->select('item_id,item_brand,item_name,department.name,item_type,item_unit,item_qty,item_price,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('item_type','Consumable');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
-	}	
+	}
+
+
+	public function datatables_fixed(){
+		$this
+		->datatables->select('item_id,item_brand,item_name,department.name,item_type,item_serial,item_qty,item_price,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('item_type', 'Fixed');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+
+
 	public function change_password(){
 		$session = $this->session->userdata('login');
 		$userid = $session['id'];

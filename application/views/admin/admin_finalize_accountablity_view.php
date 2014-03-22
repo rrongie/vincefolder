@@ -13,7 +13,7 @@
           <form action="<?php echo site_url('admin/view_form_content'); ?>" method="POST" accept-charset="utf-8">
 
             Name: <input required type="text" name="name">
-            ID Number: <input required type="text" name="id">
+            ID Number: <input required type="text" name="idnum">
           <select required name="dept">
             <option value="">...</option>
             <option value="IT Department">IT Department</option>

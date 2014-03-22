@@ -2,6 +2,19 @@
 
 class Admin_model extends CI_Model {
 
+public function insert_borrower_list($data){
+	$this->db->insert('borrowers', $data);	
+}
+
+public function update_item_borrowed($keyid){
+
+	foreach ($keyid as $id ) {
+		$this->db->where('item_id', $id);
+		$this->db->update('items', array('item_status' => 'Not Available'));
+	}
+
+}
+
 public function save_item($formdata){
 	$this->db->insert('items',$formdata);	
 }

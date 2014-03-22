@@ -4,9 +4,8 @@
   <div class="col-md-3">
   
     <div class="list-group">
-            <a href="<?php echo site_url('customer/dashboard'); ?>" class="list-group-item active">Fixed & Consumable Items</a>
-            
-           
+             <a href="<?php echo base_url('user/fixed'); ?>" class="list-group-item active">Fixed Items</a>
+             <a href="<?php echo base_url('user/consumable'); ?>" class="list-group-item ">Consumable Items</a>
           </div>
   </div>
 
@@ -14,7 +13,7 @@
                   <div class="col-md-9">
     <div class="panel panel-primary" id="panels">
 
-         <div class="panel-heading">Fixed & Comsumable list items</div>
+         <div class="panel-heading">Fixed items</div>
           <div class="panel-body">
              
                <table id="accounts-view" class="table">

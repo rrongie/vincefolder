@@ -13,7 +13,6 @@ function Footer(){
 	$this->Ln(20);	
 	$this->SetFont('Arial','',12);
 	$this->Cell(170,10,'Issued By','',0,'L');
-	$this->Cell(170,10,'Date','',0,'L');
 	$this->Ln(10);
 	$this->Cell(10,10,'Vicente Murillo','',0,'e');
 }

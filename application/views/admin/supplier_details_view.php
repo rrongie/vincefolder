@@ -20,10 +20,11 @@
                     <div class="col-md-6">
 
                   <div class="panel panel-default">
-                  <div class="panel-heading">Contact Information <a href="#"><span class="pull-right" data-toggle="modal" data-target=".bs-example-modal-sm2">Edit</span></a></div>
+                  <div class="panel-heading">Contact Information <a href="#"><span class="pull-right label label-success" data-toggle="modal"data-target=".bs-example-modal-sm2">Edit</span></a></div>
                   <div class="panel-body">
                     <address>                
                     <strong>{supplier_fname} {supplier_lname}</strong>
+                    <br>{company}
                     <br>{address}<br>
                     <abbr title="Mobile">Phone:</abbr> {mobile}<br>
                     
@@ -61,6 +62,18 @@
                   <div id="error_message" style="color:red"></div>
                   
                   <div class="col-md-4">
+                  
+                       <!-- Text input-->
+                  <div class="control-group">
+                    <label class="control-label" for="fname">Company Name:</label>
+                    <div class="controls">
+                      <input size="30" id="fname" value="{company}"name="company" type="text" placeholder="" class="input-xlarge" required>
+                      
+                    </div>
+                  </div>
+
+
+
                   <!-- Text input-->
                   <div class="control-group">
                     <label class="control-label" for="fname">First Name:</label>

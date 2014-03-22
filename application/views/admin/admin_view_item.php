@@ -1,12 +1,22 @@
-
 <div class="container">
-
 <div class="row">
-               <div class="col-md-12">
-                  <div class="panel panel-primary" id="panels">
-                      <div class="panel-heading">Item Details </div>
-                      <div class="panel-body">
-                       <?php echo form_open('admin/view_item_validate/'.$this->uri->segment(3));?>
+  <div class="col-md-3">
+  
+    <div class="list-group">
+            <a href="<?php echo site_url('admin/fixed'); ?>" class="list-group-item active">Item Details</a>
+            <a href="<?php echo site_url('admin/fixed'); ?>" class="list-group-item ">Fixed Item List</a>
+           
+           
+          </div>
+  </div>
+ 
+   <div class="col-md-9">
+    <div class="panel panel-primary" id="panels">
+
+         <div class="panel-heading">Item Details</div>
+          <div class="panel-body">
+             
+                                    <?php echo form_open('admin/view_item_validate/'.$this->uri->segment(3));?>
 <!-- body -->
           <div class="row">   
             <?php
@@ -29,82 +39,11 @@
 
             ?>
 
+                                    {items}    
+              
                                     <div class="col-md-3">
-                                        <!-- Text input-->
-                                
-                                  <div class="control-group">
-                                    <label class="control-label" for="title">Supplier Name:
-                                      </label>
-                                  
-                                       <div class="controls">
-                                       <select / id="category" name="supplier_id" required>
-                                       
-                                        {supplier}
-                                          <option value="{id}">{supplier_fname} {supplier_lname}</option>
-                                        {/supplier} 
-                                         
-                                   
-                                      </select>
-                                    </div>
-                                  </div>
-
-
-                                    <!-- Text input-->
-                                  <div class="control-group">
-                                    
-                                    <label class="control-label" for="title">Department Name:</label>
-                                   
-                                    <div class="controls">
-                                       <select / id="category" name="department_id" required>
-                                         {department}
-                                          <option value="{id}">{name}</option>
-                                         {/department}
-                                      </select>
-                                    </div>
-                                  </div>
-
-                                                  
-                                    {items}                            <!-- Select Basic -->
-                                  <div class="control-group">
-                                    <label class="control-label" for="mstatus">Item Type:</label>
-                                   
-                                    <div class="controls">
-                                      <select id="mstatus" name="item_type" class="input-xlarge" disabled>
-                                          <option value="{id}">{item_type}</option>
-                                         
-                                      </select>
-                                    </div>
-                                  </div>
-
-
-
-                                                   <!-- Text input-->
-                                    <div class="control-group">
-                                      <label class="control-label" for="price">Item Price:</label>
-                                      <div class="controls">
-                                        <input size="30" value="{item_price}" name="item_price" min="0" max="99999"type="number" placeholder="" class="input-xlarge" required>
-                                        
-                                      </div>
-                                    </div>
-
-                                 
-
-                                                          <!-- Text input-->
-                                    <div class="control-group">
-                                      <label class="control-label" for="price">Item Quantity:</label>
-                                      <div class="controls">
-                                        <input size="30" value="{item_qty}" name="item_qty" min="0" max="99999"type="number" placeholder="" class="input-xlarge" required>
-                                        
-                                      </div>
-                                    </div>
-
-                           
-
-                                    </div>
-
-                                    <div class="col-md-9">
-                                   
-
+                                        <!-- HERE -->
+                                      
                                       <!-- Text input-->
                                     <div class="control-group">
                                       <label class="control-label" for="brand">Item Brand:</label>
@@ -140,6 +79,32 @@
                                       </div>
                                     </div>   
 
+                           
+
+                                    </div>
+
+                                    <div class="col-md-9">
+                                    
+                                      <div class="control-group">
+                                      <label class="control-label" for="price">Item Price:</label>
+                                      <div class="controls">
+                                        <input size="30" value="{item_price}" name="item_price" min="0" max="99999"type="number" placeholder="" class="input-xlarge" required>
+                                        
+                                      </div>
+                                    </div>
+
+                                 
+
+                                                          <!-- Text input-->
+                                    <div class="control-group">
+                                      <label class="control-label" for="price">Item Quantity:</label>
+                                      <div class="controls">
+                                        <input size="30" value="{item_qty}" name="item_qty" min="0" max="99999"type="number" placeholder="" class="input-xlarge" required>
+                                        
+                                      </div>
+                                    </div>
+
+
                                       
                                     </div>
 
@@ -164,14 +129,17 @@
 {/items}
 <?php echo form_close();?>
 <!-- end of body -->
-
-                      </div>
-                   </div>
-                </div>
-
+          </div>
+   </div>
+  </div>
 
 
-</div><!-- end of row -->
-</div><!-- end of container -->
+
+
+
+</div><!-- row -->
+</div><!--container -->
+
+
 
 
