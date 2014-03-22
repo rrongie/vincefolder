@@ -36,6 +36,7 @@ class User extends CI_Controller {
 
 	}
 
+
 	public function account_validate(){
 		$login_session = $this->session->userdata('login');
 		$user_id = $login_session["id"];
@@ -62,25 +63,34 @@ class User extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('user/user_nav');
 
-		$this->load->view('user/user_item_view');
+		$this->load->view('user/user_fixed_item_view');
 	}
 
+	
+	public function user_consumable_item(){
+		$this->load->view('template/header');
+		$this->load->view('user/user_nav');
+
+		$this->load->view('user/user_consumable_item_view');
+	}
+
+
+
 	public function datatables_consumable(){
-		$this
-		->datatables->select('item_id,item_brand,item_name,department.name,item_type,item_unit,item_qty,item_price,date_add',FALSE)
+			$this
+		->datatables->select('item_id,item_brand,item_name,department.name,item_serial,item_qty,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
-		->where('item_type','Consumable');
+		->where('item_type', 'consumable');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
 	}
 
-
 	public function datatables_fixed(){
 		$this
-		->datatables->select('item_id,item_brand,item_name,department.name,item_type,item_serial,item_qty,item_price,date_add',FALSE)
+		->datatables->select('item_id,item_brand,item_name,department.name,item_serial,item_qty,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
@@ -89,7 +99,6 @@ class User extends CI_Controller {
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
 	}
-
 
 	public function change_password(){
 		$session = $this->session->userdata('login');

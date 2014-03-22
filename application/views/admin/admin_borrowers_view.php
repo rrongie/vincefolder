@@ -8,7 +8,7 @@
 
 
 
-       <div class="panel-heading">Accountability Form</div>
+       <div class="panel-heading">Borrower's List</div>
        <div class="panel-body">
 
         <?php 
@@ -27,14 +27,12 @@
       <table id="accounts-view" class="table">
         <thead>
           <tr>
-            <th>Item Id</th> 
-            <th>Brand</th>
-            <th>Name</th>
-            <th>Serial</th>
-            <th>Asset</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Date Add</th>
+            <th>Borrower Id</th>
+            <th>Name</th> 
+            <th>Id Num</th>
+            <th>Department</th>
+            <th>Borrowed Status</th>
+            <th>Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -44,14 +42,6 @@
         </tfoot>
       </table>
       <br/>
-
-     
-    <hr/>
-    <div class="text-center col-md-12" >
-
-      <a href="#myModal" class="btn btn-lg btn-info" data-toggle="modal">Finalize Accountability Form</a>  
-      <a href="<?php echo site_url('admin/clear_form'); ?>" class="btn btn-lg btn-danger">Clear Form</a> 
-    </div>
   </div>
 </div>
 
@@ -75,7 +65,7 @@
 
   $(document).ready(function() {
     $('#accounts-view').dataTable( {
-      "aaSorting": [[ 10, "asc" ]],
+      "aaSorting": [[ 0, "asc" ]],
       "bProcessing": true,
       "sAjaxSource": "<?php echo site_url('admin/datatables_borrowers'); ?>",
       "aoColumnDefs": [
@@ -84,14 +74,15 @@
           var a;
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
-                    z = '<a class="label label-info" href="remove_item/'+oObj.aData[0]+'">-</a> ';
-                    a = '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
-                    b = '<a class="label label-info" href="add_item/'+oObj.aData[0]+'">+</a> ';
+                    //z = '<a class="label label-info" href="remove_item/'+oObj.aData[0]+'">-</a> ';
+                    a = '<a class="label label-info" href="return_item/'+oObj.aData[0]+'">Return</a> ';
+                    b = '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
+                    //b = '<a class="label label-info" href="add_item/'+oObj.aData[0]+'">+</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
-                    return z + a + b;
+                    return a+b;
                   },
-                  "aTargets": [ 8 ],
+                  "aTargets": [ 6 ],
                   "sDefaultContent": ""
                 }
                 ]

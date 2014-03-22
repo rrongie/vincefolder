@@ -35,10 +35,66 @@ class Admin extends CI_Controller {
 	}
 
 	public function fixed(){
+		
+		$items_info['department'] = $this->admin_model->get_department();
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
 		//main content
-		$this->load->view('admin/admin_fixed_view');
+		$this->parser->parse('admin/admin_fixed_view',$items_info);
+
+	}
+	public function edit_fixed_item($id){
+		
+		$items_info['items'] = $this->admin_model->get_item($id);
+		$items_info['department'] = $this->admin_model->get_department();
+		$items_info['supplier'] = $this->admin_model->get_supplier();
+
+		$this->load->view('template/header');
+		$this->load->view('admin/admin_nav');
+		//main content
+		$this->parser->parse('admin/edit_fixed_view',$items_info);
+		
+	}
+	
+	public function edit_fixed_validate($id){
+			$form_data = array(//'supplier_id' => $this->input->post('supplier_id'),
+			//'department_id' => $this->input->post('department_id'),
+			'item_brand' => $this->input->post('item_brand'),
+			'item_name' => $this->input->post('item_name'),
+			//'item_type' => $this->input->post('item_type'),
+			'item_unit' => $this->input->post('item_unit'),
+			'item_qty' => $this->input->post('item_qty'),
+			'item_price' => $this->input->post('item_price'),
+			'item_serial' => $this->input->post('item_serial'),
+			);
+
+
+		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		//$this->form_validation->set_rules('supplier_id','Supplier Id','required');
+		//$this->form_validation->set_rules('department_id','Deparment Id','required');
+		$this->form_validation->set_rules('item_brand','Item Brand','required');
+		$this->form_validation->set_rules('item_name','Item Name','required');
+		//$this->form_validation->set_rules('item_type','Item Type','required');
+		//$this->form_validation->set_rules('item_unit','Item Unit','required');
+		$this->form_validation->set_rules('item_qty','Item Quantity','required');
+		$this->form_validation->set_rules('item_price','Item price','required');
+		$this->form_validation->set_rules('item_serial','Item serial','required');
+
+		if ($this->form_validation->run() == FALSE){
+			
+			$this->session->set_flashdata('edit_item_failed', validation_errors());
+			redirect('admin/view_item/'.$this->uri->segment(3));
+			
+		}
+		else{
+			//echo"<pre>";
+			//var_dump($_REQUEST);
+			//echo"</pre>";
+			$this->session->set_flashdata('edit_item_success', 'Item Successfully Changed!');
+			$this->db->where('item_id',$id);
+			$this->db->update('items',$form_data);
+			redirect('admin/edit_fixed_item/'.$this->uri->segment(3));
+		}
 	}
 
 	public function consumable(){
@@ -48,7 +104,61 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_consumable_view');
 	}
 
-	public function add_consumables_item(){
+	public function edit_consumable_item($id){
+		
+		$items_info['items'] = $this->admin_model->get_item($id);
+		$items_info['department'] = $this->admin_model->get_department();
+		$items_info['supplier'] = $this->admin_model->get_supplier();
+
+		$this->load->view('template/header');
+		$this->load->view('admin/admin_nav');
+		//main content
+		$this->parser->parse('admin/edit_consumable_view',$items_info);
+		
+	}
+
+	public function edit_consumable_validate($id){
+		$form_data = array(//'supplier_id' => $this->input->post('supplier_id'),
+			//'department_id' => $this->input->post('department_id'),
+			'item_brand' => $this->input->post('item_brand'),
+			'item_name' => $this->input->post('item_name'),
+			//'item_type' => $this->input->post('item_type'),
+			//'item_unit' => $this->input->post('item_unit'),
+			'item_qty' => $this->input->post('item_qty'),
+			'item_price' => $this->input->post('item_price'),
+			'item_serial' => $this->input->post('item_serial'),
+			);
+
+
+		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		//$this->form_validation->set_rules('supplier_id','Supplier Id','required');
+		//$this->form_validation->set_rules('department_id','Deparment Id','required');
+		$this->form_validation->set_rules('item_brand','Item Brand','required');
+		$this->form_validation->set_rules('item_name','Item Name','required');
+		//$this->form_validation->set_rules('item_type','Item Type','required');
+		//$this->form_validation->set_rules('item_unit','Item Unit','required');
+		$this->form_validation->set_rules('item_qty','Item Quantity','required');
+		$this->form_validation->set_rules('item_price','Item price','required');
+		$this->form_validation->set_rules('item_serial','Item serial','required');
+
+		if ($this->form_validation->run() == FALSE){
+			
+			$this->session->set_flashdata('edit_item_failed', validation_errors());
+			redirect('admin/view_item/'.$this->uri->segment(3));
+			
+		}
+		else{
+			//echo"<pre>";
+			//var_dump($_REQUEST);
+			//echo"</pre>";
+			$this->session->set_flashdata('edit_item_success', 'Item Successfully Changed!');
+			$this->db->where('item_id',$id);
+			$this->db->update('items',$form_data);
+			redirect('admin/edit_consumable_item/'.$this->uri->segment(3));
+		}
+	}
+
+	public function add_consumable_item(){
 		$items_info['department'] = $this->admin_model->get_department();
 		$items_info['supplier'] = $this->admin_model->get_supplier();
 		
@@ -56,10 +166,48 @@ class Admin extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('admin/admin_nav');
 		//main content
-		$this->parser->parse('admin/admin_add_item_view',$items_info);
-		//Page Footer
-		//$this->load->view('admin/admin_add_item_view',$items_info);
+		$this->parser->parse('admin/admin_add_consumable_item_view',$items_info);
+		
 	}
+
+	
+	public function add_consumable_item_validate(){
+		$form_data = array('supplier_id' => $this->input->post('supplier_id'),
+			'department_id' => $this->input->post('department_id'),
+			'item_brand' => $this->input->post('item_brand'),
+			'item_name' => $this->input->post('item_name'),
+			'item_type' => 'consumable',
+			'item_unit' => $this->input->post('item_unit'),
+			'item_qty' => $this->input->post('item_qty'),
+			'item_price' => $this->input->post('item_price'),
+			//'item_serial' => $this->input->post('item_serial'),
+			);
+
+
+		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+		$this->form_validation->set_rules('supplier_id','Supplier Id','required');
+		$this->form_validation->set_rules('department_id','Deparment Id','required');
+		$this->form_validation->set_rules('item_brand','Item Brand','required');
+		$this->form_validation->set_rules('item_name','Item Name','required');
+		//$this->form_validation->set_rules('item_type','Item Type','required');
+		$this->form_validation->set_rules('item_unit','Item Unit','required');
+		$this->form_validation->set_rules('item_qty','Item Quantity','required');
+		$this->form_validation->set_rules('item_price','Item price','required');
+		//$this->form_validation->set_rules('item_serial','Item serial','required');
+
+		if ($this->form_validation->run() == FALSE){
+			
+			echo validation_errors();
+			
+		}
+		else{
+			$this->session->set_flashdata('add_item_success', 'Item Successfully Added!');
+			$this->admin_model->save_item($form_data);
+			redirect('admin/add_consumable_item');
+			
+		}
+	}
+
 
 	public function add_fixed_item(){
 		$items_info['department'] = $this->admin_model->get_department();
@@ -80,7 +228,7 @@ class Admin extends CI_Controller {
 			'department_id' => $this->input->post('department_id'),
 			'item_brand' => $this->input->post('item_brand'),
 			'item_name' => $this->input->post('item_name'),
-			'item_type' => $this->input->post('item_type'),
+			'item_type' => 'fixed',
 			//'item_unit' => $this->input->post('item_unit'),
 			'item_qty' => $this->input->post('item_qty'),
 			'item_price' => $this->input->post('item_price'),
@@ -374,7 +522,7 @@ class Admin extends CI_Controller {
 
 	public function datatables_fixed(){
 		$this
-		->datatables->select('item_id,item_brand,item_name,department.name,item_serial,item_price,date_add',FALSE)
+		->datatables->select('item_id,item_brand,item_name,department.name,item_serial,item_qty,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
@@ -410,6 +558,17 @@ class Admin extends CI_Controller {
 		$this
 		->datatables->select('id, username, fname, lname, type')
 		->from('personnel');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+
+	}
+
+
+	public function datatables_borrowers(){
+		$this
+		->datatables->select('id,borrower_name, borrower_idnum, borrower_dept, borrower_status, borrowed_date')
+		->from('borrowers');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
@@ -475,6 +634,7 @@ class Admin extends CI_Controller {
 
 		$personal = array('supplier_fname' => $this->input->post('fname'),
 			'supplier_lname' => $this->input->post('lname'),
+			'company' => $this->input->post('company'),
 			'address' => $this->input->post('address'),
 			'mobile' => $this->input->post('mobile'),
 
@@ -483,7 +643,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		$this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
 		$this->form_validation->set_message('is_unique',"First Name already exist");
-		
+		$this->form_validation->set_rules('company','company','required');
 		$this->form_validation->set_rules('lname','Last name','required');
 		$this->form_validation->set_rules('address','Address','required');
 		$this->form_validation->set_rules('mobile','mobile','required');
@@ -494,9 +654,9 @@ class Admin extends CI_Controller {
 		}
 		else{
 
-			
+			$this->session->set_flashdata('add_success', 'Supplier Successfully Added!');
 			$this->admin_model->insert_supplier_record($personal);
-			echo"Supplier Successfully Added!";
+			redirect('admin/add_supplier');
 
 		}
 	}
@@ -512,6 +672,7 @@ class Admin extends CI_Controller {
 
 	public function accountability(){
 
+		$data['department'] = $this->admin_model->get_department();
 		$data['product'] = $product =$this->admin_model->retrieve_item_consumables();
 
 		if (count($this->cart->contents()) > 0) {
@@ -606,9 +767,7 @@ class Admin extends CI_Controller {
 			$this->bryan->Ln(20);
 
 
-			$dbdata = array('borrower_name' => $name, 'borrower_dept' => $dept, 'borrower_idnum' => $idnum, 'cart_data' => serialize($this->cart->contents()), 'borrower_status' => 'Not Returned');
-
-
+			$dbdata = array('borrower_name' => $name, 'borrower_dept' => $dept, 'borrower_idnum' => $idnum, 'cart_data' => serialize($this->cart->contents()), 'borrower_status' => 'Not Returned', 'borrowed_date' => date('Y-m-d'));
 			#update db make status not available
 			$this->admin_model->update_item_borrowed($keyid);
 			#insert borrower table
@@ -808,9 +967,13 @@ class Admin extends CI_Controller {
 		}
 
 		public function purchase(){
+			
+			$items_info['supplier'] = $this->admin_model->get_supplier();
+
 			$this->load->view('template/header');
 			$this->load->view('admin/admin_nav');	
-			$this->load->view('admin/admin_purchase_view.php');
+			$this->parser->parse('admin/admin_purchase_view',$items_info);
+		
 		}
 
 		public function finalized_form_po(){

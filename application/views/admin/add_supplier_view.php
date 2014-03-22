@@ -72,13 +72,21 @@
                
               	   <!-- Text input-->
                     <div class="control-group">
+                      <label class="control-label" for="lname">Company:</label>
+                      <div class="controls">
+                        <input size="30" id="lname" value=""name="company" type="text" placeholder="" class="input-xlarge" required>
+                        
+                      </div>
+                    </div>
+
+                      <!-- Text input-->
+                    <div class="control-group">
                       <label class="control-label" for="lname">Mobile:</label>
                       <div class="controls">
                         <input size="30" id="lname" value=""name="mobile" type="text" placeholder="" class="input-xlarge" required>
                         
                       </div>
                     </div>
-
 
                  
                   </div>

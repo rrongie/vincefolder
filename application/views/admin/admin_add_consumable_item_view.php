@@ -34,8 +34,8 @@
         <div class="list-group">
            
             
-            <a href="<?php echo site_url('admin/add_items'); ?>" class="list-group-item active">Add Items</a>
-              <a href="<?php echo site_url('admin/fixed'); ?>" class="list-group-item ">Fixed Items List</a>
+            <a href="<?php echo site_url('admin/add_consumable_item'); ?>" class="list-group-item active">Consumable Items</a>
+              <a href="<?php echo site_url('admin/consumable'); ?>" class="list-group-item ">Consumable Items List</a>
           </div>
     </div>
 <!--modal for add supplier -->
@@ -146,12 +146,12 @@
     <div class="col-md-9">
         <div class="panel panel-primary" id="panels">
                <div class="panel-heading">
-             Add Fixed Items <button class="btn btn-default pull-right" data-toggle="modal" data-target=".bs-example-modal-sm2">Add Supplier</button><button class="btn btn-default pull-right" data-toggle="modal" data-target=".bs-example-modal-sm">Add Department</button>
+             Add Consumable Items <button class="btn btn-default pull-right" data-toggle="modal" data-target=".bs-example-modal-sm2">Add Supplier</button><button class="btn btn-default pull-right" data-toggle="modal" data-target=".bs-example-modal-sm">Add Department</button>
           </div>
             <div class="panel-body">
               <?php
                   $attributes = array('class' => 'form-horizontal');
-                  echo form_open('admin/add_fixed_item_validate', $attributes);
+                  echo form_open('admin/add_consumable_item_validate', $attributes);
             ?>
 
              <?php
@@ -198,7 +198,7 @@
                                   </div>
 
                                                   
-                        
+                            
 
 
                                                    <!-- Text input-->
@@ -249,9 +249,9 @@
 
                                              <!-- Text input-->
                                     <div class="control-group">
-                                      <label class="control-label" for="item_name">Serial:</label>
+                                      <label class="control-label" for="item_name">Unit:</label>
                                       <div class="controls">
-                                        <input size="30" id="item_name" name="item_serial" type="text" placeholder="" class="input-xlarge" required>
+                                        <input size="30" id="item_name" name="item_unit" type="text" placeholder="" class="input-xlarge" required>
                                         
                                       </div>
                                     </div>   

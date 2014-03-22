@@ -116,7 +116,7 @@
 <div class="control-group">
   <label class="control-label" for="name">Name</label>
   <div class="controls">
-    <input id="name" name="name" type="text" placeholder="" class="input-xlarge" required="">
+    <input id="name" name="name" type="text" placeholder="" class="input-xlarge" required>
     
   </div>
 </div>
@@ -125,7 +125,7 @@
 <div class="control-group">
   <label class="control-label" for="idnum">Id Number</label>
   <div class="controls">
-    <input id="idnum" name="idnum" type="text" placeholder="" class="input-xlarge" required="">
+    <input id="idnum" name="idnum" type="number" placeholder="" class="input-xlarge" required>
     
   </div>
 </div>
@@ -134,11 +134,12 @@
 <div class="control-group">
   <label class="control-label" for="dept">Department</label>
   <div class="controls">
-    <select id="dept" name="dept" class="input-xlarge">
-      <option>...</option>
-      <option>IT Department</option>
-      <option>Leasing Department</option>
-      <option>Accounting Department</option>
+    <select id="dept" name="dept" class="input-xlarge" required>
+    <option>...</option>
+       {department}
+      <option>{name}</option>
+      {/department}
+   
     </select>
   </div>
 </div>

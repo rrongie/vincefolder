@@ -4,8 +4,8 @@
 <div class="col-md-3">
   
     <div class="list-group">
-            <a href="<?php echo base_url('user/user_fixed_item'); ?>" class="list-group-item active">Fixed Items</a>
-            <a href="<?php echo base_url('user/user_consumable_item'); ?>" class="list-group-item ">Consumable Items</a>
+            <a href="<?php echo base_url('user/user_fixed_item'); ?>" class="list-group-item">Fixed Items</a>
+            <a href="<?php echo base_url('user/user_consumable_item'); ?>" class="list-group-item active">Consumable Items</a>
            
            
           </div>
@@ -13,8 +13,8 @@
                   <div class="col-md-9">
     <div class="panel panel-primary" id="panels">
 
-         <div class="panel-heading">Fixed Items 
-            
+         <div class="panel-heading">Consumable Items 
+             
          </div>
           
           <div class="panel-body">
@@ -25,9 +25,9 @@
                 <tr>
                       <th>Id</th>
                       <th>Company</th>
-                      <th>Name</th>
+                      <th>Item Brand</th>
                       <th>Department</th>
-                      <th>Serial</th>
+                      <th>Unit</th>
                       <th>Quantity</th>
                       <th>Date Add</th>
                       
@@ -56,7 +56,7 @@
     $('#accounts-view').dataTable( {
         "aaSorting": [[ 9, "asc" ]],
         "bProcessing": true,
-        "sAjaxSource": "<?php echo site_url('admin/datatables_fixed'); ?>",
+        "sAjaxSource": "<?php echo site_url('admin/datatables_consumable'); ?>",
         "aoColumnDefs": [
             {
              

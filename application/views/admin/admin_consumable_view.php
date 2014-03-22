@@ -15,7 +15,7 @@
     <div class="panel panel-primary" id="panels">
 
          <div class="panel-heading">Comsumable Items 
-              <a href="<?php echo site_url('admin/add_items'); ?>"><button class="btn btn-default pull-right">Add Consumable item</button></a>
+              <a href="<?php echo site_url('admin/add_consumable_item'); ?>"><button class="btn btn-default pull-right">Add Consumable item</button></a>
          </div>
           
           <div class="panel-body">
@@ -67,7 +67,7 @@
             {
                 "fnRender": function ( oObj ) {
                     z ='<a class="label label-danger" href="out_item/'+oObj.aData[0]+'">-</a>';
-                    a = ' <a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
+                    a = ' <a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">View</a> ';
                     b = '<a class="label label-primary" href="in_item/'+oObj.aData[0]+'">+</a>';
                     return z + a + b;
                 },

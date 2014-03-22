@@ -7,7 +7,21 @@
          <div class="panel-heading">Purchase Order</div>
           <div class="panel-body">
              
-               <table id="accounts-view" class="table">
+             
+                <div class="control-group">
+                                    <label class="control-label" for="title">Supplier Name:</label>
+                                    <div class="controls">
+                                       <select / id="category" name="supplier_id" required>
+                                        <option  name="" value=""></option>
+                                          {supplier}
+                                          <option value="{id}">{supplier_fname} {supplier_lname}</option>
+                                          {/supplier}
+                                      </select>
+                                    </div>
+                  </div>
+
+            
+            <table id="accounts-view" class="table">
             <thead>
                 <tr>
                       <th>Id</th>
@@ -50,7 +64,7 @@
     $('#accounts-view').dataTable( {
         "aaSorting": [[ 10, "asc" ]],
         "bProcessing": true,
-        "sAjaxSource": "<?php echo site_url('admin/datatables_items'); ?>",
+        "sAjaxSource": "<?php echo site_url('admin/datatables_purchase_order'); ?>",
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
@@ -59,7 +73,7 @@
                     b = '<a class="label label-primary" href="po_add_item/'+oObj.aData[0]+'">+</a>';
                     return z + a + b;
                 },
-                "aTargets": [ 8 ],
+                "aTargets": [ 9 ],
                 "sDefaultContent": ""
             }
         ]
