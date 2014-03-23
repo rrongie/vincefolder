@@ -75,7 +75,7 @@ public function login_validate(){
 			}elseif($userinfo[0]['type'] == 'admin'){
 				redirect('admin');
 			}elseif($userinfo[0]['type'] == 'staff'){
-				redirect('staff');
+				redirect('admin');
 			}
 
 

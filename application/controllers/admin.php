@@ -525,6 +525,31 @@ class Admin extends CI_Controller {
 		echo $datatables;
 	}
 
+	public function datatables_rr_consumable(){
+			$this
+		->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('item_type','Consumable');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+	
+	public function datatables_reconcile_consumable(){
+			$this
+		->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('item_type','Consumable');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+	
+
 
 	public function datatables_fixed(){
 		$this
@@ -537,6 +562,34 @@ class Admin extends CI_Controller {
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
 	}
+
+	
+	public function datatables_rr_fixed(){
+		$this
+		->datatables->select('item_id,item_brand,item_name,department.name,item_serial, item_asset,item_status,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('item_type', 'Fixed');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+
+		public function datatables_reconcile_fixed(){
+		$this
+		->datatables->select('item_id,item_brand,item_name,department.name,item_serial, item_asset,item_status,date_add',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('item_type', 'Fixed');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+
+
+
 
 	public function datatables_accountability(){
 		$this
@@ -1158,6 +1211,20 @@ class Admin extends CI_Controller {
 			$this->bryan->Output('AF'.uniqid().'.pdf','I'); 
 		}
 
+
+		public function receiving(){
+			$this->load->view('template/header');
+			$this->load->view('admin/admin_nav');	
+			$this->load->view('admin/admin_receiving');
+	
+		}
+	
+
+		public function reconcile(){
+			$this->load->view('template/header');
+			$this->load->view('admin/admin_nav');	
+			$this->load->view('admin/admin_reconcile');
+		}
 
 
 	}

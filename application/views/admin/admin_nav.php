@@ -1,8 +1,4 @@
-<html>
-<head>
-  <title>test</title>
-</head>
-<!-- Latest compiled and minified CSS -->
+
 
 <body>
   <center class="container">
@@ -42,8 +38,20 @@
 
            </li>
            <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/suppliers'); ?>">SUPPLIER</a></li>
-           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/manage_user'); ?>">MANAGE USER</a></li>
-       
+           
+           <?php 
+
+           $var = unserialize($_COOKIE['ci_session']);
+
+           $type = $var['login']['type'];
+           if ($type == 'admin') { ?>
+      <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/manage_user'); ?>">MANAGE USER</a></li>
+            <?php } ?>
+
+           
+            
+           
+           
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a style="font-size:15px; margin-top:5px;" href="<?php echo base_url() . "account/logout"?>">LOGOUT</a></li>
