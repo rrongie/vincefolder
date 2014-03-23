@@ -61,10 +61,10 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    z ='<a class="label label-danger" href="out_item/'+oObj.aData[0]+'">-</a>';
+                    
                     a = ' <a class="label label-info" href="edit_fixed_item/'+oObj.aData[0]+'">View</a> ';
-                    b = '<a class="label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
-                  return  z+ a + b;
+                  
+                  return a;
                  
                 },
                 "aTargets": [ 8 ],
