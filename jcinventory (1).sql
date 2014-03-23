@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2014 at 05:37 AM
+-- Generation Time: Mar 23, 2014 at 04:08 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `borrowers` (
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cart_data` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `borrowers`
@@ -65,7 +65,8 @@ INSERT INTO `borrowers` (`id`, `borrower_name`, `borrower_idnum`, `borrower_dept
 (5, 'fbcv', 32423, 'IT department', 'Not Returned', '2014-03-23 09:14:51', '2014-03-23 01:14:51', 'a:0:{}'),
 (6, 'Bryan Bojorque', 9304967, 'IT department', 'Returned', '2014-03-23 11:23:22', '2014-03-23 03:23:50', 'a:2:{s:32:"c4ca4238a0b923820dcc509a6f75849b";a:9:{s:5:"rowid";s:32:"c4ca4238a0b923820dcc509a6f75849b";s:2:"id";s:1:"1";s:3:"qty";s:1:"1";s:5:"price";s:4:"6.00";s:4:"name";s:21:"low back office chair";s:6:"serial";s:5:"sjt27";s:5:"asset";s:4:"djh5";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:6;}s:32:"a87ff679a2f3e71d9181a67b7542122c";a:9:{s:5:"rowid";s:32:"a87ff679a2f3e71d9181a67b7542122c";s:2:"id";s:1:"4";s:3:"qty";s:1:"1";s:5:"price";s:6:"200.00";s:4:"name";s:13:"meeting table";s:6:"serial";s:5:"ykxd2";s:5:"asset";s:5:"b8dh5";s:5:"brand";s:8:"Copyland";s:8:"subtotal";d:200;}}'),
 (7, 'vh', 3, 'Accounting', 'Returned', '2014-03-23 12:14:45', '2014-03-23 04:15:35', 'a:4:{s:32:"c4ca4238a0b923820dcc509a6f75849b";a:9:{s:5:"rowid";s:32:"c4ca4238a0b923820dcc509a6f75849b";s:2:"id";s:1:"1";s:3:"qty";s:1:"3";s:5:"price";s:4:"6.00";s:4:"name";s:21:"low back office chair";s:6:"serial";s:5:"sjt27";s:5:"asset";s:4:"djh5";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:18;}s:32:"a87ff679a2f3e71d9181a67b7542122c";a:9:{s:5:"rowid";s:32:"a87ff679a2f3e71d9181a67b7542122c";s:2:"id";s:1:"4";s:3:"qty";s:1:"2";s:5:"price";s:6:"200.00";s:4:"name";s:13:"meeting table";s:6:"serial";s:5:"ykxd2";s:5:"asset";s:5:"b8dh5";s:5:"brand";s:8:"Copyland";s:8:"subtotal";d:400;}s:32:"8f14e45fceea167a5a36dedd4bea2543";a:9:{s:5:"rowid";s:32:"8f14e45fceea167a5a36dedd4bea2543";s:2:"id";s:1:"7";s:3:"qty";s:1:"2";s:5:"price";s:4:"6.00";s:4:"name";s:5:"chair";s:6:"serial";s:8:"sdlkas23";s:5:"asset";s:5:"pj6sd";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:12;}s:32:"d3d9446802a44259755d38e6d163e820";a:9:{s:5:"rowid";s:32:"d3d9446802a44259755d38e6d163e820";s:2:"id";s:2:"10";s:3:"qty";s:1:"2";s:5:"price";s:4:"4.00";s:4:"name";s:5:"cable";s:6:"serial";s:6:"sd123x";s:5:"asset";s:5:"kg3ps";s:5:"brand";s:15:"Thinking Tools	";s:8:"subtotal";d:8;}}'),
-(8, '76', 76, 'Leasing', 'Returned', '2014-03-23 12:15:04', '2014-03-23 04:15:25', 'a:1:{s:32:"1679091c5a880faf6fb5e6087eb1b2dc";a:9:{s:5:"rowid";s:32:"1679091c5a880faf6fb5e6087eb1b2dc";s:2:"id";s:1:"6";s:3:"qty";s:1:"1";s:5:"price";s:5:"43.00";s:4:"name";s:17:"wenge office desk";s:6:"serial";s:7:"uashk23";s:5:"asset";s:5:"1ds7h";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:43;}}');
+(8, '76', 76, 'Leasing', 'Returned', '2014-03-23 12:15:04', '2014-03-23 04:15:25', 'a:1:{s:32:"1679091c5a880faf6fb5e6087eb1b2dc";a:9:{s:5:"rowid";s:32:"1679091c5a880faf6fb5e6087eb1b2dc";s:2:"id";s:1:"6";s:3:"qty";s:1:"1";s:5:"price";s:5:"43.00";s:4:"name";s:17:"wenge office desk";s:6:"serial";s:7:"uashk23";s:5:"asset";s:5:"1ds7h";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:43;}}'),
+(9, 'Bryan Bojorque', 2, 'IT department', 'Not Returned', '2014-03-23 14:00:03', '2014-03-23 06:00:03', 'a:1:{s:32:"1679091c5a880faf6fb5e6087eb1b2dc";a:9:{s:5:"rowid";s:32:"1679091c5a880faf6fb5e6087eb1b2dc";s:2:"id";s:1:"6";s:3:"qty";s:1:"1";s:5:"price";s:5:"43.00";s:4:"name";s:17:"wenge office desk";s:6:"serial";s:7:"uashk23";s:5:"asset";s:5:"1ds7h";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:43;}}');
 
 -- --------------------------------------------------------
 
@@ -120,12 +121,12 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `item_status`, `item_asset`, `date_add`) VALUES
-(1, 1, 1, 'Desire', 'low back office chair', 'Fixed', '0', 35, 6.00, 'sjt27', 'Available', 'djh5', '2014-03-23 04:15:31'),
+(1, 1, 1, 'Desire', 'low back office chair', 'Fixed', '0', 35, 6.00, 'sjt27s2', 'Available', 'djh5', '2014-03-23 13:26:25'),
 (2, 1, 2, 'Thinking Tools', 'visitor chair	', 'Fixed', 'none', 3, 3.00, 'YC128', 'Available', 'lpjh8', '2014-03-22 13:46:22'),
-(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 233, 3.00, 'test ', 'Available', 'mn2gy', '2014-03-23 03:18:58'),
+(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 233, 3.00, '12dsd', 'Available', 'mn2gy', '2014-03-23 13:40:54'),
 (4, 2, 3, 'Copyland', 'meeting table', 'Fixed', 'none', 5, 200.00, 'ykxd2', 'Available', 'b8dh5', '2014-03-23 04:15:35'),
 (5, 1, 2, 'Coca Cola', 'real leaf lemon', 'Consumable', 'cs', 4, 23.00, '9999', 'Available', 'svz8dw', '2014-03-22 13:46:22'),
-(6, 9, 4, 'Desire', 'wenge office desk', 'Fixed', 'none', 4, 43.00, 'uashk23', 'Available', '1ds7h', '2014-03-23 04:15:25'),
+(6, 9, 4, 'Desire', 'wenge office desk', 'Fixed', 'none', 4, 43.00, 'uashk23', 'Not Available', '1ds7h', '2014-03-23 06:00:03'),
 (7, 1, 1, 'Desire', 'chair', 'Fixed', 'none', 7, 6.00, 'sdlkas23', 'Available', 'pj6sd', '2014-03-23 04:15:35'),
 (8, 9, 4, 'Visayan Educational Supply', 'royal tru orange 500ml	', 'Consumable', 'cs', 7, 6.00, '343242', 'Available', 'qbf6', '2014-03-22 13:46:23'),
 (9, 9, 2, 'Coca Cola', 'last', 'Consumable', 'last', 3, 23.00, '654', 'Available', '1sgsvh', '2014-03-22 13:46:23'),
@@ -185,12 +186,12 @@ CREATE TABLE IF NOT EXISTS `supplier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `supplier_fname` varchar(255) NOT NULL,
   `supplier_lname` varchar(255) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `address` varchar(50) NOT NULL,
   `mobile` varchar(50) NOT NULL,
   `company` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `supplier`
