@@ -34,7 +34,7 @@
         <div class="list-group">
            
             
-            <a href="<?php echo site_url('admin/add_items'); ?>" class="list-group-item active">Add Items</a>
+            <a href="<?php echo site_url('admin/add_fixed_item'); ?>" class="list-group-item active">Add Items</a>
               <a href="<?php echo site_url('admin/fixed'); ?>" class="list-group-item ">Fixed Items List</a>
           </div>
     </div>
@@ -73,6 +73,17 @@
                       </div>
                     </div>
 
+
+                     <!-- Text input-->
+                      <div class="control-group">
+                      <label class="control-label" for="mobile">Company:</label>
+                      <div class="controls">
+                        <input size="30" id="mobile" value=""name="company" type="text" placeholder="" class="input-xlarge" required>
+                        
+                      </div>
+                    </div>
+
+
                
                      <!-- Text input-->
                     <div class="control-group">
@@ -98,13 +109,24 @@
                     </div>
 
 
+                       <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="lname">Email:</label>
+                      <div class="controls">
+                        <input size="30" id="lname" value=""name="email" type="text" placeholder="" class="input-xlarge" required>
+                        
+                      </div>
+                    </div>
+
+
+
                  
                   </div>
 
                   </div>     
             
                       <div class="modal-footer">
-                  <a href="<?php echo site_url('admin/add_items');?>" class="btn btn-danger">Close</a>
+                  <a href="<?php echo site_url('admin/add_fixed_item');?>" class="btn btn-danger">Close</a>
                  <input type="button" id="add_supplier" class="btn btn-info" value="Submit" />
                 </form>
               </div>
@@ -132,7 +154,7 @@
               </div>
 
                <div class="modal-footer">
-                  <a href="<?php echo site_url('admin/add_items');?>" class="btn btn-danger">Close</a>
+                  <a href="<?php echo site_url('admin/add_fixed_item');?>" class="btn btn-danger">Close</a>
                  <input type="button" id="add_department" class="btn btn-info" value="Submit" />
               </div>
               </form>

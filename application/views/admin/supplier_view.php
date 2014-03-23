@@ -29,7 +29,8 @@
 				                    <th>Name</th>
 				                    
 				                    <th>Address</th>
-				                    <th>Mobile</th>
+				                    <th>Email</th>
+                                    <th>Mobile</th>
 				                    <th>View</th>
 				                </tr>
 				            </thead>
@@ -63,7 +64,7 @@
                 "fnRender": function ( oObj ) {
                     return '<a class="label label-info" href="supplier_details/'+oObj.aData[0]+'">View</a>';
                 },
-                "aTargets": [ 5 ],
+                "aTargets": [ 6 ],
                 "sDefaultContent": ""
             }
         ]

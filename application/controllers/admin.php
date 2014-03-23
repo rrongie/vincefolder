@@ -123,10 +123,10 @@ class Admin extends CI_Controller {
 			'item_brand' => $this->input->post('item_brand'),
 			'item_name' => $this->input->post('item_name'),
 			//'item_type' => $this->input->post('item_type'),
-			//'item_unit' => $this->input->post('item_unit'),
+			'item_unit' => $this->input->post('item_unit'),
 			'item_qty' => $this->input->post('item_qty'),
 			'item_price' => $this->input->post('item_price'),
-			'item_serial' => $this->input->post('item_serial'),
+			//'item_serial' => $this->input->post('item_serial'),
 			);
 
 
@@ -139,7 +139,7 @@ class Admin extends CI_Controller {
 		//$this->form_validation->set_rules('item_unit','Item Unit','required');
 		$this->form_validation->set_rules('item_qty','Item Quantity','required');
 		$this->form_validation->set_rules('item_price','Item price','required');
-		$this->form_validation->set_rules('item_serial','Item serial','required');
+		//$this->form_validation->set_rules('item_serial','Item serial','required');
 
 		if ($this->form_validation->run() == FALSE){
 			
@@ -607,7 +607,7 @@ class Admin extends CI_Controller {
 	public function datatables_supplier(){
 		$this
 			//->datatables->select('id,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, supplier_lname, address, mobile',FALSE)
-		->datatables->select('id,company ,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, address, mobile',FALSE)
+		->datatables->select('id,company ,CONCAT(supplier_fname," ",supplier_lname) AS supplier_fname, address,email, mobile',FALSE)
 		->from('supplier');
 
 		$datatables = $this->datatables->generate('JSON');
@@ -659,6 +659,7 @@ class Admin extends CI_Controller {
 
 	public function supplier_edit_contact_validate($id){
 		$personal = array('company' => $this->input->post('company'),
+			'email' => $this->input->post('email'),
 			'supplier_fname' => $this->input->post('fname'),
 			'supplier_lname' => $this->input->post('lname'),
 			'address' => $this->input->post('address'),
@@ -668,7 +669,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		//$this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
 		$this->form_validation->set_message('is_unique',"First Name already exist");
-		
+		$this->form_validation->set_rules('email','Email','required|valid_email');
 		$this->form_validation->set_rules('lname','Last name','required');
 		$this->form_validation->set_rules('address','Address','required');
 		$this->form_validation->set_rules('mobile','mobile','required');
@@ -709,6 +710,8 @@ class Admin extends CI_Controller {
 		$personal = array('supplier_fname' => $this->input->post('fname'),
 			'supplier_lname' => $this->input->post('lname'),
 			'company' => $this->input->post('company'),
+			'email' => $this->input->post('email'),
+			'company' => $this->input->post('company'),
 			'address' => $this->input->post('address'),
 			'mobile' => $this->input->post('mobile'),
 
@@ -717,6 +720,7 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
 		$this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
 		$this->form_validation->set_message('is_unique',"First Name already exist");
+		$this->form_validation->set_rules('email','Email','required|valid_email');
 		$this->form_validation->set_rules('company','company','required');
 		$this->form_validation->set_rules('lname','Last name','required');
 		$this->form_validation->set_rules('address','Address','required');
@@ -730,7 +734,7 @@ class Admin extends CI_Controller {
 
 			$this->session->set_flashdata('add_success', 'Supplier Successfully Added!');
 			$this->admin_model->insert_supplier_record($personal);
-			redirect('admin/add_supplier');
+			echo"Supplier Added Successfully!";
 
 		}
 	}

@@ -73,7 +73,20 @@
                       </div>
                     </div>
 
-               
+                <!-- Text input-->
+                      <div class="control-group">
+                      <label class="control-label" for="mobile">Company:</label>
+                      <div class="controls">
+                        <input size="30" id="mobile" value=""name="company" type="text" placeholder="" class="input-xlarge" required>
+                        
+                      </div>
+                    </div>
+
+                   
+
+
+
+
                      <!-- Text input-->
                     <div class="control-group">
                      <label class="control-label" for="street">Street Address:</label>
@@ -98,6 +111,14 @@
                     </div>
 
 
+                       <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="lname">Email:</label>
+                      <div class="controls">
+                        <input size="30" id="lname" value=""name="email" type="text" placeholder="" class="input-xlarge" required>
+                        
+                      </div>
+                    </div>
                  
                   </div>
 

@@ -24,6 +24,7 @@
                   <div class="panel-body">
                     <address>                
                     <strong>{supplier_fname} {supplier_lname}</strong>
+                     <br>{email}
                     <br>{company}
                     <br>{address}<br>
                     <abbr title="Mobile">Phone:</abbr> {mobile}<br>
@@ -112,6 +113,17 @@
                       <label class="control-label" for="lname">Mobile:</label>
                       <div class="controls">
                         <input size="30" value="{mobile}" value=""name="mobile" type="text" placeholder="" class="input-xlarge" required>
+                        
+                      </div>
+                    </div>
+
+
+
+                   <!-- Text input-->
+                    <div class="control-group">
+                      <label class="control-label" for="lname">Email:</label>
+                      <div class="controls">
+                        <input size="30" value="{email}" value=""name="email" type="text" placeholder="" class="input-xlarge" required>
                         
                       </div>
                     </div>

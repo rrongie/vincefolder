@@ -64,9 +64,9 @@
                                  
                                              <!-- Text input-->
                                     <div class="control-group">
-                                      <label class="control-label" for="item_name">Serial:</label>
+                                      <label class="control-label" for="item_name">Unit:</label>
                                       <div class="controls">
-                                        <input size="30" value="{item_serial}"id="item_name" name="item_serial" type="text" placeholder="" class="input-xlarge">
+                                        <input size="30" value="{item_unit}"id="item_name" name="item_unit" type="text" placeholder="" class="input-xlarge">
                                         
                                       </div>
                                     </div>   
