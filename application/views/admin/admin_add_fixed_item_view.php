@@ -212,16 +212,6 @@
 
                                  
 
-                                                          <!-- Text input-->
-                                    <div class="control-group">
-                                      <label class="control-label" for="price">Item Quantity:</label>
-                                      <div class="controls">
-                                        <input size="30" id="price" name="item_qty" min="0" max="99999"type="number" placeholder="" class="input-xlarge" required>
-                                        
-                                      </div>
-                                    </div>
-
-                           
 
                                     </div>
 
@@ -249,7 +239,7 @@
 
                                              <!-- Text input-->
                                     <div class="control-group">
-                                      <label class="control-label" for="item_name">Serial:</label>
+                                      <label class="control-label" for="item_name">Serial No:</label>
                                       <div class="controls">
                                         <input size="30" id="item_name" name="item_serial" type="text" placeholder="" class="input-xlarge" required>
                                         
@@ -257,6 +247,20 @@
                                     </div>   
 
                                       
+                                    
+                                    
+                                                          <!-- Text input-->
+                                    <div class="control-group">
+                                      <label class="control-label" for="price">Asset Code:</label>
+                                      <div class="controls">
+                                        <input size="30" id="price" name="item_asset" min="0" max="99999"type="text" placeholder="" class="input-xlarge" required>
+                                        
+                                      </div>
+                                    </div>
+
+                           
+
+
                                     </div>
 
                                     </div>

@@ -37,13 +37,13 @@
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/borrowers'); ?>">BORROWERS LIST</a></li>
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/receiving'); ?>">RECEIVING REPORT</a></li>
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/reconcile'); ?>">RECONCILE REPORT</a></li>
-
+                  <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/reconcile'); ?>">CONSUMABLE REPORT</a></li>
               </ul>
 
            </li>
            <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/suppliers'); ?>">SUPPLIER</a></li>
            <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/manage_user'); ?>">MANAGE USER</a></li>
-             <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/log_history'); ?>">LOG HISTORY</a></li>
+       
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a style="font-size:15px; margin-top:5px;" href="<?php echo base_url() . "account/logout"?>">LOGOUT</a></li>

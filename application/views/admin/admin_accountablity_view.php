@@ -32,8 +32,8 @@
             <th>Name</th>
             <th>Serial</th>
             <th>Asset</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            
+            
             <th>Date Add</th>
             <th>Action</th>
           </tr>
@@ -182,14 +182,14 @@
           var a;
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
-                    z = '<a class="label label-info" href="remove_item/'+oObj.aData[0]+'">-</a> ';
+                    z = '<a class="label label-danger" href="remove_item/'+oObj.aData[0]+'">-</a> ';
                     a = '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
-                    b = '<a class="label label-info" href="add_item/'+oObj.aData[0]+'">+</a> ';
+                    b = '<a class="label label-success" href="add_item/'+oObj.aData[0]+'">+</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
                     return z + a + b;
                   },
-                  "aTargets": [ 8 ],
+                  "aTargets": [ 6 ],
                   "sDefaultContent": ""
                 }
                 ]

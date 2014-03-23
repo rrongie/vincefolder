@@ -62,7 +62,7 @@
             {
                 "fnRender": function ( oObj ) {
                     
-                    a = ' <a class="label label-info" href="edit_fixed_item/'+oObj.aData[0]+'">View</a> ';
+                    a = ' <a class="label label-info" href="edit_fixed_item/'+oObj.aData[0]+'">Update</a> ';
                   
                   return a;
                  

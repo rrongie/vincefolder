@@ -104,7 +104,7 @@
                   </div>     
             
                       <div class="modal-footer">
-                  <a href="<?php echo site_url('admin/add_items');?>" class="btn btn-danger">Close</a>
+                  <a href="<?php echo site_url('admin/add_consumable_item');?>" class="btn btn-danger">Close</a>
                  <input type="button" id="add_supplier" class="btn btn-info" value="Submit" />
                 </form>
               </div>
@@ -132,7 +132,7 @@
               </div>
 
                <div class="modal-footer">
-                  <a href="<?php echo site_url('admin/add_items');?>" class="btn btn-danger">Close</a>
+                  <a href="<?php echo site_url('admin/add_consumable_item');?>" class="btn btn-danger">Close</a>
                  <input type="button" id="add_department" class="btn btn-info" value="Submit" />
               </div>
               </form>

@@ -31,7 +31,7 @@
                       <th>Unit</th>
                       <th>Quantity</th>
                       <th>Date Add</th>
-                      <th>Action</th>
+                      <th> &nbsp; Action</th> 
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +66,7 @@
             {
                 "fnRender": function ( oObj ) {
                     z ='<a class="label label-danger" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">-</a>';
-                    a = ' <a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">View</a> ';
+                    a = ' <a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">Update</a> ';
                     b = '<a class="label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
                     return z + a + b;
                 },

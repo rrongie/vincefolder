@@ -43,7 +43,7 @@
            </li>
            <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('staff/suppliers'); ?>">SUPPLIER</a></li>
          
-             <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('staff/log_history'); ?>">LOG HISTORY</a></li>
+          
         </ul>
         <ul class="nav navbar-nav pull-right">
           <li><a style="font-size:15px; margin-top:5px;" href="<?php echo base_url() . "account/logout"?>">LOGOUT</a></li>
