@@ -19,7 +19,7 @@ class User extends CI_Controller {
 
 	
 	public function index(){
-		$this->user_account();
+		$this->user_fixed_item();
 	}
 
 	public function user_account(){

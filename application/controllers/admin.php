@@ -61,7 +61,7 @@ class Admin extends CI_Controller {
 			//'department_id' => $this->input->post('department_id'),
 			'item_brand' => $this->input->post('item_brand'),
 			'item_name' => $this->input->post('item_name'),
-			//'item_type' => $this->input->post('item_type'),
+			'item_asset' => $this->input->post('item_asset'),
 			'item_unit' => $this->input->post('item_unit'),
 			'item_qty' => $this->input->post('item_qty'),
 			'item_price' => $this->input->post('item_price'),
@@ -74,7 +74,7 @@ class Admin extends CI_Controller {
 		//$this->form_validation->set_rules('department_id','Deparment Id','required');
 		$this->form_validation->set_rules('item_brand','Item Brand','required');
 		$this->form_validation->set_rules('item_name','Item Name','required');
-		//$this->form_validation->set_rules('item_type','Item Type','required');
+		$this->form_validation->set_rules('item_asset','Asset Code','required');
 		//$this->form_validation->set_rules('item_unit','Item Unit','required');
 		$this->form_validation->set_rules('item_qty','Item Quantity','required');
 		$this->form_validation->set_rules('item_price','Item price','required');

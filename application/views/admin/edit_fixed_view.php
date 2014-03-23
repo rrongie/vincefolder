@@ -71,6 +71,18 @@
                                       </div>
                                     </div>   
 
+
+
+                                               <!-- Text input-->
+                                    <div class="control-group">
+                                      <label class="control-label" for="item_name">Asset:</label>
+                                      <div class="controls">
+                                        <input size="30" value="{item_asset}" name="item_asset" type="text" placeholder="" class="input-xlarge">
+                                        
+                                      </div>
+                                    </div>   
+
+
                            
 
                                     </div>
