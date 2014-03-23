@@ -322,6 +322,12 @@ class Admin extends CI_Controller {
 		redirect('admin/accountability');
 	}
 
+		public function clear_form_po(){
+		$this->cart->destroy();
+		redirect('admin/purchase');
+	}
+
+
 	public function add_item_Validate(){
 
 		
@@ -509,7 +515,7 @@ class Admin extends CI_Controller {
 		//CONCAT(fname," ",lname) AS lname', FALSE)
 	public function datatables_consumable(){
 		$this
-		->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty,item_price,date_add',FALSE)
+		->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
@@ -522,7 +528,7 @@ class Admin extends CI_Controller {
 
 	public function datatables_fixed(){
 		$this
-		->datatables->select('item_id,item_brand,item_name,department.name,item_serial,item_qty,date_add',FALSE)
+		->datatables->select('item_id,item_brand,item_name,department.name,item_serial, item_asset,item_status,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
@@ -538,7 +544,8 @@ class Admin extends CI_Controller {
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
-		->where('item_type', 'Fixed');
+		->where('item_type', 'Fixed')
+		->where('item_status', 'Available');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
@@ -554,6 +561,20 @@ class Admin extends CI_Controller {
 		echo $datatables;
 	}
 
+
+	public function datatables_po($supplier_id){
+		$this
+		->datatables->select('item_id,company,item_brand,item_name,item_price',FALSE)
+		->from('items')
+		->join('supplier', 'supplier_id = supplier.id','left')
+		->join('department', 'department_id = department.id')
+		->where('supplier_id', $supplier_id);
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
+
+
 	public function datatables_accounts(){
 		$this
 		->datatables->select('id, username, fname, lname, type')
@@ -567,7 +588,7 @@ class Admin extends CI_Controller {
 
 	public function datatables_borrowers(){
 		$this
-		->datatables->select('id,borrower_name, borrower_idnum, borrower_dept, borrower_status, borrowed_date')
+		->datatables->select('id,borrower_name, borrower_idnum, borrower_dept, borrower_status, borrowed_date, cart_data')
 		->from('borrowers');
 
 		$datatables = $this->datatables->generate('JSON');
@@ -695,6 +716,41 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin_borrowers_view');
 	}
 
+	public function borrowers_cartdata(){
+		$this->db->select('cart_data')->from('borrowers')->where('id', $this->input->post('id'));
+		$query = $this->db->get();
+		$data = $query->result_array();
+		$cart = unserialize($data[0]['cart_data']);
+		$bid = $this->input->post('id');
+
+		echo "<table class='table table-bordered'>";
+		echo "<tr>
+			<th>Name</th>
+			<th>Brand</th>
+			<th>Asset</th>
+			<th>Serial</th>
+				</tr>";
+		
+		foreach ($cart as $key => $value) {
+			
+			echo "<tr>";
+			echo "<td>$value[name]</td>";
+			echo "<td>$value[brand]</td>";
+			echo "<td>$value[asset]</td>";
+			echo "<td>$value[serial]</td>";
+			echo "</tr>";
+		}
+
+		echo "</table>";
+		echo "<form action=".site_url('admin/return_item')." method='POST' >";
+		echo "<input type='hidden' name='b-id' value='$bid'>";
+		foreach ($cart as $key => $value) {
+			echo "<input type='hidden' name='item-id[]' value='$value[id]'>";
+		}
+		echo "<input type=submit value='Return Items' class='btn btn-info'>";
+		echo "</form>";
+	}
+
 	public function view_form_content(){
 
 		$name = $this->input->post('name');
@@ -767,7 +823,7 @@ class Admin extends CI_Controller {
 			$this->bryan->Ln(20);
 
 
-			$dbdata = array('borrower_name' => $name, 'borrower_dept' => $dept, 'borrower_idnum' => $idnum, 'cart_data' => serialize($this->cart->contents()), 'borrower_status' => 'Not Returned', 'borrowed_date' => date('Y-m-d'));
+			$dbdata = array('borrower_name' => $name, 'borrower_dept' => $dept, 'borrower_idnum' => $idnum, 'cart_data' => serialize($this->cart->contents()), 'borrower_status' => 'Not Returned', 'borrowed_date' => date('Y-m-d H:i:s'));
 			#update db make status not available
 			$this->admin_model->update_item_borrowed($keyid);
 			#insert borrower table
@@ -875,6 +931,18 @@ class Admin extends CI_Controller {
 			}
 		}
 
+		function return_item(){
+			$items = $this->input->post('item-id');
+			$borrowers_id = $this->input->post('b-id');
+			foreach ($items as $item) {
+				$this->db->where('item_id', $item);
+				$this->db->update('items', array('item_status' => 'Available'));
+			}
+				$this->db->where('id', $borrowers_id);
+				$this->db->update('borrowers', array('borrower_status' => 'Returned'));
+			redirect('admin/borrowers');
+		}
+
 
 
 		public function po_add_item($id, $qty = 1){
@@ -909,7 +977,7 @@ class Admin extends CI_Controller {
 			if (count($data) > 0) {
 
 				if ($this->cart->update($data)) {
-					$this->session->set_flashdata('item_add', 'Item has been removed to the form.');
+					$this->session->set_flashdata('item_add', 'Item has been removed to the form/.');
 					redirect('admin/purchase');
 				}else{
 					echo 'Error';
@@ -967,8 +1035,24 @@ class Admin extends CI_Controller {
 		}
 
 		public function purchase(){
-			
+
+
 			$items_info['supplier'] = $this->admin_model->get_supplier();
+			$items_info['supplier_id'] = $this->input->post('supplier_id');
+			$items_info['cart_data'] = $this->cart->contents();
+
+			$items_info['department'] = $this->admin_model->get_department();
+
+
+			if (count($this->cart->contents()) > 0) {
+				$items_info['cart'] = True;
+			}else{
+				$items_info['cart'] = False;
+			}
+
+			if (!$items_info['supplier_id']) {
+				$items_info['supplier_id'] = 1;
+			}
 
 			$this->load->view('template/header');
 			$this->load->view('admin/admin_nav');	
@@ -982,6 +1066,98 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/admin_purchase_view_finalized.php');
 
 		}
+
+		public function add_po_qty(){
+			$id = $this->input->post('itemid-item');
+			$qty = $this->input->post('qty');
+
+			$item_data = $this->admin_model->get_item($id);
+			
+			$items_array = array(
+               'id'      => $id,
+               'qty'     => $qty,
+               'price'   => $item_data[0]['item_price'],
+               'name'    => $item_data[0]['item_name'],
+               'brand'	=>  $item_data[0]['item_brand']
+            );
+
+			$this->cart->insert($items_array);
+			redirect('admin/purchase');
+		}
+
+		public function view_po_form(){
+		$dept = 'IT Deparment';
+		$supplier = 'ABC Supplier';
+		$name = "Person Name";
+		$date = date('F, d, y');
+		$id = 'test';
+
+		$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
+		$header = array('Quantity', 'Item Price','Item Name', 'Item brand');
+		$cart = $this->cart->contents();
+
+
+		foreach ($cart as $key => $value) {
+			unset($value['subtotal']);
+			unset($value['asset']);
+			$keyid[] = $value['id'];
+			$value['brand'] = trim($value['brand']);
+			$value['name'] = trim($value['name']);
+			unset($value['id']);
+			unset($value['rowid']);
+			$data[] = $value;
+		}
+
+		array_reverse($data);
+
+		$this->bryan->FPDF('P', 'mm', 'a4');
+		$this->bryan->AddPage();
+
+		$this->bryan->Image($logo,10,6,50);
+		$this->bryan->SetFont('Arial','',15);
+		$this->bryan->Cell(190,10,$dept,'',0,'R');
+		$this->bryan->Ln(7);
+		$this->bryan->SetFont('Arial','',12);
+		$this->bryan->Cell(190,10,$supplier,'',0,'R');
+		$this->bryan->Ln(5);
+		$this->bryan->SetFont('Arial','B',15);
+		$this->bryan->Cell(124,10,'Purchase Order Form','',0,'R');
+		$this->bryan->SetFont('Arial','',12);
+		$this->bryan->Cell(66,10,$name,'',0,'R');
+		$this->bryan->Ln(5);
+		$this->bryan->Cell(190,10,$date,'',0,'R');
+		$this->bryan->Ln(5);
+		$this->bryan->Ln(5);
+		$this->bryan->Ln(9);
+
+
+
+		$this->bryan->Ln(15);
+
+		foreach($header as $col)
+			$this->bryan->Cell(52,7,$col,0);
+		$this->bryan->Ln();
+
+
+		foreach ($data as $key => $value) {
+
+			foreach ($value as $key2 => $value2) {
+				$this->bryan->Cell(52,6,$value2,0);
+			}
+			$this->bryan->Ln();
+		}
+		$this->bryan->Cell(170,90,'Total','',0,'R');
+		$this->bryan->Cell(15,90,$this->cart->total(),'',0,'R');
+			/*foreach($data as $col)
+				$this->bryan->Cell(40,6,$col,0);
+			$this->bryan->Ln();
+*/
+
+
+			$this->bryan->Ln(20);
+			$this->bryan->Output('AF'.uniqid().'.pdf','I'); 
+		}
+
 
 
 	}

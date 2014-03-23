@@ -30,7 +30,6 @@
                       <th>Department</th>
                       <th>Unit</th>
                       <th>Quantity</th>
-                      <th>Price</th>
                       <th>Date Add</th>
                       <th>Action</th>
                 </tr>
@@ -60,7 +59,7 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 9, "asc" ]],
+        "aaSorting": [[ 8, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_consumable'); ?>",
         "aoColumnDefs": [
@@ -71,7 +70,7 @@
                     b = '<a class="label label-primary" href="in_item/'+oObj.aData[0]+'">+</a>';
                     return z + a + b;
                 },
-                "aTargets": [ 8 ],
+                "aTargets": [ 7 ],
                 "sDefaultContent": ""
             }
         ]

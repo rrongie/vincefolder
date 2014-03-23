@@ -28,7 +28,8 @@
                       <th>Name</th>
                       <th>Department</th>
                       <th>Serial</th>
-                      <th>Quantity</th>
+                      <th>Asset Code</th>
+                      <th>Status</th>
                       <th>Date Add</th>
                       <th>Action</th>
                 </tr>
@@ -54,19 +55,19 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 9, "asc" ]],
+        "aaSorting": [[ 8, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_fixed'); ?>",
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                  <!--  z ='<a class="label label-danger" href="out_item/'+oObj.aData[0]+'">-</a>'; -->
+                    z ='<a class="label label-danger" href="out_item/'+oObj.aData[0]+'">-</a>';
                     a = ' <a class="label label-info" href="edit_fixed_item/'+oObj.aData[0]+'">View</a> ';
                     b = '<a class="label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
-                  return  a + b;
-                  <!--  return z + a + b; -->
+                  return  z+ a + b;
+                 
                 },
-                "aTargets": [ 7 ],
+                "aTargets": [ 8 ],
                 "sDefaultContent": ""
             }
         ]

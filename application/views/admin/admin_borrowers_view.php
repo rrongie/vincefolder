@@ -55,6 +55,28 @@
 </div><!-- end of container -->
 
 
+<!--modal for + -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Items that will be returned</h4>
+      </div>
+      <div class="modal-body  modal-area">
+        <!-- boody here -->                      
+
+
+   <!-- end of body -->
+ </div>
+
+</div>
+</div>
+</div>
+
+<!-- end of modal + -->
+
 
 
 
@@ -65,7 +87,7 @@
 
   $(document).ready(function() {
     $('#accounts-view').dataTable( {
-      "aaSorting": [[ 0, "asc" ]],
+      "aaSorting": [[ 5, "desc" ]],
       "bProcessing": true,
       "sAjaxSource": "<?php echo site_url('admin/datatables_borrowers'); ?>",
       "aoColumnDefs": [
@@ -75,12 +97,11 @@
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
                     //z = '<a class="label label-info" href="remove_item/'+oObj.aData[0]+'">-</a> ';
-                    a = '<a class="label label-info" href="return_item/'+oObj.aData[0]+'">Return</a> ';
-                    b = '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
+                    a = '<a href="#" class="label return-item label-info" data-id="'+oObj.aData[0]+'">Return</a>';  
                     //b = '<a class="label label-info" href="add_item/'+oObj.aData[0]+'">+</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
-                    return a+b;
+                    return a;
                   },
                   "aTargets": [ 6 ],
                   "sDefaultContent": ""
@@ -90,20 +111,20 @@
 } );
 
 </script>
-<!--
+
 <script type="text/javascript">
   
 
-$(document).on('click', '.genpdf', function(e){
+$(document).on('click', '.return-item', function(e){
 e.preventDefault();
 
-
-$('.modal-area').html('<h4>Items has been processed.</h4>');
-
+var id = $(this).data('id');
+$('.modal-area').load('<?php echo site_url('admin/borrowers_cartdata')?>', {id: id});
+$('#myModal').modal('show');
 
 });
 
 
+
 </script>
 
--->

@@ -695,6 +695,9 @@ class Staff extends CI_Controller {
 		$this->load->view('admin/admin_borrowers_view');
 	}
 
+
+	
+
 	public function view_form_content(){
 
 		$name = $this->input->post('name');

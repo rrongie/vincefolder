@@ -33,7 +33,8 @@
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/accountability'); ?>">ACCOUNTABILITY</a></li>
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/purchase'); ?>">PURCHASE ORDER</a></li>
-                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/borrowers'); ?>">BORROWER'S LIST</a></li>
+                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/purchase'); ?>">PURCHASES LIST</a></li >
+                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/borrowers'); ?>">BORROWERS LIST</a></li>
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/receiving'); ?>">RECEIVING REPORT</a></li>
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/reconcile'); ?>">RECONCILE REPORT</a></li>
 
