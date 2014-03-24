@@ -24,7 +24,7 @@
       }
 
       ?>
-      <table id="accounts-view" class="table">
+      <table id="accounts-view" class="table table-bordered">
         <thead>
           <tr>
             <th>Item Id</th> 
@@ -50,7 +50,7 @@
        <?php if ($cart == TRUE) { ?>
        <hr/>
        <legend>Items that are added to the form.</legend>
-       <table id="accounts-view" class="table">
+       <table id="accounts-view" class="table table-bordered">
         <thead>
           <tr>
             <th>Asset Code</th>

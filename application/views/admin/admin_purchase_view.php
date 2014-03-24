@@ -11,7 +11,7 @@
                <div class="control-group">
                                     <label class="control-label" for="title">Supplier Name:</label>
                                     <div class="controls">
-                                    <form action="<?php echo site_url('admin/purchase')?>" method="POST">
+                                    <form action="<?php echo site_url('admin/purchase')?>" method="GET">
                                       <input type="hidden" name="itemid" class="itemid" value>
                                       <select id="supplier_id" name="supplier_id" required>
                                         <option  name="" value=""></option>
@@ -226,12 +226,12 @@
                       
       <form action="<?php echo site_url('admin/view_po_form')?>" method="POST">
         
-
+<input type="hidden" name="supplierid" value="{supplier_id}">
 <!-- Select Basic -->
 <div class="control-group">
   <label class="control-label" for="dept">Department</label>
   <div class="controls">
-     <select id="" name="department_id" required>
+     <select name="departmentid" required>
                                         <option  name="" value=""></option>
                                           {department}
                                           <option value="{id}">{name}</option>

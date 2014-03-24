@@ -2,6 +2,16 @@
 
 class Admin_model extends CI_Model {
 
+	public function insert_purchases($data){
+		$this->db->insert('purchases', $data);
+	}
+
+public function get_supplier_and_id($id){
+	$this->db->select("company, CONCAT(supplier_fname, '', supplier_lname) AS name", FALSE)->from('supplier')->where('id', $id);
+	$sql = $this->db->get();
+	return $sql->result_array();
+}	
+
 public function insert_borrower_list($data){
 	$this->db->insert('borrowers', $data);	
 }
@@ -87,6 +97,12 @@ public function customer_info($user_id){
 	public function get_supplier_info($id){
 
 	$query = $this->db->where('id', $id)->get('supplier');
+	return $query->result();
+	}
+
+	public function get_dept_info($id){
+
+	$query = $this->db->where('id', $id)->get('department');
 	return $query->result();
 	}
 

@@ -8,7 +8,7 @@
 
 
 
-       <div class="panel-heading">Borrower's List</div>
+       <div class="panel-heading">Purchases List</div>
        <div class="panel-body">
 
         <?php 
@@ -24,14 +24,14 @@
       }
 
       ?>
-      <table id="accounts-view" class="table table-bordered">
+      <table id="accounts-view" class="table">
         <thead>
           <tr>
-            <th>Borrower Id</th>
-            <th>Name</th> 
-            <th>Id Num</th>
-            <th>Department</th>
-            <th>Borrowed Status</th>
+            <th>Purchase Id</th>
+            <th>Department</th> 
+            <th>Company</th>
+            <th>Total Cost(PHP)</th>
+            <th>Status</th>
             <th>Date</th>
             <th>Action</th>
           </tr>
@@ -55,6 +55,8 @@
 </div><!-- end of container -->
 
 
+
+
 <!--modal for + -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -62,7 +64,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Items that will be returned</h4>
+        <h4 class="modal-title" id="myModalLabel">Items purchased</h4>
       </div>
       <div class="modal-body  modal-area">
         <!-- boody here -->                      
@@ -79,17 +81,13 @@
 
 
 
-
-
-
-
 <script type="text/javascript">
 
   $(document).ready(function() {
     $('#accounts-view').dataTable( {
       "aaSorting": [[ 5, "desc" ]],
       "bProcessing": true,
-      "sAjaxSource": "<?php echo site_url('admin/datatables_borrowers'); ?>",
+      "sAjaxSource": "<?php echo site_url('admin/datatables_purchase_list'); ?>",
       "aoColumnDefs": [
       {
         "fnRender": function ( oObj ) {
@@ -97,7 +95,7 @@
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
                     //z = '<a class="label label-info" href="remove_item/'+oObj.aData[0]+'">-</a> ';
-                    a = '<a href="#" class="label return-item label-info" data-id="'+oObj.aData[0]+'">Return</a>';  
+                    a = '<a href="#" class="label received-item label-info" data-id="'+oObj.aData[0]+'">Recieved</a>';  
                     //b = '<a class="label label-info" href="add_item/'+oObj.aData[0]+'">+</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
@@ -115,11 +113,11 @@
 <script type="text/javascript">
   
 
-$(document).on('click', '.return-item', function(e){
+$(document).on('click', '.received-item', function(e){
 e.preventDefault();
 
 var id = $(this).data('id');
-$('.modal-area').load('<?php echo site_url('admin/borrowers_cartdata')?>', {id: id});
+$('.modal-area').load('<?php echo site_url('admin/purchases_cartdata')?>', {id: id});
 $('#myModal').modal('show');
 
 });
