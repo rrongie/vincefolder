@@ -1088,14 +1088,15 @@ class Admin extends CI_Controller {
 			$this->bryan->Ln();
 */
 			$this->bryan->Ln(20);
-			$this->bryan->Output('your_file_pdf.pdf','I');     
+			$this->bryan->Output('PO'.uniqid().'.pdf','I');     
 		}
 
 		public function purchase(){
 
 
 			$items_info['supplier'] = $this->admin_model->get_supplier();
-			$items_info['supplier_id'] = $this->input->post('supplier_id');
+			$items_info['supplier_id'] = $this->input->get('supplier_id');
+
 			$items_info['cart_data'] = $this->cart->contents();
 
 			$items_info['department'] = $this->admin_model->get_department();
@@ -1143,11 +1144,12 @@ class Admin extends CI_Controller {
 		}
 
 		public function view_po_form(){
-		$dept = 'IT Deparment';
-		$supplier = 'ABC Supplier';
-		$name = "Person Name";
+
+		$sup_info = $this->admin_model->get_supplier_and_id($this->input->post('supplierid'));
+		$dept = $this->input->post('department');
+		$supplier = $sup_info[0]['company'];
+		$name = $sup_info[0]['name'];
 		$date = date('F, d, y');
-		$id = 'test';
 
 		$logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
 		$header = array('Quantity', 'Item Price','Item Name', 'Item brand');
