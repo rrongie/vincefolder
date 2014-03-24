@@ -1146,7 +1146,11 @@ class Admin extends CI_Controller {
 		public function view_po_form(){
 
 		$sup_info = $this->admin_model->get_supplier_and_id($this->input->post('supplierid'));
-		$dept = $this->input->post('department');
+		$deptid = $this->input->post('departmentid');
+		$dept = $this->admin_model->get_dept_info($deptid);
+		$deptname = $dept[0]->name;	
+
+
 		$supplier = $sup_info[0]['company'];
 		$name = $sup_info[0]['name'];
 		$date = date('F, d, y');
@@ -1159,22 +1163,20 @@ class Admin extends CI_Controller {
 		foreach ($cart as $key => $value) {
 			unset($value['subtotal']);
 			unset($value['asset']);
-			$keyid[] = $value['id'];
-			$value['brand'] = trim($value['brand']);
-			$value['name'] = trim($value['name']);
 			unset($value['id']);
 			unset($value['rowid']);
+			$value['brand'] = trim($value['brand']);
+			$value['name'] = trim($value['name']);
 			$data[] = $value;
 		}
 
-		array_reverse($data);
 
 		$this->bryan->FPDF('P', 'mm', 'a4');
 		$this->bryan->AddPage();
 
 		$this->bryan->Image($logo,10,6,50);
 		$this->bryan->SetFont('Arial','',15);
-		$this->bryan->Cell(190,10,$dept,'',0,'R');
+		$this->bryan->Cell(190,10,$deptname,'',0,'R');
 		$this->bryan->Ln(7);
 		$this->bryan->SetFont('Arial','',12);
 		$this->bryan->Cell(190,10,$supplier,'',0,'R');
@@ -1214,6 +1216,15 @@ class Admin extends CI_Controller {
 
 
 			$this->bryan->Ln(20);
+
+			#logs to purchase order
+
+			$purchase_info = array('dept_id' => $this->input->post('departmentid'),
+									'supplier_id' => $this->input->post('supplierid'),
+									'purchase_total' => $this->cart->total(),
+									'purchase_status' => 'Pending',
+									'cart_data' => serialize($this->cart->contents()));
+			$this->admin_model->insert_purchases($purchase_info);
 			$this->bryan->Output('AF'.uniqid().'.pdf','I'); 
 		}
 
