@@ -511,8 +511,8 @@ class Admin extends CI_Controller {
 
 	}
 
-	
-		//CONCAT(fname," ",lname) AS lname', FALSE)
+	#goto datatables	
+	//CONCAT(fname," ",lname) AS lname', FALSE)
 	public function datatables_consumable(){
 		$this
 		->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty,date_add',FALSE)
@@ -643,6 +643,19 @@ class Admin extends CI_Controller {
 		$this
 		->datatables->select('id,borrower_name, borrower_idnum, borrower_dept, borrower_status, borrowed_date, cart_data')
 		->from('borrowers');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+
+	}
+
+
+	public function datatables_purchase_list(){
+		$this
+		->datatables->select('purchases.id,department.name,supplier.company, purchase_total,purchase_status, date_order')
+		->from('purchases')
+		->join('department', 'department.id = purchases.dept_id')
+		->join('supplier', 'supplier.id = purchases.supplier_id');
 
 		$datatables = $this->datatables->generate('JSON');
 		echo $datatables;
@@ -886,8 +899,6 @@ class Admin extends CI_Controller {
 			#insert borrower table
 			$this->admin_model->insert_borrower_list($dbdata);
 			$this->cart->destroy();
-
-
 			$this->bryan->Output('AF'.uniqid().'.pdf','D'); 
 		}
 
@@ -955,7 +966,8 @@ class Admin extends CI_Controller {
 				'name' => $item_content[0]['item_name'],
 				'serial' => $item_content[0]['item_serial'],
 				'asset' => $item_content[0]['item_asset'],
-				'brand' => $item_content[0]['item_brand']
+				'brand' => $item_content[0]['item_brand'],
+				'type' => $item_content[0]['item_brand']
 				);
 
 			$this->cart->insert($item_array);
@@ -1010,7 +1022,8 @@ class Admin extends CI_Controller {
 				'id' => $item_content[0]['item_id'],
 				'qty' => $qty,
 				'price' => $item_content[0]['item_price'],
-				'name' => $item_content[0]['item_name']
+				'name' => $item_content[0]['item_name'],
+				'type' => $item_content[0]['item_type']
 				);
 
 			$this->cart->insert($item_array);
@@ -1088,7 +1101,7 @@ class Admin extends CI_Controller {
 			$this->bryan->Ln();
 */
 			$this->bryan->Ln(20);
-			$this->bryan->Output('PO'.uniqid().'.pdf','I');     
+			$this->bryan->Output('PO'.uniqid().'.pdf','D');     
 		}
 
 		public function purchase(){
@@ -1136,7 +1149,8 @@ class Admin extends CI_Controller {
                'qty'     => $qty,
                'price'   => $item_data[0]['item_price'],
                'name'    => $item_data[0]['item_name'],
-               'brand'	=>  $item_data[0]['item_brand']
+               'brand'	=>  $item_data[0]['item_brand'],
+               'type' => $item_data[0]['item_type']
             );
 
 			$this->cart->insert($items_array);
@@ -1223,9 +1237,11 @@ class Admin extends CI_Controller {
 									'supplier_id' => $this->input->post('supplierid'),
 									'purchase_total' => $this->cart->total(),
 									'purchase_status' => 'Pending',
+									'date_order' => date('Y-m-d H:i:s'),
 									'cart_data' => serialize($this->cart->contents()));
 			$this->admin_model->insert_purchases($purchase_info);
-			$this->bryan->Output('AF'.uniqid().'.pdf','I'); 
+			$this->cart->destroy();
+			$this->bryan->Output('PO'.uniqid().'.pdf','I'); 
 		}
 
 
@@ -1241,6 +1257,57 @@ class Admin extends CI_Controller {
 			$this->load->view('template/header');
 			$this->load->view('admin/admin_nav');	
 			$this->load->view('admin/admin_reconcile');
+		}
+
+		public function purchase_list(){
+			$this->load->view('template/header');
+			$this->load->view('admin/admin_nav');	
+			$this->load->view('admin/admin_purchases_list_view.php');
+		}
+
+
+	public function purchases_cartdata(){
+		$this->db->select('cart_data')->from('purchases')->where('id', $this->input->post('id'));
+		$query = $this->db->get();
+		$data = $query->result_array();
+		$cart = unserialize($data[0]['cart_data']);
+		$poid = $this->input->post('id');
+		echo "<table class='table table-bordered'>";
+		echo "<tr>
+			<th>Name</th>
+			<th>Brand</th>
+			<th>Quantity</th>
+			<th>Subtotal</th>
+				</tr>";
+		$total = 0;	
+		foreach ($cart as $key => $value) {
+			$total += $value['subtotal'];
+			echo "<tr>";
+			echo "<td>$value[name]</td>";
+			echo "<td>$value[brand]</td>";
+			echo "<td>$value[qty]</td>";
+			echo "<td>$value[subtotal]</td>";
+			echo "</tr>";
+		}
+		echo "<tr>
+		<td colspan=2></td>
+		<td><b>Total</b></td>
+		<td>$total</td>
+		</tr>";
+
+		
+		echo "</table>";
+		echo "<form action=".site_url('admin/recieve_item')." method='POST' >";
+		echo "<input type='hidden' name='po-id' value='$poid'>";
+		echo "<input type=submit value='Receive Items' class='btn btn-info'>";
+		echo "</form>";
+	}
+
+	function recieve_item(){
+			$po_id = $this->input->post('po-id');
+			$this->db->where('id', $po_id);
+			$this->db->update('purchases', array('purchase_status' => 'Purchased'));
+			redirect('admin/purchase_list');
 		}
 
 
