@@ -97,18 +97,6 @@
                                       </div>
                                     </div>
 
-                                 
-
-                                                          <!-- Text input-->
-                                    <div class="control-group">
-                                      <label class="control-label" for="price">Item Quantity:</label>
-                                      <div class="controls">
-                                        <input size="30" value="{item_qty}" name="item_qty" min="0" max="99999"type="number" placeholder="" class="input-xlarge" required>
-                                        
-                                      </div>
-                                    </div>
-
-
                                       
                                     </div>
 

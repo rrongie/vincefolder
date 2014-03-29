@@ -9,7 +9,7 @@
              
              <div class="text-center">
                <div class="control-group">
-                                    <label class="control-label" for="title">Supplier Name:</label>
+                                    <label class="control-label" for="title">Select Supplier</label>
                                     <div class="controls">
                                     <form action="<?php echo site_url('admin/purchase')?>" method="GET">
                                       <input type="hidden" name="itemid" class="itemid" value>
@@ -33,8 +33,8 @@
                 <tr>
                       <th>Item Id</th>
                       <th>Company</th>
-                      <th>Item Brand</th>
                       <th>Item Name</th>
+                      <th>Item Brand</th>
                       <th>Item Price</th>
                       <th>Action</th>
                     
@@ -59,6 +59,7 @@
             <th>Brand</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Subtotal</th>
 
           </tr>
         </thead>
@@ -69,10 +70,11 @@
             <td>{brand}</td>
             <td>{qty}</td>
             <th>{price}</th>
+            <th>{subtotal}</th>
           </tr>
           {/cart_data}
           <tr>
-          <td colspan="2"></td>
+          <td colspan="3"></td>
           <td colspan=""><b>Total</b></td>
           <td colspan=""><?php echo $this->cart->total()?></td>
           <tr>
@@ -146,7 +148,7 @@
   });
 
 
-</script>>
+</script>
 
 <script type="text/javascript">
   
