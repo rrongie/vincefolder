@@ -550,7 +550,7 @@ class Admin extends CI_Controller {
 
 	public function datatables_fixed(){
 		$this
-		->datatables->select('item_id,item_brand,item_name,supplier.company,department.name,item_serial, item_asset,item_status,date_add',FALSE)
+		->datatables->select('item_id,item_name,item_brand,supplier.company,department.name,item_serial, item_asset,item_status,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'items.supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
@@ -614,7 +614,7 @@ class Admin extends CI_Controller {
 
 	public function datatables_po($supplier_id){
 		$this
-		->datatables->select('item_id,company,item_brand,item_name,item_price',FALSE)
+		->datatables->select('item_id,company,item_name,item_brand,item_price',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')
