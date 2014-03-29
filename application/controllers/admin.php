@@ -1264,10 +1264,14 @@ class Admin extends CI_Controller {
 
 
 	public function purchases_cartdata(){
-		$this->db->select('cart_data')->from('purchases')->where('id', $this->input->post('id'));
+		$this->db->select('company,department.name,cart_data, date_order')->from('purchases')->join('supplier', 'supplier_id = supplier.id')->join('department', 'dept_id = department.id')->where('purchases.id', $this->input->post('id'));
 		$query = $this->db->get();
 		$data = $query->result_array();
+
 		$cart = unserialize($data[0]['cart_data']);
+                $date = $data[0]['date_order'];
+                $dept = $data[0]['name'];
+                $supp = $data[0]['company'];
 		$poid = $this->input->post('id');
 		echo "<table class='table table-bordered'>";
 		echo "<tr>
@@ -1276,15 +1280,26 @@ class Admin extends CI_Controller {
 			<th>Quantity</th>
 			<th>Subtotal</th>
 				</tr>";
-		$total = 0;	
+                $total = 0;
+                $id = 0;        
 		foreach ($cart as $key => $value) {
 			$total += $value['subtotal'];
+                        $rrData[$id] = array('date' => $date,
+                          'supplier' => $supp,
+                          'item_name' => $value['name'],
+                          'quantity' => $value['qty'],
+                          'units' => ($value['subtotal'] / $value['qty']),
+                          'requestor' => $dept,
+                        'net_cost' => $value['subtotal']);
+
+
 			echo "<tr>";
 			echo "<td>$value[name]</td>";
 			echo "<td>$value[brand]</td>";
 			echo "<td>$value[qty]</td>";
 			echo "<td>$value[subtotal]</td>";
 			echo "</tr>";
+                        $id++;
 		}
 		echo "<tr>
 		<td colspan=2></td>
@@ -1292,16 +1307,26 @@ class Admin extends CI_Controller {
 		<td>$total</td>
 		</tr>";
 
-		
+
+                $serializedData = serialize($rrData);
+
 		echo "</table>";
 		echo "<form action=".site_url('admin/recieve_item')." method='POST' >";
 		echo "<input type='hidden' name='po-id' value='$poid'>";
+		echo "<input type='hidden' name='rr-data' value='$serializedData'>";
 		echo "<input type=submit value='Receive Items' class='btn btn-info'>";
 		echo "</form>";
 	}
 
 	function recieve_item(){
 			$po_id = $this->input->post('po-id');
+                        $rr_data = unserialize($this->input->post('rr-data'));
+
+                        
+                        foreach($rr_data as $data){
+                              $this->db->insert('receivables', $data); 
+                        }
+
 			$this->db->where('id', $po_id);
 			$this->db->update('purchases', array('purchase_status' => 'Purchased'));
 			redirect('admin/purchase_list');
