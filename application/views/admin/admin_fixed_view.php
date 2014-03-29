@@ -24,8 +24,9 @@
             <thead>
                 <tr>
                       <th>Id</th>
+                      <th>Item Name</th>
+                      <th>Item Brand</th>
                       <th>Company</th>
-                      <th>Name</th>
                       <th>Department</th>
                       <th>Serial</th>
                       <th>Asset Code</th>
@@ -67,7 +68,7 @@
                   return a;
                  
                 },
-                "aTargets": [ 8 ],
+                "aTargets": [ 9 ],
                 "sDefaultContent": ""
             }
         ]
