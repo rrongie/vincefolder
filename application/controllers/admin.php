@@ -587,6 +587,14 @@ class Admin extends CI_Controller {
 
 
 
+        public function datatables_rr(){
+		$this
+		->datatables->select('*')
+		->from('receivables');
+
+		$datatables = $this->datatables->generate('JSON');
+		echo $datatables;
+	}
 
 	public function datatables_accountability(){
 		$this
