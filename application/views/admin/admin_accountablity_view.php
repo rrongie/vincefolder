@@ -28,10 +28,10 @@
         <thead>
           <tr>
             <th>Item Id</th> 
-            <th>Brand</th>
-            <th>Name</th>
-            <th>Serial</th>
-            <th>Asset</th>
+            <th>Item Name</th>
+            <th>Item Brand</th>
+            <th>Item Serial</th>
+            <th>Item Asset</th>
             
             
             <th>Date Add</th>
@@ -53,20 +53,20 @@
        <table id="accounts-view" class="table table-bordered">
         <thead>
           <tr>
-            <th>Asset Code</th>
-            <th>Serial Code</th>
-            <th>Name</th>
-            <th>Brand</th>
+            <th>Item Name</th>
+            <th>Item Brand</th>
+            <th>Item Serial</th>
+            <th>Item Asset</th>
 
           </tr>
         </thead>
         <tbody>
           {cartdata}
           <tr> 
-            <td>{asset}</td> 
+            <td>{name}</td> 
+            <td>{brand}</td>
             <td>{serial}</td>
-            <td>{name}</td>
-            <th>{brand}</th>
+            <th>{asset}</th>
           </tr>
           {/cartdata}
         </tbody>
@@ -182,12 +182,12 @@
           var a;
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
-                    z = '<a class="label label-danger" href="remove_item/'+oObj.aData[0]+'">-</a> ';
-                    a = '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
-                    b = '<a class="label label-success" href="add_item/'+oObj.aData[0]+'">+</a> ';
+                    z = '<a class="label label-danger" href="remove_item/'+oObj.aData[0]+'">Remove</a> ';
+                    //a = '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
+                    b = '<a class="label label-success" href="add_item/'+oObj.aData[0]+'">Add</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
-                    return z + a + b;
+                    return z + b;
                   },
                   "aTargets": [ 6 ],
                   "sDefaultContent": ""

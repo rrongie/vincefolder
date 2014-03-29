@@ -590,7 +590,7 @@ class Admin extends CI_Controller {
 
 	public function datatables_accountability(){
 		$this
-		->datatables->select('item_id,item_brand,item_name, item_serial,item_asset,date_add',FALSE)
+		->datatables->select('item_id,item_name,item_brand,item_serial,item_asset,date_add',FALSE)
 		->from('items')
 		->join('supplier', 'supplier_id = supplier.id','left')
 		->join('department', 'department_id = department.id')

@@ -26,7 +26,7 @@
 				                <tr>
 				                      <th>Id</th>
 				                     <th>Company</th>
-				                    <th>Name</th>
+				                    <th>Contact Person</th>
 				                    
 				                    <th>Address</th>
 				                    <th>Email</th>
