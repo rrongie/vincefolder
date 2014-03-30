@@ -164,7 +164,18 @@
 <!-- end of modal + -->
 
 
+        <script>
+$(document).on('click', '.received-item', function(e){
+e.preventDefault();
 
+var id = $(this).data('id');
+$('.modal-area').load('<?php echo site_url('admin/purchases_cartdata')?>', {id: id});
+$('#myModal').modal('show');
+
+});
+
+
+        </script>
 
 
 

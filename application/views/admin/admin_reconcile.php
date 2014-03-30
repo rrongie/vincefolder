@@ -122,7 +122,11 @@ Date Range <input type="text" name="reservation" id="reservation" />
                 "aTargets": [ 6 ],
                 "sDefaultContent": ""
             }
-        ]
+
+        ],
+          "oTableTools" : {
+            "sSwfPath" : "media/swf/copy_cvs_xls.swf"
+          }
     } );
 } );
 

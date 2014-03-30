@@ -39,10 +39,50 @@
             <tfoot>
             </tfoot>
             </table>
+<?php if ($cart == TRUE) { ?>
+       <hr/>
+       <legend>Requested Items</legend>
+       <table id="accounts-view" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Item Brand</th>
+            <th>Item Price</th> 
+            <th>Item Quantity</th>
+            <th>Item Subtotal</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {cartdata}
+          <tr> 
+            <td>{name}</td> 
+            <td>{brand}</td>
+            <td>{price}</td>
+            <td>{qty}</td>
+            <th>{subtotal}</th>
+          </tr>
+          {/cartdata}
+        </tbody>
+        <tfoot>
+        </tfoot>
+      </table>
+
+     <div class="text-center"> 
+      
+        <button class="final_con btn btn-info">Finalize Request</button>
+
+      </form>
+</div>
+
+      <?php } ?>
 
 
           </div>
    </div>
+
+  
+
   </div>
 
 
@@ -65,9 +105,9 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    z ='<a class="label label-danger" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">-</a>';
+                    z ='<a class="remove_con label label-danger" data-itemidcon="'+oObj.aData[0]+'" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">-</a>';
                     a = ' <a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">Update</a> ';
-                    b = '<a class="label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
+                    b = '<a data-itemidcon = "'+oObj.aData[0]+'"class="add_con label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
                     return z + a + b;
                 },
                 "aTargets": [ 7 ],
@@ -79,32 +119,68 @@
 
 </script>
 
+<script>
+
+$(document).on('click', '.add_con', function(){
+
+  var id = $(this).data('itemidcon');
+  $('#add_con').val(id);
+
+});
+
+</script>
+
+<script>
+
+$(document).on('click', '.remove_con', function(){
+
+  var id = $(this).data('itemidcon');
+  $('#remove_con').val(id);
+
+});
+
+</script>
+
+<script>
+
+$(document).on('click', '.final_con', function(){
+
+ $('#final_con').modal('show');
+
+});
+
+</script>
+
 <!--modal for add + -->
 
 
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-sm" id="final_con" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><b style="font-size:15px;">+ Form</b>
-        </div>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>Additional Infomation        </div>
               <!-- modal Body -->
-              <div class="modal-body">
+              <div class="modal-body text-center">
+
+
+              <form action="<?php echo site_url('admin/finalize_con')?>" method="POST">
                       
+          <input id="add_con" type="hidden" name="item-id" value>
                             <!-- Text input-->
       <div class="control-group">
-        <label class="control-label" for="name">Quantity</label>
+        <label class="control-label" for="name">Requestor Name</label>
         <div class="controls">
-          <input id="name" name="qty" type="text" placeholder="" class="input-xlarge" required="">
+          <input id="name" name="r_name" type="text" placeholder="" class="input-xlarge" required="">
           
         </div>
       </div>
 
       <!-- Text input-->
       <div class="control-group">
-        <label class="control-label" for="idnum">Delivery Number</label>
+        <label class="control-label" for="idnum">Requestor's Id</label>
         <div class="controls">
-          <input id="idnum" name="deliverynum" type="text" placeholder="" class="input-xlarge" required="">
+          <input id="idnum" name="r_id" type="text" placeholder="" class="input-xlarge" required="">
+          <input type="hidden" name="cart_data" value='<?php echo serialize($this->cart->contents())?>'>
           
         </div>
       </div>
@@ -129,6 +205,8 @@
           
         </div>
       </div>
+
+</form>
                         
               </div>              
 
@@ -140,6 +218,10 @@
 
 <!-- end of  + modal -->
 
+
+
+
+
 <!--modal for add - -->
 
 
@@ -147,11 +229,58 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><b style="font-size:15px;">- Form</b>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><b style="font-size:15px;">Consumable Request</b>
         </div>
               <!-- modal Body -->
-              <div class="modal-body">
+              <div class="modal-body text-center">
+
+              <form action="<?php echo site_url('admin/remove_consumable')?>" method="POST">
                       
+                            <!-- Text input-->
+      <div class="control-group">
+        <label class="control-label" for="name">Quantity</label>
+        <div class="controls">
+          <input id="remove_con" type="hidden" name="item-id" value>
+          <input id="name" name="qty" type="number" placeholder="" size="2" required="">
+          
+        </div>
+      </div>
+  <br/>
+
+            <div class="control-group">
+        <div class="controls">
+          <input class="btn btn-info btn-large genpdf" id="id" name="id" value="Submit" type="submit" placeholder="" class="input-xlarge" required="">
+          
+        </div>
+      </div>
+
+</form>
+                        
+              </div>              
+
+              <!-- end of modal body-->
+    
+    </div>
+  </div>
+</div>
+
+<!-- end of  - modal -->
+
+<!--modal for add + -->
+
+
+<div class="modal fade bs-example-modal-sm" id="" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>Additional Infomation        </div>
+              <!-- modal Body -->
+              <div class="modal-body text-center">
+
+
+              <form action="<?php echo site_url('admin/add_consumable')?>" method="POST">
+                      
+          <input id="add_con" type="hidden" name="item-id" value>
                             <!-- Text input-->
       <div class="control-group">
         <label class="control-label" for="name">Quantity</label>
@@ -190,6 +319,8 @@
           
         </div>
       </div>
+
+</form>
                         
               </div>              
 
@@ -199,5 +330,4 @@
   </div>
 </div>
 
-<!-- end of  - modal -->
-
+<!-- end of  + modal -->
