@@ -29,10 +29,7 @@ Date Range <input type="text" name="reservation" id="reservation" />
                       <th>Company</th>
                       <th>Name</th>
                       <th>Department</th>
-                      <th>Serial</th>
-                      <th>Asset Code</th>
-                      <th>Status</th>
-                      <th>Date Add</th>
+                      <th>Quantity</th>
                       
                 </tr>
             </thead>
@@ -65,7 +62,6 @@ Date Range <input type="text" name="reservation" id="reservation" />
                       <th>Department</th>
                       <th>Unit</th>
                       <th>Quantity</th>
-                      <th>Date Add</th>
                   
                 </tr>
             </thead>
@@ -91,7 +87,7 @@ Date Range <input type="text" name="reservation" id="reservation" />
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
      "sDom":'T<"clear">ltrtip', 
-        "aaSorting": [[ 7, "asc" ]],
+        "aaSorting": [[ 0, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_reconcile_fixed'); ?>",
         "aoColumnDefs": [
@@ -100,7 +96,7 @@ Date Range <input type="text" name="reservation" id="reservation" />
                   
                  
                 
-                "aTargets": [ 7 ],
+                "aTargets": [ 4 ],
                 "sDefaultContent": ""
             }
         ]
@@ -121,7 +117,7 @@ Date Range <input type="text" name="reservation" id="reservation" />
         "aoColumnDefs": [
             {
                 
-                "aTargets": [ 6 ],
+                "aTargets": [ 5 ],
                 "sDefaultContent": ""
             }
 
