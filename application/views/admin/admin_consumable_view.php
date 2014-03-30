@@ -33,7 +33,7 @@
                       <th>Unit</th>
                       <th>Quantity</th>
                       <th>Date Add</th>
-                      <th>&nsbp;Action</th> 
+                      <th>  &nbsp; Action</th> 
                 </tr>
             </thead>
             <tbody>
@@ -154,72 +154,7 @@ $(document).on('click', '.final_con', function(){
 
 </script>
 
-<!--modal for add + -->
 
-
-<div class="modal fade bs-example-modal-sm" id="final_con" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>Additional Infomation        </div>
-              <!-- modal Body -->
-              <div class="modal-body text-center">
-
-
-              <form action="<?php echo site_url('admin/finalize_con')?>" method="POST">
-                      
-          <input id="add_con" type="hidden" name="item-id" value>
-                            <!-- Text input-->
-      <div class="control-group">
-        <label class="control-label" for="name">Requestor Name</label>
-        <div class="controls">
-          <input id="name" name="r_name" type="text" placeholder="" class="input-xlarge" required="">
-          
-        </div>
-      </div>
-
-      <!-- Text input-->
-      <div class="control-group">
-        <label class="control-label" for="idnum">Requestor's Id</label>
-        <div class="controls">
-          <input id="idnum" name="r_id" type="text" placeholder="" class="input-xlarge" required="">
-          <input type="hidden" name="cart_data" value='<?php echo serialize($this->cart->contents())?>'>
-          
-        </div>
-      </div>
-
-      <!-- Select Basic -->
-      <div class="control-group">
-        <label class="control-label" for="dept">Department</label>
-        <div class="controls">
-          <select id="dept" name="dept" class="input-xlarge">
-            <option>...</option>
-            {department}
-            <option>{name}</option>
-            {/department}
-          </select>
-        </div>
-      </div>
-      <br/><br/>
-      <!-- Text input-->
-      <div class="control-group">
-        <div class="controls">
-          <input class="btn btn-info btn-large genpdf" id="id" name="id" value="Submit" type="submit" placeholder="" class="input-xlarge" required="">
-          
-        </div>
-      </div>
-
-</form>
-                        
-              </div>              
-
-              <!-- end of modal body-->
-    
-    </div>
-  </div>
-</div>
-
-<!-- end of  + modal -->
 
 
 
