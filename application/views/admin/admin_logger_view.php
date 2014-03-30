@@ -30,8 +30,8 @@
             <th>Id</th>
             <th>Item Type</th>
             <th>Item Name</th> 
-            <th>Quantity Added</th>
             <th>Item Brand</th>
+            <th>Quantity Added</th>
             <th>Date</th>
           </tr>
         </thead>
