@@ -73,7 +73,7 @@
      <div class="text-center"> 
       
         <button class="final_con btn btn-info">Finalize Request</button>
-        <a class="btn btn-danger" href="<?php echo site_url('admin/clear_form_con')?>" >Destroy</a>
+        <a class="btn btn-danger" href="<?php echo site_url('admin/clear_form_con')?>" >Clear Form</a>
 
       </form>
 </div>
@@ -108,10 +108,9 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    z ='<a class="remove_con label label-danger" data-itemidcon="'+oObj.aData[0]+'" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">-</a>';
+                    z ='<a class="remove_con label label-danger" data-itemidcon="'+oObj.aData[0]+'" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">Request</a>';
                     a ='<a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">Update</a> ';
-                    b ='<a data-itemidcon = "'+oObj.aData[0]+'"class="add_con label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
-                    return z + a + b;
+                    return z + a;
                 },
                 "aTargets": [ 8 ],
                 "sDefaultContent": ""
