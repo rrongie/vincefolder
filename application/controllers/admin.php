@@ -332,6 +332,11 @@ class Admin extends CI_Controller {
     redirect('admin/purchase');
   }
 
+  public function clear_form_con(){
+    $this->cart->destroy();
+    redirect('admin/consumable');
+  }
+
 
   public function add_item_Validate(){
 
@@ -1363,8 +1368,7 @@ class Admin extends CI_Controller {
       'name' => $item_content[0]['item_name'],
       'serial' => $item_content[0]['item_serial'],
       'asset' => $item_content[0]['item_asset'],
-      'brand' => $item_content[0]['item_brand'],
-      'type' => $item_content[0]['item_brand']
+      'brand' => $item_content[0]['item_brand']
     );
 
     $this->cart->insert($item_array);
@@ -1387,11 +1391,7 @@ class Admin extends CI_Controller {
     #deduct qty
     foreach($cartUnser as $cartData){
     
-      foreach($cartData as $cartVar){
-    
-          $this->db->query("UPDATE items SET item_qty = item_qty - {$cartVar['qty']} WHERE id = {$cartVar['id']}");
-
-      } 
+          $this->db->query("UPDATE items SET item_qty = item_qty - {$cartData['qty']} WHERE item_id = {$cartData['id']}");
     
     }
     
@@ -1405,7 +1405,7 @@ class Admin extends CI_Controller {
 
       $this->db->insert('consumables', $data);
       $this->cart->destroy();
-      redirect('admin/consumables_reports');
+      redirect('admin/consumables_list');
 
   
   }

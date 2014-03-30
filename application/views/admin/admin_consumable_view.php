@@ -71,6 +71,7 @@
      <div class="text-center"> 
       
         <button class="final_con btn btn-info">Finalize Request</button>
+        <a class="btn btn-danger" href="<?php echo site_url('admin/clear_form_con')?>" >Destroy</a>
 
       </form>
 </div>
@@ -234,7 +235,7 @@ $(document).on('click', '.final_con', function(){
               <!-- modal Body -->
               <div class="modal-body text-center">
 
-              <form action="<?php echo site_url('admin/remove_consumable')?>" method="POST">
+              <form action="<?php echo site_url('admin/remove_con')?>" method="POST">
                       
                             <!-- Text input-->
       <div class="control-group">
