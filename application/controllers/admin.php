@@ -549,7 +549,7 @@ class Admin extends CI_Controller {
 
   public function datatables_reconcile_consumable(){
     $this
-      ->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty,date_add',FALSE)
+      ->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty',FALSE)
       ->from('items')
       ->join('supplier', 'supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')
@@ -588,11 +588,12 @@ class Admin extends CI_Controller {
 
   public function datatables_reconcile_fixed(){
     $this
-      ->datatables->select('item_id,item_brand,item_name,department.name,item_serial, item_asset,item_status,date_add',FALSE)
+      ->datatables->select('item_id,item_brand,item_name,department.name, COUNT(item_name)',FALSE)
       ->from('items')
       ->join('supplier', 'supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')
-      ->where('item_type', 'Fixed');
+      ->where('item_type', 'Fixed')
+      ->group_by('item_name');
 
     $datatables = $this->datatables->generate('JSON');
     echo $datatables;
@@ -1472,6 +1473,7 @@ class Admin extends CI_Controller {
     echo "<tr>
       <th>Name</th>
       <th>Brand</th>
+      <th>Price</th>
       <th>Quantity</th>
       <th>Subtotal</th>
       </tr>";
@@ -1483,13 +1485,14 @@ class Admin extends CI_Controller {
       echo "<tr>";
       echo "<td>$value[name]</td>";
       echo "<td>$value[brand]</td>";
+      echo "<td>$value[price]</td>";
       echo "<td>$value[qty]</td>";
       echo "<td>$value[subtotal]</td>";
       echo "</tr>";
       $id++;
     }
     echo "<tr>
-      <td colspan=2></td>
+      <td colspan=3></td>
       <td><b>Total</b></td>
       <td>$total</td>
       </tr>";
