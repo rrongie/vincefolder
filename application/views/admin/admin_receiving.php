@@ -2,9 +2,11 @@
 
 <div class="container">
 
+  <!--
 <div  style="border-radius: 4px; background-color:white" class="col-md-12 text-center panel-body">
 Date Range <input type="text" name="reservation" id="reservation" />
 </div>
+-->
 
 <div class="row">
 
