@@ -55,14 +55,17 @@
 
            </li>
            <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/suppliers'); ?>">SUPPLIER</a></li>
-           
+
            <?php 
 
            $var = unserialize($_COOKIE['ci_session']);
 
            $type = $var['login']['type'];
            if ($type == 'admin') { ?>
+           
+           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/logger'); ?>">LOG HISTORY</a></li>
       <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/manage_user'); ?>">MANAGE USER</a></li>
+
             <?php } ?>
 
            

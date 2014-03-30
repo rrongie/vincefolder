@@ -27,6 +27,7 @@ public function update_item_borrowed($keyid){
 
 public function save_item($formdata){
 	$this->db->insert('items',$formdata);	
+	return $this->db->insert_id();
 }
 
 public function customer_info($user_id){

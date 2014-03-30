@@ -183,7 +183,7 @@ class Admin extends CI_Controller {
       'department_id' => $this->input->post('department_id'),
       'item_brand' => $this->input->post('item_brand'),
       'item_name' => $this->input->post('item_name'),
-      'item_type' => 'consumable',
+      'item_type' => 'Consumable',
       'item_unit' => $this->input->post('item_unit'),
       'item_qty' => $this->input->post('item_qty'),
       'item_price' => $this->input->post('item_price'),
@@ -196,7 +196,6 @@ class Admin extends CI_Controller {
     $this->form_validation->set_rules('department_id','Deparment Id','required');
     $this->form_validation->set_rules('item_brand','Item Brand','required');
     $this->form_validation->set_rules('item_name','Item Name','required');
-    //$this->form_validation->set_rules('item_type','Item Type','required');
     $this->form_validation->set_rules('item_unit','Item Unit','required');
     $this->form_validation->set_rules('item_qty','Item Quantity','required');
     $this->form_validation->set_rules('item_price','Item price','required');
@@ -210,6 +209,8 @@ class Admin extends CI_Controller {
     else{
       $this->session->set_flashdata('add_item_success', 'Item Successfully Added!');
       $this->admin_model->save_item($form_data);
+      $lastid = $this->db->insert_id();
+      $this->iLogger('Consumable', $this->input->post('item_qty'), $lastid); 
       redirect('admin/add_consumable_item');
 
     }
@@ -259,7 +260,8 @@ class Admin extends CI_Controller {
     }
     else{
       $this->session->set_flashdata('add_item_success', 'Item Successfully Added!');
-      $this->admin_model->save_item($form_data);
+      $lastid = $this->admin_model->save_item($form_data);
+      $this->iLogger('Fixed', 1, $lastid);
       redirect('admin/add_fixed_item');
 
     }
@@ -1502,7 +1504,39 @@ class Admin extends CI_Controller {
     echo "</table>";
   }
 
+function iLogger($type, $qty, $lastid){
 
+	$data = array(
+			'log_type' => $type,
+			'qty' => $qty,
+			'itemid' => $lastid
+		);
+
+
+	$this->db->insert('logger',$data);
+
+
+}
+
+
+function datatables_logger(){
+    $this
+      ->datatables->select('id, log_type, item_name,item_brand, logger.qty, logger.date_add')
+      ->from('logger')
+      ->join('items', 'items.item_id = logger.itemid');
+
+    $datatables = $this->datatables->generate('JSON');
+    echo $datatables;
+  }
+
+  function logger(){
+
+	$this->load->view('template/header');
+    $this->load->view('admin/admin_nav');	
+    $this->load->view('admin/admin_logger_view');
+
+
+  }
 
 
 }
