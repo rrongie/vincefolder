@@ -56,7 +56,7 @@
             <th>Item Name</th>
             <th>Item Brand</th>
             <th>Item Serial</th>
-            <th>Item Asset</th>
+            <th>Asset Code</th>
 
           </tr>
         </thead>

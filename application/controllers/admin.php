@@ -525,7 +525,7 @@ class Admin extends CI_Controller {
   //CONCAT(fname," ",lname) AS lname', FALSE)
   public function datatables_consumable(){
     $this
-      ->datatables->select('item_id,item_brand,item_name,department.name,item_unit,item_qty,date_add',FALSE)
+      ->datatables->select('item_id,supplier.company,item_name,item_brand,department.name,item_unit,item_qty,date_add',FALSE)
       ->from('items')
       ->join('supplier', 'supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')
@@ -563,7 +563,7 @@ class Admin extends CI_Controller {
 
   public function datatables_fixed(){
     $this
-      ->datatables->select('item_id,item_name,item_brand,supplier.company,department.name,item_serial, item_asset,item_status,date_add',FALSE)
+      ->datatables->select('item_id,supplier.company,item_name,item_brand,item_serial,department.name, item_asset,item_status,date_add',FALSE)
       ->from('items')
       ->join('supplier', 'items.supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')

@@ -25,13 +25,15 @@
             <thead>
                 <tr>
                       <th>Id</th>
+                      <th>Company</th>
+                      <th>Item Name</th>
                       <th>Brand</th>
-                      <th>Name</th>
+                      
                       <th>Department</th>
                       <th>Unit</th>
                       <th>Quantity</th>
                       <th>Date Add</th>
-                      <th> &nbsp; Action</th> 
+                      <th>Action</th> 
                 </tr>
             </thead>
             <tbody>
@@ -107,11 +109,11 @@
             {
                 "fnRender": function ( oObj ) {
                     z ='<a class="remove_con label label-danger" data-itemidcon="'+oObj.aData[0]+'" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">-</a>';
-                    a = ' <a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">Update</a> ';
-                    b = '<a data-itemidcon = "'+oObj.aData[0]+'"class="add_con label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
+                    a ='<a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">Update</a> ';
+                    b ='<a data-itemidcon = "'+oObj.aData[0]+'"class="add_con label label-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#/'+oObj.aData[0]+'">+</a>';
                     return z + a + b;
                 },
-                "aTargets": [ 7 ],
+                "aTargets": [ 8 ],
                 "sDefaultContent": ""
             }
         ]

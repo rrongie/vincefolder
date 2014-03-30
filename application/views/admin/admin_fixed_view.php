@@ -24,11 +24,12 @@
             <thead>
                 <tr>
                       <th>Id</th>
+                      <th>Company</th>
                       <th>Item Name</th>
                       <th>Item Brand</th>
-                      <th>Company</th>
+                       <th>Serial</th>
                       <th>Department</th>
-                      <th>Serial</th>
+                     
                       <th>Asset Code</th>
                       <th>Status</th>
                       <th>Date Add</th>
