@@ -74,6 +74,7 @@
     
                 $(document).ready(function() {
     $('#accounts-view1').dataTable( {
+      "sDom":'T<"clear">ltrtip',
         "aaSorting": [[ 1, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_consumable_list'); ?>",

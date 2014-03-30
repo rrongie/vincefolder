@@ -19,8 +19,10 @@
         <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/font-awesome.min.css'?>">
         <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/bootstrap.css'?>">
         <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/font-awesome.min.css'?>">
+        
         <!-- DataTables CSS -->
         <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/jquery.dataTables.css'?>">
+        <link rel="stylesheet" href="<?php echo base_url() . 'assets/css/dataTables.tableTools.min.css'?>">
         <!-- Custom CSS -->
 	<link rel="stylesheet" href="<?php echo base_url() . 'assets/css/custom.css'?>">
 	<!-- Favicon -->
@@ -34,6 +36,8 @@
            <script type="text/javascript" src="<?php echo base_url() . 'assets/js/moment.min.js'?> "></script>
         <!-- Table Tools -->
         <script type="text/javascript" src="<?php echo base_url() . 'assets/js/jquery.dataTables.min.js'?>"></script>
+        <script type="text/javascript" src="<?php echo base_url() . 'assets/js/dataTables.tableTools.min.js'?>"></script>
+
         <!-- Custom JS-->
 	<script type="text/javascript" src="<?php echo base_url() . 'assets/js/custom.js'?> "></script>
     </head>
