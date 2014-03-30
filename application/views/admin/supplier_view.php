@@ -30,7 +30,7 @@
 				                    
 				                    <th>Address</th>
 				                    <th>Email</th>
-                                    <th>Mobile</th>
+                                    <th>Contact Number</th>
 				                    <th>View</th>
 				                </tr>
 				            </thead>

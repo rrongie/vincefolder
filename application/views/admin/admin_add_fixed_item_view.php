@@ -101,7 +101,7 @@
                
                    <!-- Text input-->
                     <div class="control-group">
-                      <label class="control-label" for="lname">Mobile:</label>
+                      <label class="control-label" for="lname">Contact Number:</label>
                       <div class="controls">
                         <input size="30" id="lname" value=""name="mobile" type="text" placeholder="" class="input-xlarge" required>
                         

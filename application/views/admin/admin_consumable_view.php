@@ -33,7 +33,7 @@
                       <th>Unit</th>
                       <th>Quantity</th>
                       <th>Date Add</th>
-                      <th>Action</th> 
+                      <th>&nsbp;Action</th> 
                 </tr>
             </thead>
             <tbody>

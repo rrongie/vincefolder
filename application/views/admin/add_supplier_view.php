@@ -12,7 +12,7 @@
   </div>
  		 <?php
                   $attributes = array('class' => 'form-horizontal', 'id' => 'login');
-                  echo form_open('admin/add_supplier_validate', $attributes);
+                  echo form_open('admin/add_supplier_validate1', $attributes);
             ?>
    <div class="col-md-9">
     <div class="panel panel-primary" id="panels">
@@ -53,8 +53,19 @@
                         <input size="30" id="mobile" value=""name="lname" type="text" placeholder="" class="input-xlarge" required>
                         
                       </div>
-                    </div>
+                    </div
 
+
+
+
+                  <!-- Text input-->
+                      <div class="control-group">
+                      <label class="control-label" for="mobile">Company:</label>
+                      <div class="controls">
+                        <input size="30" id="mobile" value=""name="company" type="text" placeholder="" class="input-xlarge" required>
+                        
+                      </div>
+                    </div>
                
   					         <!-- Text input-->
 					<div class="control-group">
@@ -72,18 +83,18 @@
                
               	   <!-- Text input-->
                     <div class="control-group">
-                      <label class="control-label" for="lname">Company:</label>
+                      <label class="control-label" for="lname">Contact Number:</label>
                       <div class="controls">
-                        <input size="30" id="lname" value=""name="company" type="text" placeholder="" class="input-xlarge" required>
+                        <input size="30" id="lname" value=""name="mobile" type="text" placeholder="" class="input-xlarge" required>
                         
                       </div>
                     </div>
 
                       <!-- Text input-->
                     <div class="control-group">
-                      <label class="control-label" for="lname">Mobile:</label>
+                      <label class="control-label" for="lname">Email:</label>
                       <div class="controls">
-                        <input size="30" id="lname" value=""name="mobile" type="text" placeholder="" class="input-xlarge" required>
+                        <input size="30" id="lname" value=""name="email" type="text" placeholder="" class="input-xlarge" required>
                         
                       </div>
                     </div>

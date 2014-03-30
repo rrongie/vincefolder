@@ -769,6 +769,41 @@ class Admin extends CI_Controller {
 
     }
   }
+
+  public function add_supplier_validate1(){
+
+    $personal = array('supplier_fname' => $this->input->post('fname'),
+      'supplier_lname' => $this->input->post('lname'),
+      'company' => $this->input->post('company'),
+      'email' => $this->input->post('email'),
+      'company' => $this->input->post('company'),
+      'address' => $this->input->post('address'),
+      'mobile' => $this->input->post('mobile'),
+
+    );
+
+    $this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
+    $this->form_validation->set_rules('fname','First Name','is_unique[supplier.supplier_fname]|required');
+    $this->form_validation->set_message('is_unique',"First Name already exist");
+    $this->form_validation->set_rules('email','Email','required|valid_email');
+    $this->form_validation->set_rules('company','company','required');
+    $this->form_validation->set_rules('lname','Last name','required');
+    $this->form_validation->set_rules('address','Address','required');
+    $this->form_validation->set_rules('mobile','mobile','required');
+
+
+    if ($this->form_validation->run() == FALSE){
+      echo validation_errors();
+    }
+    else{
+
+      $this->session->set_flashdata('add_success', 'Supplier Successfully Added!');
+      $this->admin_model->insert_supplier_record($personal);
+      redirect('admin/add_supplier');
+
+    }
+  }
+
   public function log_history($item = 'all'){
 
     $result['item_type'] = $this->admin_model->get_item_type($item);
