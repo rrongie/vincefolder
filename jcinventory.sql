@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2014 at 06:01 AM
+-- Generation Time: Mar 31, 2014 at 05:01 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -70,24 +70,26 @@ CREATE TABLE IF NOT EXISTS `consumables` (
   `requestor_dept` varchar(50) NOT NULL,
   `requestor_name` varchar(80) NOT NULL,
   `requestor_id` int(11) NOT NULL,
-  `request_date` date NOT NULL,
+  `request_date` datetime NOT NULL,
   `cart_data` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `consumables`
 --
 
 INSERT INTO `consumables` (`id`, `requestor_dept`, `requestor_name`, `requestor_id`, `request_date`, `cart_data`) VALUES
-(1, 'IT department', 'Bryan', 123942, '0000-00-00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:10:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"10";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:30;}}'),
-(2, 'IT department', 'bryan', 0, '2014-03-30', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:10:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:3;}}'),
-(3, 'IT department', 'bryan', 23231, '2014-03-30', 'a:2:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"10";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:30;}s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:2:"10";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:20;}}'),
-(4, 'IT department', 'Vince', 231321321, '2014-03-30', 'a:1:{s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:3:"100";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:200;}}'),
-(5, 'IT department', 'bryan', 12314, '2014-03-30', 'a:1:{s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:2:"10";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:20;}}'),
-(6, 'Accounting', 'vinz', 0, '2014-03-30', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"12";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:36;}}'),
-(7, 'IT department', 'hello', 2147483647, '2014-03-30', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:3;}}'),
-(8, 'Accounting', 'Vince', 12314, '2014-03-30', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:10:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"12";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:36;}}');
+(1, 'IT department', 'Bryan', 123942, '0000-00-00 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:10:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"10";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:30;}}'),
+(2, 'IT department', 'bryan', 0, '2014-03-30 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:10:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:3;}}'),
+(3, 'IT department', 'bryan', 23231, '2014-03-30 00:00:00', 'a:2:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"10";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:30;}s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:2:"10";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:20;}}'),
+(4, 'IT department', 'Vince', 231321321, '2014-03-30 00:00:00', 'a:1:{s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:3:"100";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:200;}}'),
+(5, 'IT department', 'bryan', 12314, '2014-03-30 00:00:00', 'a:1:{s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:2:"10";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:20;}}'),
+(6, 'Accounting', 'vinz', 0, '2014-03-30 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"12";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:36;}}'),
+(7, 'IT department', 'hello', 2147483647, '2014-03-30 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:3;}}'),
+(8, 'Accounting', 'Vince', 12314, '2014-03-30 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:10:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"12";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:36;}}'),
+(9, 'Accounting', 'this is a test', 2147483647, '2014-03-30 00:00:00', 'a:2:{s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:2:"12";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:24;}s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"12";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:36;}}'),
+(10, 'IT department', 'bryan', 12314, '2014-03-31 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:3;}}');
 
 -- --------------------------------------------------------
 
@@ -135,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `item_asset` varchar(255) NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `items`
@@ -144,16 +146,45 @@ CREATE TABLE IF NOT EXISTS `items` (
 INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `item_status`, `item_asset`, `date_add`) VALUES
 (1, 1, 1, 'Desire', 'low back office chair', 'Fixed', '0', 35, 6.00, 'sjt27', 'Not Available', 'djh5', '2014-03-24 09:26:38'),
 (2, 1, 2, 'Thinking Tools', 'visitor chair	', 'Fixed', 'none', 3, 3.00, 'YC128', 'Available', 'lpjh8', '2014-03-22 13:46:22'),
-(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 108, 3.00, 'test ', 'Available', 'mn2gy', '2014-03-30 03:54:51'),
+(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 95, 3.00, 'test ', 'Available', 'mn2gy', '2014-03-30 16:04:58'),
 (4, 2, 3, 'Copyland', 'meeting table', 'Fixed', 'none', 5, 200.00, 'ykxd2', 'Not Available', 'b8dh5', '2014-03-29 12:18:59'),
 (5, 1, 2, 'Coca Cola', 'real leaf lemon', 'Consumable', 'cs', 4, 23.00, '9999', 'Available', 'svz8dw', '2014-03-22 13:46:22'),
 (6, 9, 4, 'ATX 9000', 'wenge office desk', 'Fixed', '0', 0, 43.00, 'uashk23', 'Not Available', '1ds7h', '2014-03-29 12:18:59'),
 (7, 1, 1, 'Desire', 'chair', 'Fixed', 'none', 7, 6.00, 'sdlkas23', 'Available', 'pj6sd', '2014-03-23 04:15:35'),
 (9, 9, 2, 'Coca Cola', 'last', 'Consumable', 'last', 3, 23.00, '654', 'Available', '1sgsvh', '2014-03-22 13:46:23'),
 (10, 2, 3, 'Thinking Tools	', 'cable', 'Fixed', 'none', 5, 4.00, 'sd123x', 'Available', 'kg3ps', '2014-03-23 04:15:35'),
-(12, 1, 1, 'asdasd', 'asdasd', 'Consumable', 'container', -80, 2.00, 'asdasd', 'Available', '', '2014-03-30 03:50:08'),
+(12, 1, 1, 'asdasd', 'asdasd', 'Consumable', 'container', -92, 2.00, 'asdasd', 'Available', '', '2014-03-30 04:27:39'),
 (13, 2, 1, 'ATX 9001', 'refrigerator', 'Fixed', '0', 0, 12.00, '239482kfjdh2gs2j', 'Available', 'adasda', '2014-03-29 11:25:58'),
-(14, 10, 3, 'SONY', 'LAPTOP', 'Fixed', '', 0, 200.00, '1239482245', 'Available', 'LAP29442942', '2014-03-29 11:27:41');
+(14, 10, 3, 'SONY', 'LAPTOP', 'Fixed', '', 0, 200.00, '1239482245', 'Available', 'LAP29442942', '2014-03-29 11:27:41'),
+(15, 9, 3, 'So In', 'Sobrang Inat sa brip', 'Fixed', '', 0, 12.00, '1231', 'Available', '#232', '2014-03-30 18:30:10'),
+(16, 2, 3, 'fanty', 'red fanty', 'Consumable', 'kilowats', 100, 21.00, '', 'Available', '', '2014-03-30 18:40:43'),
+(17, 2, 3, 'fantys', 'red fanty', 'Consumable', 'kilowats', 100, 21.00, '', 'Available', '', '2014-03-30 18:43:08'),
+(18, 1, 4, '1', '1', 'Consumable', '1', 2, 21.00, '', 'Available', '', '2014-03-30 18:43:50'),
+(19, 1, 4, '1', '1', 'Consumable', '1', 2, 21.00, '', 'Available', '', '2014-03-30 18:46:35'),
+(20, 1, 4, '1', '1', 'Consumable', '1', 2, 21.00, '', 'Available', '', '2014-03-30 18:47:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logger`
+--
+
+CREATE TABLE IF NOT EXISTS `logger` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `log_type` varchar(50) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `itemid` int(11) NOT NULL,
+  `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `logger`
+--
+
+INSERT INTO `logger` (`id`, `log_type`, `qty`, `itemid`, `date_add`) VALUES
+(1, 'Consumable', 1, 15, '0000-00-00 00:00:00'),
+(2, 'Consumable', 2, 20, '2014-03-30 18:47:05');
 
 -- --------------------------------------------------------
 
