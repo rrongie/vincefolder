@@ -1416,7 +1416,6 @@ class Admin extends CI_Controller {
   }
 
   function finalize_con(){
-  
     $r_name = $this->input->post('r_name');
     $r_id = $this->input->post('r_id');
     $dept = $this->input->post('dept');
@@ -1437,7 +1436,7 @@ class Admin extends CI_Controller {
     $data = array('requestor_dept' => $dept,
       'requestor_name' => $r_name,
       'requestor_id' => $r_id,
-      'request_date' => date('Y-m-d'),
+      'request_date' => date('Y-m-d H:i:s'),
       'cart_data' => $cart_data);
 
 
