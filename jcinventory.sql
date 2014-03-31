@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2014 at 05:01 AM
+-- Generation Time: Mar 31, 2014 at 05:45 AM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `consumables` (
   `request_date` datetime NOT NULL,
   `cart_data` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `consumables`
@@ -89,7 +89,13 @@ INSERT INTO `consumables` (`id`, `requestor_dept`, `requestor_name`, `requestor_
 (7, 'IT department', 'hello', 2147483647, '2014-03-30 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:3;}}'),
 (8, 'Accounting', 'Vince', 12314, '2014-03-30 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:10:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"12";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:36;}}'),
 (9, 'Accounting', 'this is a test', 2147483647, '2014-03-30 00:00:00', 'a:2:{s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:2:"12";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:24;}s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"12";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:36;}}'),
-(10, 'IT department', 'bryan', 12314, '2014-03-31 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:3;}}');
+(10, 'IT department', 'bryan', 12314, '2014-03-31 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:1:"1";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:3;}}'),
+(11, 'IT department', 'eqe', 123942, '2014-03-31 00:00:00', 'a:1:{s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";a:9:{s:5:"rowid";s:32:"eccbc87e4b5ce2fe28308fd9f2a7baf3";s:2:"id";s:1:"3";s:3:"qty";s:2:"10";s:5:"price";s:4:"3.00";s:4:"name";s:13:"mineral water";s:6:"serial";s:5:"test ";s:5:"asset";s:5:"mn2gy";s:5:"brand";s:6:"Desire";s:8:"subtotal";d:30;}}'),
+(12, 'Accounting', 'bryan', 11111, '2014-03-31 00:00:00', 'a:2:{s:32:"c20ad4d76fe97759aa27a0c99bff6710";a:9:{s:5:"rowid";s:32:"c20ad4d76fe97759aa27a0c99bff6710";s:2:"id";s:2:"12";s:3:"qty";s:2:"12";s:5:"price";s:4:"2.00";s:4:"name";s:6:"asdasd";s:6:"serial";s:6:"asdasd";s:5:"asset";s:0:"";s:5:"brand";s:6:"asdasd";s:8:"subtotal";d:24;}s:32:"c74d97b01eae257e44aa9d5bade97baf";a:9:{s:5:"rowid";s:32:"c74d97b01eae257e44aa9d5bade97baf";s:2:"id";s:2:"16";s:3:"qty";s:2:"12";s:5:"price";s:5:"21.00";s:4:"name";s:9:"red fanty";s:6:"serial";s:0:"";s:5:"asset";s:0:"";s:5:"brand";s:5:"fanty";s:8:"subtotal";d:252;}}'),
+(13, 'Accounting', 'Vince', 123942, '2014-03-31 00:00:00', 'a:1:{s:32:"c74d97b01eae257e44aa9d5bade97baf";a:9:{s:5:"rowid";s:32:"c74d97b01eae257e44aa9d5bade97baf";s:2:"id";s:2:"16";s:3:"qty";s:2:"12";s:5:"price";s:5:"21.00";s:4:"name";s:9:"red fanty";s:6:"serial";s:0:"";s:5:"asset";s:0:"";s:5:"brand";s:5:"fanty";s:8:"subtotal";d:252;}}'),
+(14, 'Accounting', 'ahahaha', 123942, '2014-03-31 00:00:00', 'a:1:{s:32:"c74d97b01eae257e44aa9d5bade97baf";a:9:{s:5:"rowid";s:32:"c74d97b01eae257e44aa9d5bade97baf";s:2:"id";s:2:"16";s:3:"qty";s:2:"12";s:5:"price";s:5:"21.00";s:4:"name";s:9:"red fanty";s:6:"serial";s:0:"";s:5:"asset";s:0:"";s:5:"brand";s:5:"fanty";s:8:"subtotal";d:252;}}'),
+(15, 'Accounting', 'Vince2', 12314, '2014-03-31 00:00:00', 'a:1:{s:32:"c74d97b01eae257e44aa9d5bade97baf";a:9:{s:5:"rowid";s:32:"c74d97b01eae257e44aa9d5bade97baf";s:2:"id";s:2:"16";s:3:"qty";s:2:"12";s:5:"price";s:5:"21.00";s:4:"name";s:9:"red fanty";s:6:"serial";s:0:"";s:5:"asset";s:0:"";s:5:"brand";s:5:"fanty";s:8:"subtotal";d:252;}}'),
+(16, 'IT department', 'ahahaha', 123942, '2014-03-31 11:34:30', 'a:1:{s:32:"6f4922f45568161a8cdf4ad2299f6d23";a:9:{s:5:"rowid";s:32:"6f4922f45568161a8cdf4ad2299f6d23";s:2:"id";s:2:"18";s:3:"qty";s:2:"12";s:5:"price";s:5:"21.00";s:4:"name";s:1:"1";s:6:"serial";s:0:"";s:5:"asset";s:0:"";s:5:"brand";s:1:"1";s:8:"subtotal";d:252;}}');
 
 -- --------------------------------------------------------
 
@@ -145,23 +151,16 @@ CREATE TABLE IF NOT EXISTS `items` (
 
 INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `item_status`, `item_asset`, `date_add`) VALUES
 (1, 1, 1, 'Desire', 'low back office chair', 'Fixed', '0', 35, 6.00, 'sjt27', 'Not Available', 'djh5', '2014-03-24 09:26:38'),
-(2, 1, 2, 'Thinking Tools', 'visitor chair	', 'Fixed', 'none', 3, 3.00, 'YC128', 'Available', 'lpjh8', '2014-03-22 13:46:22'),
-(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 95, 3.00, 'test ', 'Available', 'mn2gy', '2014-03-30 16:04:58'),
-(4, 2, 3, 'Copyland', 'meeting table', 'Fixed', 'none', 5, 200.00, 'ykxd2', 'Not Available', 'b8dh5', '2014-03-29 12:18:59'),
-(5, 1, 2, 'Coca Cola', 'real leaf lemon', 'Consumable', 'cs', 4, 23.00, '9999', 'Available', 'svz8dw', '2014-03-22 13:46:22'),
-(6, 9, 4, 'ATX 9000', 'wenge office desk', 'Fixed', '0', 0, 43.00, 'uashk23', 'Not Available', '1ds7h', '2014-03-29 12:18:59'),
-(7, 1, 1, 'Desire', 'chair', 'Fixed', 'none', 7, 6.00, 'sdlkas23', 'Available', 'pj6sd', '2014-03-23 04:15:35'),
-(9, 9, 2, 'Coca Cola', 'last', 'Consumable', 'last', 3, 23.00, '654', 'Available', '1sgsvh', '2014-03-22 13:46:23'),
-(10, 2, 3, 'Thinking Tools	', 'cable', 'Fixed', 'none', 5, 4.00, 'sd123x', 'Available', 'kg3ps', '2014-03-23 04:15:35'),
-(12, 1, 1, 'asdasd', 'asdasd', 'Consumable', 'container', -92, 2.00, 'asdasd', 'Available', '', '2014-03-30 04:27:39'),
-(13, 2, 1, 'ATX 9001', 'refrigerator', 'Fixed', '0', 0, 12.00, '239482kfjdh2gs2j', 'Available', 'adasda', '2014-03-29 11:25:58'),
-(14, 10, 3, 'SONY', 'LAPTOP', 'Fixed', '', 0, 200.00, '1239482245', 'Available', 'LAP29442942', '2014-03-29 11:27:41'),
-(15, 9, 3, 'So In', 'Sobrang Inat sa brip', 'Fixed', '', 0, 12.00, '1231', 'Available', '#232', '2014-03-30 18:30:10'),
-(16, 2, 3, 'fanty', 'red fanty', 'Consumable', 'kilowats', 100, 21.00, '', 'Available', '', '2014-03-30 18:40:43'),
-(17, 2, 3, 'fantys', 'red fanty', 'Consumable', 'kilowats', 100, 21.00, '', 'Available', '', '2014-03-30 18:43:08'),
-(18, 1, 4, '1', '1', 'Consumable', '1', 2, 21.00, '', 'Available', '', '2014-03-30 18:43:50'),
-(19, 1, 4, '1', '1', 'Consumable', '1', 2, 21.00, '', 'Available', '', '2014-03-30 18:46:35'),
-(20, 1, 4, '1', '1', 'Consumable', '1', 2, 21.00, '', 'Available', '', '2014-03-30 18:47:05');
+(2, 1, 2, 'Thinking Tools', 'visitor chair	', 'Fixed', 'none', 24, 3.00, 'YC128', 'Available', 'lpjh8', '2014-03-31 03:44:12'),
+(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 85, 3.00, 'test ', 'Available', 'mn2gy', '2014-03-31 03:20:40'),
+(4, 2, 3, 'Copyland', 'meeting table', 'Fixed', 'none', 87, 200.00, 'ykxd2', 'Not Available', 'b8dh5', '2014-03-31 03:44:09'),
+(5, 1, 2, 'Coca Cola', 'real leaf lemon', 'Consumable', 'cs', 25, 23.00, '9999', 'Available', 'svz8dw', '2014-03-31 03:44:06'),
+(6, 9, 4, 'ATX 9000', 'wenge office desk', 'Fixed', '0', 87, 43.00, 'uashk23', 'Not Available', '1ds7h', '2014-03-31 03:44:03'),
+(7, 1, 1, 'Desire', 'chair', 'Fixed', 'none', 50, 6.00, 'sdlkas23', 'Available', 'pj6sd', '2014-03-31 03:44:25'),
+(9, 9, 2, 'Coca Cola', 'last', 'Consumable', 'last', 66, 23.00, '654', 'Available', '1sgsvh', '2014-03-31 03:44:17'),
+(10, 2, 3, 'Thinking Tools	', 'cable', 'Fixed', 'none', 180, 4.00, 'sd123x', 'Available', 'kg3ps', '2014-03-31 03:44:31'),
+(13, 2, 1, 'ATX 9001', 'refrigerator', 'Fixed', '0', 50, 12.00, '239482kfjdh2gs2j', 'Available', 'adasda', '2014-03-31 03:43:58'),
+(14, 10, 3, 'SONY', 'LAPTOP', 'Fixed', '', 20, 200.00, '1239482245', 'Available', 'LAP29442942', '2014-03-31 03:43:53');
 
 -- --------------------------------------------------------
 
