@@ -206,7 +206,7 @@ $(document).on('click', '.final_con', function(){
 <!--modal for add + -->
 
 
-<div class="modal fade bs-example-modal-sm" id="" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-sm" id="final_con" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
@@ -215,23 +215,24 @@ $(document).on('click', '.final_con', function(){
               <div class="modal-body text-center">
 
 
-              <form action="<?php echo site_url('admin/add_consumable')?>" method="POST">
+              <form action="<?php echo site_url('admin/finalize_con')?>" method="POST">
                       
           <input id="add_con" type="hidden" name="item-id" value>
                             <!-- Text input-->
       <div class="control-group">
-        <label class="control-label" for="name">Quantity</label>
+        <label class="control-label" for="name">Requestor Name</label>
         <div class="controls">
-          <input id="name" name="qty" type="text" placeholder="" class="input-xlarge" required="">
+          <input id="name" name="r_name" type="text" placeholder="" class="input-xlarge" required="">
           
         </div>
       </div>
 
       <!-- Text input-->
       <div class="control-group">
-        <label class="control-label" for="idnum">Delivery Number</label>
+        <label class="control-label" for="idnum">Requestor's Id</label>
         <div class="controls">
-          <input id="idnum" name="deliverynum" type="text" placeholder="" class="input-xlarge" required="">
+          <input id="idnum" name="r_id" type="text" placeholder="" class="input-xlarge" required="">
+          <input type="hidden" name="cart_data" value='<?php echo serialize($this->cart->contents())?>'>
           
         </div>
       </div>
@@ -260,7 +261,7 @@ $(document).on('click', '.final_con', function(){
 </form>
                         
               </div>              
-
+  
               <!-- end of modal body-->
     
     </div>
@@ -268,3 +269,4 @@ $(document).on('click', '.final_con', function(){
 </div>
 
 <!-- end of  + modal -->
+  
