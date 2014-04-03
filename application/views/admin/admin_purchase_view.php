@@ -61,7 +61,7 @@
           <tr>
             <th>Name</th>
             <th>Brand</th>
-            <th>Unit Measure</th>
+            
             <th>Quantity</th>
             <th>Price</th>
             <th>Subtotal</th>
@@ -73,7 +73,7 @@
           <tr> 
             <td>{name}</td> 
             <td>{brand}</td>
-            <td>{unit}</td>
+            
             <td>{qty}</td>
             <th>{price}</th>
             <th>{subtotal}.00</th>
@@ -81,7 +81,7 @@
           </tr>
           {/cart_data}
           <tr>
-          <td colspan="5"></td>
+          <td colspan="4"></td>
           <td colspan=""><b>Total</b></td>
           <td colspan=""><?php echo $this->cart->total()?>.00</td>
           <tr>
@@ -212,15 +212,7 @@ if (method == 'remove') {
         </div>
       </div>
 
-           <!-- Text input-->
-      <div class="control-group">
-        <label class="control-label" for="name">Unit Measure:</label>
-        <div class="controls">
-         <input type="hidden" name="itemid-item" class="itemid-item" value>
-          <input id="name" name="unit" type="" placeholder="" class="input-xlarge" required>
-          
-        </div>
-      </div>
+     
 
        <br>
      

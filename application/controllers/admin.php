@@ -1227,13 +1227,13 @@ class Admin extends CI_Controller {
   public function add_po_qty(){
     $id = $this->input->post('itemid-item');
     $qty = $this->input->post('qty');
-    $unit = $this->input->post('unit');
+    
 
     $item_data = $this->admin_model->get_item($id);
     $items_array = array(
       'id'      => $id,
       'qty'     => $qty,
-      'unit'    => $unit,
+      'unit'    => $item_data[0]['item_unit'],
       'price'   => $item_data[0]['item_price'],
       'name'    => $item_data[0]['item_name'],
       'brand'	=>  $item_data[0]['item_brand'],
