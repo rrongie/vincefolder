@@ -27,7 +27,8 @@
                       <th>Company</th>
                       <th>Item Name</th>
                       <th>Item Brand</th>
-                       <th>Serial</th>
+                      <th>Department</th>
+                      <th>Serial</th>
                       <th>Asset Code</th>
                       <th>Status</th>
                       <th>Date Add</th>
@@ -67,7 +68,7 @@
                   return a + z;
                  
                 },
-                "aTargets": [ 8 ],
+                "aTargets": [ 9 ],
                 "sDefaultContent": ""
             }
         ]

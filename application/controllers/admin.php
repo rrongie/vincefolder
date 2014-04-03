@@ -167,6 +167,7 @@ class Admin extends CI_Controller {
   }
 
   public function add_consumable_item(){
+    $items_info['department'] = $this->admin_model->get_department();
     $items_info['name'] = $this->admin_model->get_company();
     $items_info['supplier'] = $this->admin_model->get_supplier();
    
@@ -183,6 +184,7 @@ class Admin extends CI_Controller {
 
   public function add_consumable_item_validate(){
     $form_data = array('supplier_id' => $this->input->post('supplier_id'),
+      'department_id' => $this->input->post('department_id'),
       //'company' => $this->input->post('company_name'),
       'item_brand' => $this->input->post('item_brand'),
       'item_name' => $this->input->post('item_name'),
@@ -568,7 +570,7 @@ class Admin extends CI_Controller {
 
   public function datatables_fixed(){
     $this
-      ->datatables->select('item_id,supplier.company,item_name,item_brand,item_serial, item_asset,item_status,date_add',FALSE)
+      ->datatables->select('item_id,supplier.company,item_name,item_brand,department.name,item_serial, item_asset,item_status,date_add',FALSE)
       ->from('items')
       ->join('supplier', 'items.supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')
@@ -676,7 +678,7 @@ class Admin extends CI_Controller {
 
   public function datatables_purchase_list(){
     $this
-      ->datatables->select('purchases.id,department.name,supplier.company, purchase_total,purchase_status, date_order')
+      ->datatables->select('purchases.id,department.name,supplier.company, purchase_total, date_order')
       ->from('purchases')
       ->join('department', 'department.id = purchases.dept_id')
       ->join('supplier', 'supplier.id = purchases.supplier_id');

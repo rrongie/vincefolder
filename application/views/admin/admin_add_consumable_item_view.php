@@ -204,19 +204,19 @@
                                     </div>
                                   </div>
 
-                                     <!--
-                                 
+                                
+                                   
                                   <div class="control-group">
-                                    <label class="control-label" for="title">Company Name:</label>
+                                    <label class="control-label" for="title">Department Name:</label>
                                     <div class="controls">
-                                       <select / id="category" name="company_name" required>
+                                       <select / id="category" name="department_id" required>
                                         <option  name="" value=""></option>
-                                          {name}
-                                          <option value="{id}">{company}</option>
-                                          {/name}
+                                          {department}
+                                          <option value="{id}">{name}</option>
+                                          {/department}
                                       </select>
                                     </div>
-                                  </div>  -->
+                                  </div> 
 
                                                   
                             
