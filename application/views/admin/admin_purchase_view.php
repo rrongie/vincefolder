@@ -73,7 +73,7 @@
           <tr> 
             <td>{name}</td> 
             <td>{brand}</td>
-            <td>{unit}</td>";
+            <td>{unit}</td>
             <td>{qty}</td>
             <th>{price}</th>
             <th>{subtotal}.00</th>
@@ -96,7 +96,7 @@
 
 <hr>
 <div class="text-center col-md-12" >
-  <a href="#" class="finalize_po btn btn-lg btn-info">Finalize Purchase Order</a> 
+  <a href="#" class="finalize_po btn btn-lg btn-info">Finalize New Ordered items</a> 
   <a href="<?php echo site_url('admin/clear_form_po'); ?>" class="btn btn-lg btn-danger">Clear Form</a> 
 </div>
           </div>
@@ -208,6 +208,16 @@ if (method == 'remove') {
         <div class="controls">
          <input type="hidden" name="itemid-item" class="itemid-item" value>
           <input id="name" name="qty" type="number" placeholder="" class="input-xlarge" required>
+          
+        </div>
+      </div>
+
+           <!-- Text input-->
+      <div class="control-group">
+        <label class="control-label" for="name">Unit Measure:</label>
+        <div class="controls">
+         <input type="hidden" name="itemid-item" class="itemid-item" value>
+          <input id="name" name="unit" type="" placeholder="" class="input-xlarge" required>
           
         </div>
       </div>

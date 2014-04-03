@@ -71,6 +71,11 @@ public function customer_info($user_id){
 	return $sql->result_array();
 	}
 
+	public function get_company(){
+		$sql = $this->db->get('supplier');
+		return $sql->result_array();
+	}
+
 	public function get_supplier(){
 	$sql = $this->db->get('supplier');
 	return $sql->result_array();

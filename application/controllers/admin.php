@@ -98,6 +98,7 @@ class Admin extends CI_Controller {
 
   public function consumable(){
     $consumable['department'] = $this->admin_model->get_department();
+
     if (count($this->cart->contents()) > 0) {
       $consumable['cart'] = TRUE;
       $consumable['cartdata'] = $this->cart->contents();
@@ -166,9 +167,11 @@ class Admin extends CI_Controller {
   }
 
   public function add_consumable_item(){
-    $items_info['department'] = $this->admin_model->get_department();
+    $items_info['name'] = $this->admin_model->get_company();
     $items_info['supplier'] = $this->admin_model->get_supplier();
-
+   
+     
+     //var_dump($items_info);
 
     $this->load->view('template/header');
     $this->load->view('admin/admin_nav');
@@ -180,7 +183,7 @@ class Admin extends CI_Controller {
 
   public function add_consumable_item_validate(){
     $form_data = array('supplier_id' => $this->input->post('supplier_id'),
-      //'department_id' => $this->input->post('department_id'),
+      //'company' => $this->input->post('company_name'),
       'item_brand' => $this->input->post('item_brand'),
       'item_name' => $this->input->post('item_name'),
       'item_type' => 'Consumable',
@@ -1224,12 +1227,13 @@ class Admin extends CI_Controller {
   public function add_po_qty(){
     $id = $this->input->post('itemid-item');
     $qty = $this->input->post('qty');
+    $unit = $this->input->post('unit');
 
     $item_data = $this->admin_model->get_item($id);
     $items_array = array(
       'id'      => $id,
       'qty'     => $qty,
-      'unit'    => $item_data[0]['item_unit'],
+      'unit'    => $unit,
       'price'   => $item_data[0]['item_price'],
       'name'    => $item_data[0]['item_name'],
       'brand'	=>  $item_data[0]['item_brand'],

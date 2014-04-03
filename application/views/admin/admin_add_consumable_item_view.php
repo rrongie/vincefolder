@@ -197,26 +197,26 @@
                                     <div class="controls">
                                        <select / id="category" name="supplier_id" required>
                                         <option  name="" value=""></option>
-                                          {supplier}
-                                          <option value="{id}">{supplier_fname} {supplier_lname}</option>
-                                          {/supplier}
+                                          {name}
+                                          <option value="{id}">{company}</option>
+                                          {/name}
                                       </select>
                                     </div>
                                   </div>
 
-                                      
-                                <!-- 
+                                     <!--
+                                 
                                   <div class="control-group">
-                                    <label class="control-label" for="title">Department Name:</label>
+                                    <label class="control-label" for="title">Company Name:</label>
                                     <div class="controls">
-                                       <select / id="category" name="department_id" required>
+                                       <select / id="category" name="company_name" required>
                                         <option  name="" value=""></option>
-                                          {department}
-                                          <option value="{id}">{name}</option>
-                                          {/department}
+                                          {name}
+                                          <option value="{id}">{company}</option>
+                                          {/name}
                                       </select>
                                     </div>
-                                  </div>   -->
+                                  </div>  -->
 
                                                   
                             
