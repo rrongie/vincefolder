@@ -170,3 +170,31 @@
 } );
 
 </script>
+
+</script>
+
+<script type="text/javascript">
+  
+
+$(document).on('click', '.received-item', function(e){
+e.preventDefault();
+
+var id = $(this).data('id');
+$('.modal-area').load('<?php echo site_url('admin/purchases_cartdata')?>', {id: id});
+$('#myModal').modal('show');
+
+});
+
+
+
+</script>
+
+  <script>
+
+$(document).on('click', '.test', function(){
+
+  return confirm("Do you want to delete?");
+
+});
+
+</script>

@@ -25,7 +25,7 @@
             <thead>
                 <tr>
                       <th>Id</th>
-                      <th>Company</th>
+                      
                       <th>Item Name</th>
                       <th>Brand</th>
                       
@@ -113,7 +113,7 @@
                     b ='<a class="test label label-danger" href="delete_consumable_item/'+oObj.aData[0]+'">Remove</a> ';
                     return z + a + b;
                 },
-                "aTargets": [ 7 ],
+                "aTargets": [ 6 ],
                 "sDefaultContent": ""
             }
         ]

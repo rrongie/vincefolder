@@ -532,7 +532,7 @@ class Admin extends CI_Controller {
   //CONCAT(fname," ",lname) AS lname', FALSE)
   public function datatables_consumable(){
     $this
-      ->datatables->select('item_id,supplier.company,item_name,item_brand,item_unit,item_qty,date_add',FALSE)
+      ->datatables->select('item_id,item_name,item_brand,item_unit,item_qty,date_add',FALSE)
       ->from('items')
       ->join('supplier', 'supplier_id = supplier.id','left')
       //->join('department', 'department_id = department.id')
@@ -1589,8 +1589,9 @@ function datatables_logger(){
     redirect('admin/borrowers');
  }
 
-public function im_back(){
-  echo"whahahah";
+public function item_status(){
+  echo"item status daw if naay guba ang item sa pag uli";
 }
+
 
 }
