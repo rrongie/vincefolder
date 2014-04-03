@@ -15,7 +15,7 @@
     <div class="panel panel-primary" id="panels">
 
          <div class="panel-heading">Comsumable Items 
-              <a href="<?php echo site_url('admin/add_consumable_item'); ?>"><button class="btn btn-default pull-right">Add Consumable item</button></a>
+             
          </div>
           
           <div class="panel-body">
@@ -29,11 +29,11 @@
                       <th>Item Name</th>
                       <th>Brand</th>
                       
-                      <th>Department</th>
+                      
                       <th>Unit</th>
                       <th>Quantity</th>
                       <th>Date Add</th>
-                      <th>  &nbsp; Action</th> 
+                      <th>Action</th> 
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +62,7 @@
             <td>{brand}</td>
             <td>{price}</td>
             <td>{qty}</td>
-            <th>{subtotal}</th>
+            <th>{subtotal}.00</th>
           </tr>
           {/cartdata}
         </tbody>
@@ -108,11 +108,12 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    z ='<a class="remove_con label label-danger" data-itemidcon="'+oObj.aData[0]+'" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">Request</a>';
-                    a ='<a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">Update</a> ';
-                    return z + a;
+                    z ='<a class="remove_con label label-success" data-itemidcon="'+oObj.aData[0]+'" data-toggle="modal" data-target=".bs-example-modal-sm1" href="#/'+oObj.aData[0]+'">Request</a> <br>';
+                    a ='<a class="label label-info" href="edit_consumable_item/'+oObj.aData[0]+'">Update</a> <br>';
+                    b ='<a class="test label label-danger" href="delete_consumable_item/'+oObj.aData[0]+'">Remove</a> ';
+                    return z + a + b;
                 },
-                "aTargets": [ 8 ],
+                "aTargets": [ 7 ],
                 "sDefaultContent": ""
             }
         ]
@@ -270,3 +271,13 @@ $(document).on('click', '.final_con', function(){
 
 <!-- end of  + modal -->
   
+  <script>
+
+$(document).on('click', '.test', function(){
+
+  return confirm("Do you want to remove?");
+
+});
+
+</script>
+

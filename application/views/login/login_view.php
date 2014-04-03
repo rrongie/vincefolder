@@ -30,7 +30,7 @@
 		  <div class="inset">
 		  <p>
 			<label>USERNAME</label>
-			<input type="text" name="username" id="email" required>
+			<input type="text" name="username" id="email" required autofocus>
 		  </p>
 		  <p>
 			<label>PASSWORD</label>

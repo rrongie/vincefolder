@@ -86,7 +86,7 @@ Date Range <input type="text" name="reservation" id="reservation" />
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-     "sDom":'T<"clear">ltrtip', 
+        "sDom": '<"H"Tfr>t<"F"ip>',
         "aaSorting": [[ 0, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_reconcile_fixed'); ?>",
@@ -110,7 +110,7 @@ Date Range <input type="text" name="reservation" id="reservation" />
     
                 $(document).ready(function() {
     $('#accounts-view1').dataTable( {
-      "sDom":'T<"clear">ltrtip',
+      "sDom": '<"H"Tfr>t<"F"ip>',
         "aaSorting": [[ 6, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_reconcile_consumable'); ?>",

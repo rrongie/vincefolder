@@ -62,8 +62,10 @@
 
   $(document).ready(function() {
     $('#accounts-view').dataTable( {
-      "sDom":'T<"clear">ltrtip',
-      "aaSorting": [[ 1, "desc" ]],
+      "sDom": '<"H"Tfr>t<"F"ip>',
+      
+      "aaSorting": [[ 8, "asc" ]],
+        
       "bProcessing": true,
       "sAjaxSource": "<?php echo site_url('admin/datatables_logger'); ?>",
       "aoColumnDefs": [

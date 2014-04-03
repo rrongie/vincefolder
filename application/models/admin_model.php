@@ -112,4 +112,32 @@ public function customer_info($user_id){
 		$sql = $this->db->get();
 		return $sql->result_array();
 	}
+
+	public function delete_fixed($id){
+		$this->db->where('item_id',$id);
+		
+		$result= $this->db->delete('items');
+		return $result;
+	}
+	public function delete_consumable($id){
+		$this->db->where('item_id',$id);
+		
+		$result= $this->db->delete('items');
+		return $result;
+	}
+
+	public function delete_po_list($id){
+		$this->db->where('id',$id);
+		
+		$result= $this->db->delete('purchases');
+		return $result;
+	}
+
+	public function delete_borrowers($id){
+		$this->db->where('id',$id);
+		
+		$result= $this->db->delete('borrowers');
+		return $result;
+	}
+
 }

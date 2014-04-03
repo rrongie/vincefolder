@@ -14,7 +14,7 @@
     <div class="panel panel-primary" id="panels">
 
          <div class="panel-heading">Fixed Items 
-              <a href="<?php echo site_url('admin/add_fixed_item'); ?>"><button class="btn btn-default pull-right">Add Fixed item</button></a>
+              
          </div>
           
           <div class="panel-body">
@@ -65,8 +65,8 @@
                 "fnRender": function ( oObj ) {
                     
                     a = ' <a class="label label-info" href="edit_fixed_item/'+oObj.aData[0]+'">Update</a> ';
-                  
-                  return a;
+                    z = ' <a class="test label label-danger" href="delete_fixed_item/'+oObj.aData[0]+'">Remove</a> ';
+                  return a + z;
                  
                 },
                 "aTargets": [ 9 ],
@@ -140,3 +140,13 @@
 </div>
 
 <!-- end of  + modal -->
+<script>
+
+$(document).on('click', '.test', function(){
+
+  return confirm("Do you want to remove?");
+
+});
+
+</script>
+

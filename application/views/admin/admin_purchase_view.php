@@ -4,7 +4,9 @@
                   <div class="col-md-12">
     <div class="panel panel-primary" id="panels">
 
-         <div class="panel-heading">Purchase Order</div>
+         <div class="panel-heading">Purchase Order
+          <a href="<?php echo site_url('admin/add_fixed_item'); ?>"><button class="btn btn-default pull-right">Add Fixed item</button></a> <a href="<?php echo site_url('admin/add_consumable_item'); ?>"><button class="btn btn-default pull-right">Add Consumable item</button></a>
+         </div>
           <div class="panel-body">
              
              <div class="text-center">
@@ -35,6 +37,7 @@
                       <th>Company</th>
                       <th>Item Name</th>
                       <th>Item Brand</th>
+                      <th>Item Type</th>
                       <th>Item Price</th>
                       <th>Action</th>
                     
@@ -57,10 +60,11 @@
           <tr>
             <th>Name</th>
             <th>Brand</th>
+            <th>Unit Measure</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Subtotal</th>
-
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -68,15 +72,17 @@
           <tr> 
             <td>{name}</td> 
             <td>{brand}</td>
+            <td>{unit}</td>
             <td>{qty}</td>
             <th>{price}</th>
-            <th>{subtotal}</th>
+            <th>{subtotal}.00</th>
+            <th><a class="label label-danger" href="remove_item_po/{id}/">Remove</a></th>  
           </tr>
           {/cart_data}
           <tr>
-          <td colspan="3"></td>
+          <td colspan="4"></td>
           <td colspan=""><b>Total</b></td>
-          <td colspan=""><?php echo $this->cart->total()?></td>
+          <td colspan=""><?php echo $this->cart->total()?>.00</td>
           <tr>
         </tbody>
         <tfoot>
@@ -120,7 +126,7 @@
                  
                     return b;
                 },
-                "aTargets": [ 5 ],
+                "aTargets": [ 6 ],
                 "sDefaultContent": ""
             }
         ]
@@ -192,6 +198,17 @@
           
         </div>
       </div>
+
+         <!-- Text input-->
+      <div class="control-group">
+        <label class="control-label" for="name">Unit of Measure:</label>
+        <div class="controls">
+         <input type="hidden" name="itemid-item" class="itemid-item" value>
+          <input id="name" name="unit" type="text" placeholder="" class="input-xlarge" required>
+          
+        </div>
+      </div>
+ <br>
      
       <!-- Text input-->
       <div class="control-group">
@@ -242,6 +259,19 @@
   </div>
 </div>
 
+
+
+        <!-- Text input-->
+      <div class="control-group">
+        <label class="control-label" for="name">Date:</label>
+        <div class="controls">
+         <input type="hidden" name="itemid-item" class="itemid-item" value>
+          <input id="name" name="date" type="date" placeholder="" class="input-xlarge" required>
+          
+        </div>
+      </div>
+
+
 <!-- Select Basic -->
 <div class="control-group">
   <label class="control-label" for="terms">Terms</label>
@@ -257,7 +287,7 @@
 <div class="control-group">
   <label class="control-label" for="genpopdf"></label>
   <div class="controls">
-    <button id="genpopdf" name="genpopdf" class="btn btn-info">Generate PO Form</button>
+    <button id="genpopdf" name="genpopdf" class="btn btn-info">Process PO Form</button>
   </div>
 </div>
 

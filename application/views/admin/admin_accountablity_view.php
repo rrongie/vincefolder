@@ -57,7 +57,7 @@
             <th>Item Brand</th>
             <th>Item Serial</th>
             <th>Asset Code</th>
-
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -67,6 +67,7 @@
             <td>{brand}</td>
             <td>{serial}</td>
             <th>{asset}</th>
+            <th><a class="label label-danger" href="remove_item/{id}/">Remove</a></th>        
           </tr>
           {/cartdata}
         </tbody>
@@ -143,11 +144,24 @@
     </select>
   </div>
 </div>
+
+
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="idnum">Date:</label>
+  <div class="controls">
+    <input id="idnum" name="date" type="date" placeholder="" class="input-xlarge" required>
+    
+  </div>
+</div>
 <br/><br/>
+
+
 <!-- Text input-->
 <div class="control-group">
   <div class="controls">
-    <input class="btn btn-info btn-large genpdf" id="id" name="id" value="Generate Accountability Form" type="submit" placeholder="" class="input-xlarge" required="">
+    <input class="btn btn-info btn-large genpdf" id="id" name="id" value="Process Accountability Form" type="submit" placeholder="" class="input-xlarge" required="">
     
   </div>
 </div>
@@ -193,12 +207,12 @@ $('#myModal').modal('show');
           var a;
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
-                    z = '<a class="label label-danger" href="remove_item/'+oObj.aData[0]+'">Remove</a> ';
+                    
                     //a = '<a class="label label-info" href="view_item/'+oObj.aData[0]+'">View</a> ';
                     b = '<a class="label label-success" href="add_item/'+oObj.aData[0]+'">Add</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
-                    return z + b;
+                    return b;
                   },
                   "aTargets": [ 6 ],
                   "sDefaultContent": ""

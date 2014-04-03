@@ -95,11 +95,11 @@
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
                     //z = '<a class="label label-info" href="remove_item/'+oObj.aData[0]+'">-</a> ';
-                    a = '<a href="#" class="label received-item label-info" data-id="'+oObj.aData[0]+'">Recieved</a>';  
-                    //b = '<a class="label label-info" href="add_item/'+oObj.aData[0]+'">+</a> ';
+                    a = '<a href="#" class="label received-item label-info" data-id="'+oObj.aData[0]+'">Recieved</a> <br>';  
+                    b = '<a class="test label label-danger" href="delete_purchases_list/'+oObj.aData[0]+'">Remove</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
-                    return a;
+                    return a + b;
                   },
                   "aTargets": [ 6 ],
                   "sDefaultContent": ""
@@ -126,3 +126,12 @@ $('#myModal').modal('show');
 
 </script>
 
+  <script>
+
+$(document).on('click', '.test', function(){
+
+  return confirm("Do you want to delete?");
+
+});
+
+</script>

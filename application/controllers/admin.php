@@ -180,7 +180,7 @@ class Admin extends CI_Controller {
 
   public function add_consumable_item_validate(){
     $form_data = array('supplier_id' => $this->input->post('supplier_id'),
-      'department_id' => $this->input->post('department_id'),
+      //'department_id' => $this->input->post('department_id'),
       'item_brand' => $this->input->post('item_brand'),
       'item_name' => $this->input->post('item_name'),
       'item_type' => 'Consumable',
@@ -193,7 +193,7 @@ class Admin extends CI_Controller {
 
     $this->form_validation->set_error_delimiters('<span class="label label-danger">', '</span>');
     $this->form_validation->set_rules('supplier_id','Supplier Id','required');
-    $this->form_validation->set_rules('department_id','Deparment Id','required');
+   // $this->form_validation->set_rules('department_id','Deparment Id','required');
     $this->form_validation->set_rules('item_brand','Item Brand','required');
     $this->form_validation->set_rules('item_name','Item Name','required');
     $this->form_validation->set_rules('item_unit','Item Unit','required');
@@ -527,10 +527,10 @@ class Admin extends CI_Controller {
   //CONCAT(fname," ",lname) AS lname', FALSE)
   public function datatables_consumable(){
     $this
-      ->datatables->select('item_id,supplier.company,item_name,item_brand,department.name,item_unit,item_qty,date_add',FALSE)
+      ->datatables->select('item_id,supplier.company,item_name,item_brand,item_unit,item_qty,date_add',FALSE)
       ->from('items')
       ->join('supplier', 'supplier_id = supplier.id','left')
-      ->join('department', 'department_id = department.id')
+      //->join('department', 'department_id = department.id')
       ->where('item_type','Consumable');
 
     $datatables = $this->datatables->generate('JSON');
@@ -638,7 +638,7 @@ class Admin extends CI_Controller {
 
   public function datatables_po($supplier_id){
     $this
-      ->datatables->select('item_id,company,item_name,item_brand,item_price',FALSE)
+      ->datatables->select('item_id,company,item_name,item_brand,item_type,item_price',FALSE)
       ->from('items')
       ->join('supplier', 'supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')
@@ -882,10 +882,11 @@ class Admin extends CI_Controller {
     $name = $this->input->post('name');
     $dept = $this->input->post('dept');
     $idnum = $id = $this->input->post('idnum');
-    $date = date('F, d, y');
+    $date = $this->input->post('date');
+    $date = date('m/d/Y', strtotime($date));
 
     $logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
-    $header = array('Name', 'Asset Code','Serial No.', 'Brand');
+    $header = array('ITEM NAME', 'ASSET CODE','SERIAL NO.', 'BRAND');
     $cart = $this->cart->contents();
 
 
@@ -1056,6 +1057,32 @@ class Admin extends CI_Controller {
     }
   }
 
+  function remove_item_po($id, $qty = 1){
+
+    $data = array();
+    foreach ($this->cart->contents() as $key => $inner) {
+      foreach ($inner as $key => $value) {
+        if ($inner[$key] == $id) {
+          $data[] = array('rowid' => $inner['rowid'],
+            'qty' => $inner['qty'] - $qty);
+        }
+      }
+    }
+
+    if (count($data) > 0) {
+
+      if ($this->cart->update($data)) {
+        $this->session->set_flashdata('item_add', 'Item has been removed to the form.');
+        redirect('admin/purchase');
+      }else{
+        echo 'Error';
+      }
+    }else{
+      redirect('admin/purchase');
+    }
+  }
+
+
   function return_item(){
     $items = $this->input->post('item-id');
     $borrowers_id = $this->input->post('b-id');
@@ -1223,10 +1250,10 @@ class Admin extends CI_Controller {
 
     $supplier = $sup_info[0]['company'];
     $name = $sup_info[0]['name'];
-    $date = date('F, d, y');
+    $date= $this->input->post('date');
 
     $logo = base_url() . 'assets/images/jcentre_mall_cebu.jpg';
-    $header = array('Quantity', 'Item Price','Item Name', 'Item brand');
+    $header = array('QUANTITY', 'ITEM PRICE','ITEM NAME', 'ITEM BRAND');
     $cart = $this->cart->contents();
 
 
@@ -1537,5 +1564,22 @@ function datatables_logger(){
 
   }
 
+  public function delete_fixed_item($id){
+    $this->admin_model->delete_fixed($id);
+    redirect('admin/fixed');
+  }
 
+   public function delete_consumable_item($id){
+    $this->admin_model->delete_consumable($id);
+    redirect('admin/consumable');
+  }
+
+  public function delete_purchases_list($id){
+    $this->admin_model->delete_po_list($id);
+    redirect('admin/purchase_list');
+ }
+ public function remove_borrowers($id){
+  $this->admin_model->delete_borrowers($id);
+    redirect('admin/borrowers');
+ }
 }

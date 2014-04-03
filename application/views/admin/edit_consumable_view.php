@@ -80,7 +80,7 @@
                                       <div class="control-group">
                                       <label class="control-label" for="price">Item Price:</label>
                                       <div class="controls">
-                                        <input size="30" value="{item_price}" name="item_price" min="0" max="99999"type="number" placeholder="" class="input-xlarge" required>
+                                        <input size="30" value="{item_price}" name="item_price" min="0" max="99999"type="number" step=0.01 placeholder="" class="input-xlarge"  required>
                                         
                                       </div>
                                     </div>

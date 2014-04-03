@@ -206,7 +206,7 @@
                                   </div>
 
 
-                                    <!-- Text input-->
+                                   
                                   <div class="control-group">
                                     <label class="control-label" for="title">Department Name:</label>
                                     <div class="controls">
@@ -217,7 +217,7 @@
                                           {/department}
                                       </select>
                                     </div>
-                                  </div>
+                                  </div> 
 
                                                   
                         

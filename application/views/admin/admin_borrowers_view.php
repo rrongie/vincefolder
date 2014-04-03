@@ -97,11 +97,11 @@
           var b;
                     //z = '<a class="label label-danger" data-id="'+oObj.aData[0]+'"  data-method="minus" id="modal" href="#">-</a>';
                     //z = '<a class="label label-info" href="remove_item/'+oObj.aData[0]+'">-</a> ';
-                    a = '<a href="#" class="label return-item label-info" data-id="'+oObj.aData[0]+'">Return</a>';  
-                    //b = '<a class="label label-info" href="add_item/'+oObj.aData[0]+'">+</a> ';
+                    a = '<a href="#" class="label return-item label-info" data-id="'+oObj.aData[0]+'">Return</a> <br>';  
+                    b = '<a class="test label label-danger" href="remove_borrowers/'+oObj.aData[0]+'">Remove</a> ';
                     //b = '<a class="label label-primary" data-id="'+oObj.aData[0]+'" data-toggle="modal" data-method="plus" id="modal" href="#">+</a>';
 
-                    return a;
+                    return a + b;
                   },
                   "aTargets": [ 6 ],
                   "sDefaultContent": ""
@@ -128,3 +128,12 @@ $('#myModal').modal('show');
 
 </script>
 
+  <script>
+
+$(document).on('click', '.test', function(){
+
+  return confirm("Do you want to remove?");
+
+});
+
+</script>
