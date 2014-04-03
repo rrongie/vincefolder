@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2014 at 05:45 AM
+-- Generation Time: Apr 03, 2014 at 12:30 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `borrowers` (
   `borrower_dept` varchar(70) NOT NULL,
   `borrower_status` enum('Not Returned','Returned') DEFAULT 'Not Returned',
   `borrowed_date` datetime NOT NULL,
+  `return_date` datetime NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cart_data` text NOT NULL,
   PRIMARY KEY (`id`)
@@ -55,9 +56,9 @@ CREATE TABLE IF NOT EXISTS `borrowers` (
 -- Dumping data for table `borrowers`
 --
 
-INSERT INTO `borrowers` (`id`, `borrower_name`, `borrower_idnum`, `borrower_dept`, `borrower_status`, `borrowed_date`, `timestamp`, `cart_data`) VALUES
-(1, 'Bryan Bojorque', 23213, 'IT department', 'Not Returned', '2014-03-24 17:26:38', '2014-03-24 09:26:38', 'a:1:{s:32:"c4ca4238a0b923820dcc509a6f75849b";a:10:{s:5:"rowid";s:32:"c4ca4238a0b923820dcc509a6f75849b";s:2:"id";s:1:"1";s:3:"qty";s:1:"1";s:5:"price";s:4:"6.00";s:4:"name";s:21:"low back office chair";s:6:"serial";s:5:"sjt27";s:5:"asset";s:4:"djh5";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:6;}}'),
-(2, 'Bryan Bojorque', 4, 'IT department', 'Not Returned', '2014-03-29 20:18:59', '2014-03-29 12:18:59', 'a:2:{s:32:"a87ff679a2f3e71d9181a67b7542122c";a:10:{s:5:"rowid";s:32:"a87ff679a2f3e71d9181a67b7542122c";s:2:"id";s:1:"4";s:3:"qty";s:1:"2";s:5:"price";s:6:"200.00";s:4:"name";s:13:"meeting table";s:6:"serial";s:5:"ykxd2";s:5:"asset";s:5:"b8dh5";s:5:"brand";s:8:"Copyland";s:4:"type";s:8:"Copyland";s:8:"subtotal";d:400;}s:32:"1679091c5a880faf6fb5e6087eb1b2dc";a:10:{s:5:"rowid";s:32:"1679091c5a880faf6fb5e6087eb1b2dc";s:2:"id";s:1:"6";s:3:"qty";s:1:"1";s:5:"price";s:5:"43.00";s:4:"name";s:17:"wenge office desk";s:6:"serial";s:7:"uashk23";s:5:"asset";s:5:"1ds7h";s:5:"brand";s:8:"ATX 9000";s:4:"type";s:8:"ATX 9000";s:8:"subtotal";d:43;}}');
+INSERT INTO `borrowers` (`id`, `borrower_name`, `borrower_idnum`, `borrower_dept`, `borrower_status`, `borrowed_date`, `return_date`, `timestamp`, `cart_data`) VALUES
+(1, 'Bryan Bojorque', 23213, 'IT department', 'Not Returned', '2014-03-24 17:26:38', '0000-00-00 00:00:00', '2014-03-24 09:26:38', 'a:1:{s:32:"c4ca4238a0b923820dcc509a6f75849b";a:10:{s:5:"rowid";s:32:"c4ca4238a0b923820dcc509a6f75849b";s:2:"id";s:1:"1";s:3:"qty";s:1:"1";s:5:"price";s:4:"6.00";s:4:"name";s:21:"low back office chair";s:6:"serial";s:5:"sjt27";s:5:"asset";s:4:"djh5";s:5:"brand";s:6:"Desire";s:4:"type";s:6:"Desire";s:8:"subtotal";d:6;}}'),
+(2, 'Bryan Bojorque', 4, 'IT department', 'Returned', '2014-03-29 20:18:59', '2014-04-03 18:16:25', '2014-04-03 10:16:25', 'a:2:{s:32:"a87ff679a2f3e71d9181a67b7542122c";a:10:{s:5:"rowid";s:32:"a87ff679a2f3e71d9181a67b7542122c";s:2:"id";s:1:"4";s:3:"qty";s:1:"2";s:5:"price";s:6:"200.00";s:4:"name";s:13:"meeting table";s:6:"serial";s:5:"ykxd2";s:5:"asset";s:5:"b8dh5";s:5:"brand";s:8:"Copyland";s:4:"type";s:8:"Copyland";s:8:"subtotal";d:400;}s:32:"1679091c5a880faf6fb5e6087eb1b2dc";a:10:{s:5:"rowid";s:32:"1679091c5a880faf6fb5e6087eb1b2dc";s:2:"id";s:1:"6";s:3:"qty";s:1:"1";s:5:"price";s:5:"43.00";s:4:"name";s:17:"wenge office desk";s:6:"serial";s:7:"uashk23";s:5:"asset";s:5:"1ds7h";s:5:"brand";s:8:"ATX 9000";s:4:"type";s:8:"ATX 9000";s:8:"subtotal";d:43;}}');
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `item_asset` varchar(255) NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `items`
@@ -152,15 +153,16 @@ CREATE TABLE IF NOT EXISTS `items` (
 INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `item_status`, `item_asset`, `date_add`) VALUES
 (1, 1, 1, 'Desire', 'low back office chair', 'Fixed', '0', 35, 6.00, 'sjt27', 'Not Available', 'djh5', '2014-03-24 09:26:38'),
 (2, 1, 2, 'Thinking Tools', 'visitor chair	', 'Fixed', 'none', 24, 3.00, 'YC128', 'Available', 'lpjh8', '2014-03-31 03:44:12'),
-(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 85, 3.00, 'test ', 'Available', 'mn2gy', '2014-03-31 03:20:40'),
-(4, 2, 3, 'Copyland', 'meeting table', 'Fixed', 'none', 87, 200.00, 'ykxd2', 'Not Available', 'b8dh5', '2014-03-31 03:44:09'),
+(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 87, 3.00, 'test ', 'Available', 'mn2gy', '2014-03-31 07:13:40'),
+(4, 2, 3, 'Copyland', 'meeting table', 'Fixed', 'none', 87, 200.00, 'ykxd2', 'Available', 'b8dh5', '2014-04-03 10:16:25'),
 (5, 1, 2, 'Coca Cola', 'real leaf lemon', 'Consumable', 'cs', 25, 23.00, '9999', 'Available', 'svz8dw', '2014-03-31 03:44:06'),
-(6, 9, 4, 'ATX 9000', 'wenge office desk', 'Fixed', '0', 87, 43.00, 'uashk23', 'Not Available', '1ds7h', '2014-03-31 03:44:03'),
+(6, 9, 4, 'ATX 9000', 'wenge office desk', 'Fixed', '0', 87, 43.00, 'uashk23', 'Available', '1ds7h', '2014-04-03 10:16:25'),
 (7, 1, 1, 'Desire', 'chair', 'Fixed', 'none', 50, 6.00, 'sdlkas23', 'Available', 'pj6sd', '2014-03-31 03:44:25'),
 (9, 9, 2, 'Coca Cola', 'last', 'Consumable', 'last', 66, 23.00, '654', 'Available', '1sgsvh', '2014-03-31 03:44:17'),
 (10, 2, 3, 'Thinking Tools	', 'cable', 'Fixed', 'none', 180, 4.00, 'sd123x', 'Available', 'kg3ps', '2014-03-31 03:44:31'),
 (13, 2, 1, 'ATX 9001', 'refrigerator', 'Fixed', '0', 50, 12.00, '239482kfjdh2gs2j', 'Available', 'adasda', '2014-03-31 03:43:58'),
-(14, 10, 3, 'SONY', 'LAPTOP', 'Fixed', '', 20, 200.00, '1239482245', 'Available', 'LAP29442942', '2014-03-31 03:43:53');
+(14, 10, 3, 'SONY', 'LAPTOP', 'Fixed', '', 20, 200.00, '1239482245', 'Available', 'LAP29442942', '2014-03-31 03:43:53'),
+(21, 2, 1, 'BondPaper', 'Bond Paper', 'Consumable', 'Bundle', 150, 120.00, '', 'Available', '', '2014-03-31 07:15:21');
 
 -- --------------------------------------------------------
 
@@ -175,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `logger` (
   `itemid` int(11) NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `logger`
@@ -183,7 +185,8 @@ CREATE TABLE IF NOT EXISTS `logger` (
 
 INSERT INTO `logger` (`id`, `log_type`, `qty`, `itemid`, `date_add`) VALUES
 (1, 'Consumable', 1, 15, '0000-00-00 00:00:00'),
-(2, 'Consumable', 2, 20, '2014-03-30 18:47:05');
+(2, 'Consumable', 2, 20, '2014-03-30 18:47:05'),
+(3, 'Consumable', 150, 21, '2014-03-31 07:15:21');
 
 -- --------------------------------------------------------
 

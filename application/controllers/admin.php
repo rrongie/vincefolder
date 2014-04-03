@@ -1091,7 +1091,7 @@ class Admin extends CI_Controller {
       $this->db->update('items', array('item_status' => 'Available'));
     }
     $this->db->where('id', $borrowers_id);
-    $this->db->update('borrowers', array('borrower_status' => 'Returned'));
+    $this->db->update('borrowers', array('borrower_status' => 'Returned', 'return_date' => date('Y-m-d H:i:s')));
     redirect('admin/borrowers');
   }
 
