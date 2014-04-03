@@ -1582,4 +1582,9 @@ function datatables_logger(){
   $this->admin_model->delete_borrowers($id);
     redirect('admin/borrowers');
  }
+
+public function im_back(){
+  echo"whahahah";
+}
+
 }
