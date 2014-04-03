@@ -28,8 +28,6 @@
                       <th>Item Name</th>
                       <th>Item Brand</th>
                        <th>Serial</th>
-                      <th>Department</th>
-                     
                       <th>Asset Code</th>
                       <th>Status</th>
                       <th>Date Add</th>
@@ -57,7 +55,7 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 8, "asc" ]],
+        "aaSorting": [[ 7, "asc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_fixed'); ?>",
         "aoColumnDefs": [
@@ -69,7 +67,7 @@
                   return a + z;
                  
                 },
-                "aTargets": [ 9 ],
+                "aTargets": [ 8 ],
                 "sDefaultContent": ""
             }
         ]

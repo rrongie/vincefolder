@@ -8,7 +8,7 @@
 
 
 
-       <div class="panel-heading">Log History</div>
+       <div class="panel-heading">Items Added Report</div>
        <div class="panel-body">
 
         <?php 
@@ -28,9 +28,9 @@
         <thead>
           <tr>
             <th>Id</th>
-            <th>Item Type</th>
             <th>Item Name</th> 
             <th>Item Brand</th>
+            <th>Item Type</th>
             <th>Quantity Added</th>
             <th>Date</th>
           </tr>

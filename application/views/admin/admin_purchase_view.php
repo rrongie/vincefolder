@@ -4,7 +4,7 @@
                   <div class="col-md-12">
     <div class="panel panel-primary" id="panels">
 
-         <div class="panel-heading">Purchase Order
+         <div class="panel-heading">Supplier Items
           <a href="<?php echo site_url('admin/add_fixed_item'); ?>"><button class="btn btn-default pull-right">Add Fixed item</button></a> <a href="<?php echo site_url('admin/add_consumable_item'); ?>"><button class="btn btn-default pull-right">Add Consumable item</button></a>
          </div>
           <div class="panel-body">
@@ -37,6 +37,7 @@
                       <th>Company</th>
                       <th>Item Name</th>
                       <th>Item Brand</th>
+                      <th>Item Unit</th>
                       <th>Item Type</th>
                       <th>Item Price</th>
                       <th>Action</th>
@@ -72,7 +73,7 @@
           <tr> 
             <td>{name}</td> 
             <td>{brand}</td>
-            <td>{unit}</td>
+            <td>{unit}</td>";
             <td>{qty}</td>
             <th>{price}</th>
             <th>{subtotal}.00</th>
@@ -80,7 +81,7 @@
           </tr>
           {/cart_data}
           <tr>
-          <td colspan="4"></td>
+          <td colspan="5"></td>
           <td colspan=""><b>Total</b></td>
           <td colspan=""><?php echo $this->cart->total()?>.00</td>
           <tr>
@@ -122,11 +123,11 @@
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    b = '<a class="label label-info getmodal" data-toggle="modal"  data-itemid="'+oObj.aData[0]+'" data-method="add"  href="#">Add Item</a>';
+                    b = '<a class="label label-info getmodal" data-toggle="modal"  data-type="'+oObj.aData[4]+'" data-itemid="'+oObj.aData[0]+'" data-method="add"  href="#">Add Item</a>';
                  
                     return b;
                 },
-                "aTargets": [ 6 ],
+                "aTargets": [ 7 ],
                 "sDefaultContent": ""
             }
         ]
@@ -141,15 +142,27 @@
 
     var method = $(this).data('method');
     var id = $(this).data('itemid');
+    var type = $(this).data('type');
+if (type == 'Fixed') {
+  $('#uom').hide();
 
-    if (method == 'remove') {
+if (method == 'remove') {
       $(".itemid-item").val(id);
       $('#remove').modal('show');
     }else{
       $(".itemid-item").val(id);
       $('#add').modal('show');
     }
-
+}else{
+ if (method == 'remove') {
+      $(".itemid-item").val(id);
+      $('#remove').modal('show');
+    }else{
+      $(".itemid-item").val(id);
+      $('#add').modal('show');
+    } 
+}
+    
 
   });
 
@@ -199,16 +212,7 @@
         </div>
       </div>
 
-         <!-- Text input-->
-      <div class="control-group">
-        <label class="control-label" for="name">Unit of Measure:</label>
-        <div class="controls">
-         <input type="hidden" name="itemid-item" class="itemid-item" value>
-          <input id="name" name="unit" type="text" placeholder="" class="input-xlarge" required>
-          
-        </div>
-      </div>
- <br>
+       <br>
      
       <!-- Text input-->
       <div class="control-group">
@@ -272,22 +276,12 @@
       </div>
 
 
-<!-- Select Basic -->
-<div class="control-group">
-  <label class="control-label" for="terms">Terms</label>
-  <div class="controls">
-    <select id="terms" name="terms" class="input-xlarge">
-      <option>15 Days</option>
-      <option>30 Days</option>
-    </select>
-  </div>
-</div>
 
 <!-- Button -->
 <div class="control-group">
   <label class="control-label" for="genpopdf"></label>
   <div class="controls">
-    <button id="genpopdf" name="genpopdf" class="btn btn-info">Process PO Form</button>
+    <button id="genpopdf" name="genpopdf" class="btn btn-info">Process New Item</button>
   </div>
 </div>
 

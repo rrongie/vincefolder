@@ -32,7 +32,8 @@
             <th>Id Num</th>
             <th>Department</th>
             <th>Borrowed Status</th>
-            <th>Date</th>
+            <th>Borrowed Date</th>
+            <th>Return Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -103,7 +104,7 @@
 
                     return a + b;
                   },
-                  "aTargets": [ 6 ],
+                  "aTargets": [ 7 ],
                   "sDefaultContent": ""
                 }
                 ]

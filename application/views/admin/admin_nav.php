@@ -25,10 +25,11 @@
           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo base_url('admin/fixed'); ?>">ITEMS</a></li>
            <li class="dropdown" style="font-size:15px; margin-top:5px;">
 
-              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">FORMS</a>
+              <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">SUPPLY</a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
-                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/accountability'); ?>">ACCOUNTABILITY</a></li>
-                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/purchase'); ?>">PURCHASE ORDER</a></li>
+                <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/suppliers'); ?>">SUPPLIERS</a></li>
+                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/purchase'); ?>">SUPPLIER (PURCHASE ORDER)</a></li>
+                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/accountability'); ?>">ASSIGN ITEM (ACCOUNTABILITY)</a></li>
               </ul>
 
            </li>
@@ -54,7 +55,6 @@
               </ul>
 
            </li>
-           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/suppliers'); ?>">SUPPLIER</a></li>
 
            <?php 
 
@@ -63,7 +63,7 @@
            $type = $var['login']['type'];
            if ($type == 'admin') { ?>
            
-           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/logger'); ?>">LOG HISTORY</a></li>
+           <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/logger'); ?>">ITEMS ADDED REPORT</a></li>
       <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/manage_user'); ?>">MANAGE USER</a></li>
 
             <?php } ?>
@@ -74,6 +74,11 @@
            
         </ul>
         <ul class="nav navbar-nav pull-right">
+        <?php 
+          $sess = $this->session->userdata('login');
+          $name = $sess['name']
+        ?>
+          <li><a style="font-size:15px; margin-top:5px"><?php echo $name?></a></li>
           <li><a style="font-size:15px; margin-top:5px;" href="<?php echo base_url() . "account/logout"?>">LOGOUT</a></li>
         </ul>
      

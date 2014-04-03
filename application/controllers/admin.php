@@ -565,7 +565,7 @@ class Admin extends CI_Controller {
 
   public function datatables_fixed(){
     $this
-      ->datatables->select('item_id,supplier.company,item_name,item_brand,item_serial,department.name, item_asset,item_status,date_add',FALSE)
+      ->datatables->select('item_id,supplier.company,item_name,item_brand,item_serial, item_asset,item_status,date_add',FALSE)
       ->from('items')
       ->join('supplier', 'items.supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')
@@ -638,7 +638,7 @@ class Admin extends CI_Controller {
 
   public function datatables_po($supplier_id){
     $this
-      ->datatables->select('item_id,company,item_name,item_brand,item_type,item_price',FALSE)
+      ->datatables->select('item_id,company,item_name,item_brand,item_unit,item_type,item_price',FALSE)
       ->from('items')
       ->join('supplier', 'supplier_id = supplier.id','left')
       ->join('department', 'department_id = department.id')
@@ -662,7 +662,7 @@ class Admin extends CI_Controller {
 
   public function datatables_borrowers(){
     $this
-      ->datatables->select('id,borrower_name, borrower_idnum, borrower_dept, borrower_status, borrowed_date, cart_data')
+      ->datatables->select('id,borrower_name, borrower_idnum, borrower_dept, borrower_status, borrowed_date,return_date')
       ->from('borrowers');
 
     $datatables = $this->datatables->generate('JSON');
@@ -851,7 +851,7 @@ class Admin extends CI_Controller {
 
     echo "<table class='table table-bordered'>";
     echo "<tr>
-      <th>Name</th>
+      <th>Item Name</th>
       <th>Brand</th>
       <th>Asset</th>
       <th>Serial</th>
@@ -1226,10 +1226,10 @@ class Admin extends CI_Controller {
     $qty = $this->input->post('qty');
 
     $item_data = $this->admin_model->get_item($id);
-
     $items_array = array(
       'id'      => $id,
       'qty'     => $qty,
+      'unit'    => $item_data[0]['item_unit'],
       'price'   => $item_data[0]['item_price'],
       'name'    => $item_data[0]['item_name'],
       'brand'	=>  $item_data[0]['item_brand'],
@@ -1547,7 +1547,7 @@ function iLogger($type, $qty, $lastid){
 
 function datatables_logger(){
     $this
-      ->datatables->select('id, log_type, item_name,item_brand, logger.qty, logger.date_add')
+      ->datatables->select('id,item_name,item_brand,log_type,logger.qty, logger.date_add')
       ->from('logger')
       ->join('items', 'items.item_id = logger.itemid');
 
