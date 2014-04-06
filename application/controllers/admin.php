@@ -192,6 +192,7 @@ class Admin extends CI_Controller {
       'item_unit' => $this->input->post('item_unit'),
       'item_qty' => $this->input->post('item_qty'),
       'item_price' => $this->input->post('item_price'),
+      'date_add' => date('Y-m-d H:i:s')
       //'item_serial' => $this->input->post('item_serial'),
       );
 
@@ -653,8 +654,8 @@ class Admin extends CI_Controller {
     ->join('supplier', 'supplier_id = supplier.id','left')
     ->join('department', 'department_id = department.id')
     ->where('supplier_id', $supplier_id)
-    ->where('item_type', 'Consumable')
-    ->group_by('item_name');
+    ->where('item_type', 'Consumable');
+ 
 
     $datatables = $this->datatables->generate('JSON');
     echo $datatables;

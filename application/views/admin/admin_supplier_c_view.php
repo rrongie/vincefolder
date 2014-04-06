@@ -13,7 +13,7 @@
                <div class="control-group">
                                     <label class="control-label" for="title">Select Supplier</label>
                                     <div class="controls">
-                                    <form action="<?php echo site_url('admin/purchase')?>" method="GET">
+                                    <form action="<?php echo site_url('admin/supplier_c')?>" method="GET">
                                       <input type="hidden" name="itemid" class="itemid" value>
                                       <select id="supplier_id" name="supplier_id" required>
                                         <option  name="" value=""></option>
