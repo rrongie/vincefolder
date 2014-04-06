@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2014 at 09:39 PM
+-- Generation Time: Apr 06, 2014 at 09:52 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -157,7 +157,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `item_asset` varchar(255) NOT NULL,
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=775342 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=775344 ;
 
 --
 -- Dumping data for table `items`
@@ -166,19 +166,15 @@ CREATE TABLE IF NOT EXISTS `items` (
 INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `item_name`, `item_type`, `item_unit`, `item_qty`, `item_price`, `item_serial`, `item_status`, `item_asset`, `date_add`) VALUES
 (1, 1, 1, 'Desire', 'low back office chair', 'Fixed', '0', 84, 6.00, 'sjt27', 'Available', 'djh5', '2014-04-07 02:31:18'),
 (2, 1, 2, 'Thinking Tools', 'visitor chair	', 'Fixed', 'none', 73, 3.00, 'YC128', 'Available', 'lpjh8', '2014-04-06 23:16:18'),
-(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 411, 3.00, 'test ', 'Available', 'mn2gy', '2014-04-06 23:24:35'),
+(3, 1, 1, 'Desire', 'mineral water', 'Consumable', 'container', 498, 3.00, 'test ', 'Available', 'mn2gy', '2014-04-06 23:24:35'),
 (4, 2, 3, 'Copyland', 'meeting table', 'Fixed', 'none', 136, 200.00, 'ykxd2', 'Available', 'b8dh5', '2014-04-07 02:07:15'),
-(5, 1, 2, 'Coca Cola', 'real leaf lemon', 'Consumable', 'cs', 74, 23.00, '9999', 'Available', 'svz8dw', '2014-04-06 23:16:18'),
 (6, 9, 4, 'ATX 9000', 'wenge office desk', 'Fixed', '0', 136, 43.00, 'uashk23', 'Available', '1ds7h', '2014-04-07 02:10:18'),
 (7, 1, 1, 'Desire', 'chair', 'Fixed', 'none', 99, 6.00, 'sdlkas23', 'Available', 'pj6sd', '2014-04-07 01:33:43'),
-(9, 9, 2, 'Coca Cola', 'last', 'Consumable', 'last', 115, 23.00, '654', 'Available', '1sgsvh', '2014-04-06 23:16:18'),
 (10, 2, 3, 'Thinking Tools	', 'cable', 'Fixed', 'none', 229, 4.00, 'sd123x', 'Available', 'kg3ps', '2014-04-07 01:29:26'),
 (13, 2, 1, 'ATX 9001', 'refrigerator', 'Fixed', '0', 99, 12.00, '239482kfjdh2gs2j', 'Available', 'adasda', '2014-04-07 01:33:43'),
 (14, 10, 3, 'SONY', 'LAPTOP', 'Fixed', '', 69, 200.00, '1239482245', 'Available', 'LAP29442942', '2014-04-07 01:33:43'),
 (21, 2, 1, 'BondPaper', 'Bond Paper', 'Consumable', 'Bundle', 199, 120.00, '', 'Available', '', '2014-04-06 23:16:18'),
-(22, 1, 0, 'test', 'test1231241354', 'Consumable', 'dasdas', 52, 2.00, '', 'Available', '', '2014-04-06 23:16:18'),
 (24, 9, 1, 'tet', 'test', 'Fixed', '', 49, 2.00, '23', 'Available', '34ds', '2014-04-07 01:33:43'),
-(25, 1, 1, 'eqweqweqws22s', '23', 'Consumable', '32', 345, 2.00, '', 'Available', '', '2014-04-07 01:46:23'),
 (26, 1, 1, 'recieved', 'dasd', 'Fixed', '', 49, 2.00, 'sad2', 'Available', 'sdaw2', '2014-04-07 01:33:43'),
 (6115, 1, 1, 'Desire', 'chair', 'Fixed', 'None', 0, 6.00, 'sample', 'Available', 'sample', '2014-04-07 03:03:38'),
 (365341, 1, 1, 'Desire', 'chair', 'Fixed', 'None', 49, 6.00, '34342', 'Available', '423', '2014-04-07 01:33:43'),
@@ -186,7 +182,9 @@ INSERT INTO `items` (`item_id`, `supplier_id`, `department_id`, `item_brand`, `i
 (653416, 1, 1, 'Desire', 'low back office chair', 'Fixed', 'None', 49, 6.00, '113', 'Available', '313312', '2014-04-06 23:16:18'),
 (753416, 1, 1, 'Desire', 'low back office chair', 'Fixed', '', 49, 6.00, '1231', 'Available', '132131', '2014-04-06 23:16:18'),
 (753417, 1, 1, 'Desire', 'low back office chair', 'Fixed', 'None', 49, 6.00, 'weqwe', 'Available', 'qeqewq', '2014-04-07 01:33:43'),
-(775341, 1, 1, 'Desire', 'chair', 'Fixed', 'None', 0, 6.00, '12313', 'Available', '11313', '2014-04-07 01:48:49');
+(775341, 1, 1, 'Desire', 'chair', 'Fixed', 'None', 0, 6.00, '12313', 'Available', '11313', '2014-04-07 01:48:49'),
+(775342, 2, 3, 'Desire', 'Shakoy', 'Consumable', 'stick', 52, 21.00, '', 'Available', '', '0000-00-00 00:00:00'),
+(775343, 1, 5, 'jmall', 'red panty', 'Consumable', 'sacks', 100, 1.00, '', 'Available', '', '2014-04-07 03:50:29');
 
 -- --------------------------------------------------------
 
@@ -201,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `logger` (
   `itemid` int(11) NOT NULL,
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
 
 --
 -- Dumping data for table `logger`
@@ -242,7 +240,11 @@ INSERT INTO `logger` (`id`, `log_type`, `qty`, `itemid`, `date_add`) VALUES
 (32, 'Consumable', 1, 25, '2014-04-06 17:42:45'),
 (57, 'Fixed', 1, 1, '2014-04-06 17:48:49'),
 (58, 'Fixed', 1, 1, '2014-04-06 17:50:19'),
-(59, 'Fixed', 1, 1, '2014-04-06 17:51:05');
+(59, 'Fixed', 1, 1, '2014-04-06 17:51:05'),
+(60, 'Consumable', 87, 3, '2014-04-06 19:41:41'),
+(61, 'Consumable', 42, 775342, '2014-04-06 19:47:58'),
+(62, 'Consumable', 10, 775342, '2014-04-06 19:48:27'),
+(63, 'Consumable', 100, 775343, '2014-04-06 19:50:29');
 
 -- --------------------------------------------------------
 
