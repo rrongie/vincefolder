@@ -139,8 +139,7 @@ public function customer_info($user_id){
 	}
 
 	public function delete_borrowers($id){
-		$this->db->where('id',$id);
-		
+		$this->db->where('borrower_id',$id);
 		$result= $this->db->delete('borrowers');
 		return $result;
 	}

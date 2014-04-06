@@ -46,51 +46,7 @@
 
 </div>
 
-<!-- for purchase list -->
-   <div class="col-md-12">
-      <div class="panel panel-primary" id="panels">
 
-
-
-       <div class="panel-heading">Purchases List</div>
-       <div class="panel-body">
-
-        <?php 
-
-        if ($this->session->flashdata('item_add')){ ?>
-
-        <div class="alert alert-info text-center">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> 
-          <?php echo $this->session->flashdata('item_add')?>
-        </div>
-
-        <?php
-      }
-
-      ?>
-      <table id="accounts-view2" class="table">
-        <thead>
-          <tr>
-            <th>Purchase Id</th>
-            <th>Department</th> 
-            <th>Company</th>
-            <th>Total Cost(PHP)</th>
-           
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-        <tfoot>
-        </tfoot>
-      </table>
-      <br/>
-  </div>
-</div>
-
-</div>
-<!-- end of purchase -->
 
 
 
@@ -128,7 +84,7 @@
     $('#accounts-view').dataTable( {
       "sDom": '<"H"Tfr>t<"F"ip>',
       
-      "aaSorting": [[ 8, "asc" ]],
+      "aaSorting": [[ 5, "desc" ]],
         
       "bProcessing": true,
       "sAjaxSource": "<?php echo site_url('admin/datatables_logger'); ?>",
@@ -146,7 +102,7 @@
 
   $(document).ready(function() {
     $('#accounts-view2').dataTable( {
-      "aaSorting": [[ 5, "desc" ]],
+      "aaSorting": [[ 4, "desc" ]],
       "bProcessing": true,
       "sAjaxSource": "<?php echo site_url('admin/datatables_purchase_list'); ?>",
       "aoColumnDefs": [

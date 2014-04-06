@@ -13,7 +13,7 @@
                <div class="control-group">
                                     <label class="control-label" for="title">Select Supplier</label>
                                     <div class="controls">
-                                    <form action="<?php echo site_url('admin/purchase')?>" method="GET">
+                                    <form action="<?php echo site_url('admin/supplier_f')?>" method="GET">
                                       <input type="hidden" name="itemid" class="itemid" value>
                                       <select id="supplier_id" name="supplier_id" required>
                                         <option  name="" value=""></option>
@@ -37,7 +37,6 @@
                       <th>Company</th>
                       <th>Item Name</th>
                       <th>Item Brand</th>
-                      <th>Item Unit</th>
                       <th>Item Type</th>
                       <th>Item Price</th>
                       <th>Action</th>
@@ -61,8 +60,8 @@
           <tr>
             <th>Name</th>
             <th>Brand</th>
-            
-            <th>Quantity</th>
+            <th>Serial</th>
+            <th>Asset</th>
             <th>Price</th>
             <th>Subtotal</th>
             <th>Action</th>
@@ -73,17 +72,18 @@
           <tr> 
             <td>{name}</td> 
             <td>{brand}</td>
-            
-            <td>{qty}</td>
+            <td>{serial}</td>
+            <td>{asset}</td>
             <th>{price}</th>
             <th>{subtotal}.00</th>
-            <th><a class="label label-danger" href="remove_item_po/{id}/">Remove</a></th>  
+            <th><a class="label label-danger" href="remove_item_po_f/{id}/">Remove</a></th>  
           </tr>
           {/cart_data}
           <tr>
           <td colspan="4"></td>
           <td colspan=""><b>Total</b></td>
-          <td colspan=""><?php echo $this->cart->total()?>.00</td>
+          <td colspan=""><b><?php echo $this->cart->total()?>.00</b></td>
+          <td colspan="1"></td>
           <tr>
         </tbody>
         <tfoot>
@@ -96,8 +96,8 @@
 
 <hr>
 <div class="text-center col-md-12" >
-  <a href="#" class="finalize_po btn btn-lg btn-info">Finalize New Ordered items</a> 
-  <a href="<?php echo site_url('admin/clear_form_po'); ?>" class="btn btn-lg btn-danger">Clear Form</a> 
+  <a href="<?php echo site_url('admin/add_supply_supp_fixed_items'); ?>" d class="btn btn-lg btn-info">Add to supply</a> 
+  <a href="<?php echo site_url('admin/clear_form_supp_f'); ?>" class="btn btn-lg btn-danger">Clear form</a> 
 </div>
           </div>
    </div>
@@ -119,15 +119,15 @@
     $('#accounts-view').dataTable( {
         "aaSorting": [[ 0, "asc" ]],
         "bProcessing": true,
-        "sAjaxSource": "<?php echo site_url('admin/datatables_po/{supplier_id}'); ?>",
+        "sAjaxSource": "<?php echo site_url('admin/datatables_supplier_f/{supplier_id}'); ?>",
         "aoColumnDefs": [
             {
                 "fnRender": function ( oObj ) {
-                    b = '<a class="label label-info getmodal" data-toggle="modal"  data-type="'+oObj.aData[4]+'" data-itemid="'+oObj.aData[0]+'" data-method="add"  href="#">Add Item</a>';
+                    b = '<a class="label label-info getmodal" data-toggle="modal"  data-type="'+oObj.aData[5]+'" data-itemid="'+oObj.aData[0]+'" data-method="add"  href="#">Add Item</a>';
                  
                     return b;
                 },
-                "aTargets": [ 7 ],
+                "aTargets": [ 6 ],
                 "sDefaultContent": ""
             }
         ]
@@ -136,38 +136,22 @@
 
 </script>
 
+
 <script type="text/javascript">
   
   $(document).on('click', '.getmodal', function(){
 
-    var method = $(this).data('method');
     var id = $(this).data('itemid');
-    var type = $(this).data('type');
-if (type == 'Fixed') {
-  $('#uom').hide();
 
-if (method == 'remove') {
-      $(".itemid-item").val(id);
-      $('#remove').modal('show');
-    }else{
-      $(".itemid-item").val(id);
-      $('#add').modal('show');
-    }
-}else{
- if (method == 'remove') {
-      $(".itemid-item").val(id);
-      $('#remove').modal('show');
-    }else{
-      $(".itemid-item").val(id);
-      $('#add').modal('show');
-    } 
-}
-    
+    $(".itemid-item").val(id);
+    $(".itemid-supplier").val({supplier_id});
+    $('#add').modal('show');
 
   });
 
 
 </script>
+
 
 <script type="text/javascript">
   
@@ -200,22 +184,20 @@ if (method == 'remove') {
               <!-- modal Body -->
               <div class="modal-body text-center">
                       
-      <form action="<?php echo site_url('admin/add_po_qty')?>" method="POST">
+      <form action="<?php echo site_url('admin/add_item_supp_fixed')?>" method="POST">
         
         <!-- Text input-->
       <div class="control-group">
-        <label class="control-label" for="name">Quantity:</label>
+        <label class="control-label" for="name">Add Serial And Asset Number</label>
         <div class="controls">
-         <input type="hidden" name="itemid-item" class="itemid-item" value>
-          <input id="name" name="qty" type="number" placeholder="" class="input-xlarge" required>
+          <input type="hidden" name="supplier" class="itemid-supplier" value>
+          <input type="hidden" name="itemid-item" class="itemid-item" value>
+          <input  name="asset" type="text" placeholder="Serial Number" class="input-xlarge" required>
+          <input  name="serial" type="text" placeholder="Asset Number" class="input-xlarge" required>
           
         </div>
       </div>
-
-     
-
        <br>
-     
       <!-- Text input-->
       <div class="control-group">
         <div class="controls">
@@ -244,7 +226,7 @@ if (method == 'remove') {
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><b style="font-size:15px;">Finalize Purchase Order</b>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><b style="font-size:15px;">Add Supplies</b>
         </div>
               <!-- modal Body -->
               <div class="modal-body text-center">

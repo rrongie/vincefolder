@@ -27,7 +27,6 @@
                       <th>Company</th>
                       <th>Item Name</th>
                       <th>Item Brand</th>
-                      <th>Department</th>
                       <th>Serial</th>
                       <th>Asset Code</th>
                       <th>Status</th>
@@ -56,7 +55,7 @@
     
                 $(document).ready(function() {
     $('#accounts-view').dataTable( {
-        "aaSorting": [[ 7, "asc" ]],
+        "aaSorting": [[ 7, "desc" ]],
         "bProcessing": true,
         "sAjaxSource": "<?php echo site_url('admin/datatables_fixed'); ?>",
         "aoColumnDefs": [
@@ -65,10 +64,11 @@
                     
                     a = ' <a class="label label-info" href="edit_fixed_item/'+oObj.aData[0]+'">Update</a> ';
                     z = ' <a class="test label label-danger" href="delete_fixed_item/'+oObj.aData[0]+'">Remove</a> ';
-                  return a + z;
+                    b = ' <a class="label label-success" href="item_history/'+oObj.aData[0]+'">History</a> ';
+                  return a + z + b;
                  
                 },
-                "aTargets": [ 9 ],
+                "aTargets": [ 8 ],
                 "sDefaultContent": ""
             }
         ]

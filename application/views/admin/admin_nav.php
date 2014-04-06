@@ -28,7 +28,8 @@
               <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">SUPPLY</a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                 <li style="font-size:15px; margin-top:5px;"><a href="<?php echo site_url('admin/suppliers'); ?>">SUPPLIERS</a></li>
-                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/purchase'); ?>">SUPPLIER ITEMS</a></li>
+                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/supplier_c'); ?>">SUPPLIER ITEMS (CONSUMABLE)</a></li>
+                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/supplier_f'); ?>">SUPPLIER ITEMS (FIXED)</a></li>
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/accountability'); ?>">ASSIGN ITEM (ACCOUNTABILITY)</a></li>
               </ul>
 
@@ -40,7 +41,6 @@
               <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">LISTS</a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
                <!-- <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/purchase_list'); ?>">PURCHASES LIST</a></li > -->
-                <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/item_status'); ?>">ITEM REMARKS</a></li>
                 <li role="presentation"><a style="font-size:15px; margin-top:5px;" role="menuitem" tabindex="-1" href="<?php echo site_url('admin/borrowers'); ?>">BORROWERS LIST</a></li>
               </ul>
 

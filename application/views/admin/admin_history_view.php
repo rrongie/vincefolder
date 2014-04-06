@@ -8,7 +8,7 @@
 
 
 
-       <div class="panel-heading">Borrower's List</div>
+       <div class="panel-heading">Item's History</div>
        <div class="panel-body">
 
         <?php 
@@ -38,7 +38,6 @@
             <th>Borrowed Date</th>
             <th>Return Date</th>
             <th>Remarks</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -105,21 +104,7 @@
     $('#accounts-view').dataTable( {
       "aaSorting": [[ 8, "desc" ]],
       "bProcessing": true,
-      "sAjaxSource": "<?php echo site_url('admin/datatables_borrowers'); ?>",
-      "aoColumnDefs": [
-      {
-        "fnRender": function ( oObj ) {
-          var a;
-          var b;
-                    a = '<a href="#" class="label return-item label-info" data-tableid = "'+oObj.aData[12]+'" data-name="'+oObj.aData[4]+'" data-itemid="'+oObj.aData[11]+'">Return</a> <br>';  
-                    b = '<a class="test label label-danger" href="remove_borrowers/'+oObj.aData[12]+'">Remove</a> ';
-
-                    return a + b;
-                  },
-                  "aTargets": [ 11 ],
-                  "sDefaultContent": ""
-                }
-                ]
+      "sAjaxSource": "<?php echo site_url('admin/datatables_history/{itemid}'); ?>"
               } );
 } );
 
