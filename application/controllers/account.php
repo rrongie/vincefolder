@@ -71,11 +71,11 @@ public function login_validate(){
 
 			//Check the account type and redirect to appropriate page
 			if ($userinfo[0]['type'] == 'user') {
-				redirect('user');
+				redirect('user/fixed');
 			}elseif($userinfo[0]['type'] == 'admin'){
-				redirect('admin');
+				redirect('admin/fixed');
 			}elseif($userinfo[0]['type'] == 'staff'){
-				redirect('admin');
+				redirect('admin/fixed');
 			}
 
 
